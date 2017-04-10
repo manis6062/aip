@@ -19,7 +19,7 @@
 
                 <?php 
                 $attributes = array('class' => 'form-vertical', 'id' => 'loginform');
-                echo form_open("Auth/Auth/login" , $attributes);?>
+                echo form_open("Users/auth/login" , $attributes);?>
 				 <div class="control-group normal_text"> <h3><img src="<?php echo PUBLIC_SITE_URL ; ?>img/logo.png" alt="Logo" /></h3></div>
                 <div class="control-group">
                     <div class="controls">

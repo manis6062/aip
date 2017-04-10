@@ -8,8 +8,8 @@
 
 <!--end-Footer-part-->
 
+<script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery-3.2.1.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/excanvas.min.js"></script> 
-<script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.ui.custom.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/bootstrap.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.flot.min.js"></script> 
