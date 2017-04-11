@@ -415,10 +415,9 @@ class Auth extends CI_Controller {
     {
         $this->data['title'] = $this->lang->line('create_user_heading');
         
-//        //get branch   
-        $this->data['branches'] = $this->getBranches();
-                
-
+//        //get branches   
+        $this->load->model("ion_auth_model");
+        $this->data['branches'] = $this->ion_auth->getBranches();
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
         {
             redirect('auth', 'refresh');
@@ -819,24 +818,6 @@ class Auth extends CI_Controller {
                 $view_html = ($this->uri->segment(3) == 'login') ? $this->load->view($view, $this->viewdata, $returnhtml) : $this->load->template($view, $this->viewdata, $returnhtml);
 		if ($returnhtml) return $view_html;//This will return html on 3rd argument being true
 	}
-        
-        
-         public function getBranches(){
-              $this->load->model("ion_auth_model");
-                $branch = $this->ion_auth->getCategoryForParentId();
-                $data = null;
-                foreach ($branch as $value) {
-                    foreach ($value['sub_categories'] as $value2) {
-                         if($value2['parent_id'] == $value['id']){
-                          $sub_categories_name = $value2['name'];
-                          $categories_name = $value['name'];
-                         
-                          $data .= $categories_name . '--'  . $sub_categories_name . '<br>';
-                         }  
-                    }
-                    
-                }
-                return $data;
-        }
+    
 
 }

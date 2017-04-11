@@ -3,7 +3,6 @@
     <h1>Create User</h1>
   </div>
 <div id="infoMessage"><?php echo $message;?></div>
-
   <div class="container-fluid"><hr>
     <div class="row-fluid">
       <div class="span6">
@@ -34,23 +33,13 @@
                   <?php echo form_input($phone);?>
                 </div>
               </div>
-                
-              <?php 
-var_dump($branches);
-              
-              ?>
                     <div class="control-group">
               <label class="control-label">Branch</label>
               <div class="controls">
                 <select >
-                  <option>First option</option>
-                  <option>Second option</option>
-                  <option>Third option</option>
-                  <option>Fourth option</option>
-                  <option>Fifth option</option>
-                  <option>Sixth option</option>
-                  <option>Seventh option</option>
-                  <option>Eighth option</option>
+                    <?php foreach($branches as $key => $branchList) : ?>
+                  <option><?php echo $branchList->Name . '  (' .  $branchList->ParentName . ')' ;?></option>
+                  <?php endforeach; ?>
                 </select>
               </div>
             </div>

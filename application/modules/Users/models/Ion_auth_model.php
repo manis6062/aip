@@ -2296,20 +2296,17 @@ class Ion_auth_model extends CI_Model
 		// just return the string IP address now for better compatibility
 		return $ip_address;
 	}
+   
         
+        public function getBranches(){
+            $query = $this->db->query("SELECT child.Id,
+                                                child.Name,
+                                                child.parent_id,
+                                                parent.Name as ParentName
+                                                FROM branch child
+                                                JOIN branch parent ON child.parent_id = parent.id");
+            $result = $query->result();
+            return $result;
+        }
         
-          public function getCategoryForParentId($parent_id = 0){
-          $query = $this->db->get_where("branch", array('status' => 1, 'parent_id' => $parent_id));
-           $categories = array();
-          foreach ($query->result() as $value) {
-              $category = array();
-              $category['id'] = $value->id;
-              $category['name'] = $value->name;
-              $category['parent_id'] = $value->parent_id;
-              $category['sub_categories'] = $this->getCategoryForParentId($category['id']);
-              $categories[$value->id] = $category;
-          }
-          return $categories;
-          
-    }
 }
