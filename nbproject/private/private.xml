@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/var/www/html/aip/application/modules/Branch/models/Branch_model.php</file>
+            <file>file:/var/www/html/aip/application/config/config.php</file>
+            <file>file:/var/www/html/aip/application/modules/Dashboard/views/templates/navbar.php</file>
+            <file>file:/var/www/html/aip/application/modules/Users/libraries/Ion_auth.php</file>
+            <file>file:/var/www/html/aip/application/modules/Users/views/auth/create_user.php</file>
+            <file>file:/var/www/html/aip/application/config/autoload.php</file>
+            <file>file:/var/www/html/aip/application/modules/Users/views/auth/index.php</file>
+            <file>file:/var/www/html/aip/application/config/constants.php</file>
+            <file>file:/var/www/html/aip/application/modules/Users/config/ion_auth.php</file>
+            <file>file:/var/www/html/aip/application/modules/Branch/controllers/Branch.php</file>
+            <file>file:/var/www/html/aip/application/modules/Users/controllers/Auth.php</file>
+        </group>
+    </open-files>
+</project-private>

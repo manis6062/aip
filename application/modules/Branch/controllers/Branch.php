@@ -5,24 +5,25 @@ class Branch extends MX_Controller {
     
 	public function index()
 	{
-                $this->load->model("branch_model");
-                $data = $this->branch_model->getAllBranch();
-                
-                
-                $parent_array = $data[0];
-                echo "<pre>";
-                print_r($data);
-                
-                
-                foreach ($parent_array as $value) {
-                    
-                    if($value->id == $data['id']){
-                        echo $value->name . '<br>';
-                    }
-                }
-                
-                 echo "</pre>";
-		$this->load->view('welcome_message');
+               
+		$this->load->view('welcome_message' , $data);
 	}
+        
+        
+        public function getBranches(){
+             $this->load->model("branch_model");
+                $branch = $this->branch_model->getCategoryForParentId();
+                foreach ($branch as $value) {
+                    
+                    foreach ($value['sub_categories'] as $value2) {
+                         if($value2['parent_id'] == $value['id']){
+                          $sub_categories_name = $value2['name'];
+                          $categories_name = $value['name'];
+                          $data['cat_subcat'] = $categories_name . '-----'  . $sub_categories_name;
+                                                                  }  
+                    }
+                    return $data;
+                }
+        }
         
 }

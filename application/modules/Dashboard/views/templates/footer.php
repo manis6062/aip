@@ -8,7 +8,6 @@
 
 <!--end-Footer-part-->
 
-<script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery-3.2.1.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/excanvas.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.ui.custom.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/bootstrap.min.js"></script> 
@@ -25,7 +24,6 @@
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/matrix.form_validation.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.wizard.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.uniform.js"></script> 
-<script src="<?php echo PUBLIC_SITE_URL ; ?>js/select2.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/matrix.popover.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.dataTables.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/matrix.tables.js"></script> 

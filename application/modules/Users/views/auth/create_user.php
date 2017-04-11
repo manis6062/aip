@@ -6,10 +6,10 @@
 
   <div class="container-fluid"><hr>
     <div class="row-fluid">
-      <div class="span12">
+      <div class="span6">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-            <h5>Account</h5>
+            <h5>General</h5>
           </div>
           <div class="widget-content nopadding">
               <?php
@@ -27,22 +27,61 @@
                    <?php echo form_input($last_name);?>
                 </div>
               </div>
-              <div class="control-group">
-                <label class="control-label">Your Email</label>
-                <div class="controls">
-               <?php echo form_input($identity);
-                echo form_error('identity');
-               ?>
-
-                </div>
-              </div>
+          
               <div class="control-group">
                 <label class="control-label">Phone</label>
                 <div class="controls">
                   <?php echo form_input($phone);?>
                 </div>
               </div>
-                 <div class="control-group">
+                
+              <?php 
+var_dump($branches);
+              
+              ?>
+                    <div class="control-group">
+              <label class="control-label">Branch</label>
+              <div class="controls">
+                <select >
+                  <option>First option</option>
+                  <option>Second option</option>
+                  <option>Third option</option>
+                  <option>Fourth option</option>
+                  <option>Fifth option</option>
+                  <option>Sixth option</option>
+                  <option>Seventh option</option>
+                  <option>Eighth option</option>
+                </select>
+              </div>
+            </div>
+                  
+                   <div class="control-group">
+                <label class="control-label">Designation</label>
+                <div class="controls">
+                   <?php echo form_input($first_name);?>
+                </div>
+              </div>
+             
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+            <h5>Account</h5>
+          </div>
+            
+              <div class="widget-content nopadding">
+               <div class="form-horizontal">
+               <div class="control-group">
+                <label class="control-label">Email</label>
+                <div class="controls">
+                  <?php echo form_input($identity);?>
+                </div>
+              </div>
+          <div class="widget-content nopadding">
+               <div class="form-horizontal">
+               <div class="control-group">
                 <label class="control-label">Password</label>
                 <div class="controls">
                   <?php echo form_input($password);?>
@@ -56,32 +95,6 @@
                 </div>
               </div>
              
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-            <h5>General</h5>
-          </div>
-          <div class="widget-content nopadding">
-               <div class="form-horizontal">
-                <div class="control-group">
-                <label class="control-label">Choose Branch</label>
-                <div class="controls">
-                 <?php echo form_input($first_name);?>
-                </div>
-              </div>
-                  
-                   <div class="control-group">
-                <label class="control-label">Designation</label>
-                <div class="controls">
-                   <?php echo form_input($first_name);?>
-                </div>
-              </div>
-             
              
           </div>
       <div class="form-actions">
@@ -92,5 +105,6 @@
       </div>
     </div>
   </div>
-    </div>
-</div>
+<script type="text/javascript">
+  $('select').select2();
+</script>

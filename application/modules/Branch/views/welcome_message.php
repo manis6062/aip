@@ -1,6 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
+
+
+
+<?php 
+
+var_dump($cat_subcat) ;
+
+?>
+
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">

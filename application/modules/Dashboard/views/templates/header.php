@@ -12,6 +12,8 @@
 <link href="<?php echo PUBLIC_SITE_URL ; ?>font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="<?php echo PUBLIC_SITE_URL ; ?>css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
-
+<script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery-3.2.1.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
