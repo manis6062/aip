@@ -9,7 +9,7 @@ html, body{height:100%}
 
 body {
 	overflow-x: hidden;
-	margin-top: -10px; font-family: 'Open Sans', sans-serif; font-size:14px; color:#666;
+	margin-top: -10px; font-family: Myriad Pro; font-size:15px; color:#666;
 }
 a{color:#666;}
 a:hover, a:focus {
@@ -114,10 +114,10 @@ hr{ border-top-color:#dadada;}
 #user-nav > ul > li > a {
 	padding:9px 10px;
 	display: block;
-	font-size: 12px;
+	font-size: 13px;
 }
 #user-nav > ul > li > a:hover, #user-nav > ul > li.open > a {
-	color: #ffffff;  background:#000;
+	color: #cccccc;  background:#000;
 }
 #user-nav > ul > li > a > i, #sidebar li a i {
 	opacity: .5; 
