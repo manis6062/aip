@@ -2305,8 +2305,12 @@ class Ion_auth_model extends CI_Model
                                                 parent.Name as ParentName
                                                 FROM branch child
                                                 JOIN branch parent ON child.parent_id = parent.id");
-            $result = $query->result();
-            return $result;
+            return $query->result();
+        }
+        
+          public function getDesignations(){
+            $query = $this->db->get_where('designation', array('status' => 1));
+            return $query->result();
         }
         
 }

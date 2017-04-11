@@ -418,6 +418,10 @@ class Auth extends CI_Controller {
 //        //get branches   
         $this->load->model("ion_auth_model");
         $this->data['branches'] = $this->ion_auth->getBranches();
+       //get 
+        $this->data['designations'] = $this->ion_auth->getDesignations();
+        
+        
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
         {
             redirect('auth', 'refresh');
