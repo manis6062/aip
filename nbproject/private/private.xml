@@ -10,7 +10,10 @@
             <file>file:/var/www/html/aip/application/modules/Users/models/Ion_auth_model.php</file>
             <file>file:/var/www/html/aip/application/modules/Dashboard/views/templates/header.php</file>
             <file>file:/var/www/html/aip/application/modules/Users/views/auth/create_user.php</file>
+            <file>file:/var/www/html/aip/application/modules/Users/views/auth/login.php</file>
             <file>file:/var/www/html/aip/public/js/masked.js</file>
+            <file>file:/var/www/html/aip/application/config/routes.php</file>
+            <file>file:/var/www/html/aip/application/modules/Users/controllers/Auth.php</file>
         </group>
     </open-files>
 </project-private>
