@@ -65,19 +65,20 @@
     
     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-info-sign"></i> <span>Enquiry</span></a>
       <ul>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Study</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Training</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Exam</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">About Study</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Enrollment</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Exam Preparation</a></li>
       </ul>
     </li>
     
     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-bookmark"></i> <span>Training</span></a>
       <ul>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">IELTS</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">GMAT</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">SAT</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">TOEFL</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">PTE</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">IELTS Preparation</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">GMAT Preparation</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">SAT Preparation</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">TOEFL Preparation</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">PTE Preparation</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Others</a></li>
 
       </ul>
     </li>
