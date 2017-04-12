@@ -908,7 +908,17 @@ class Ion_auth_model extends CI_Model
 		$salt       = $this->store_salt ? $this->salt() : FALSE;
 		$password   = $this->hash_password($password, $salt);
 
-		// Users table.
+                $first_name = $additional_data['first_name'];
+                $last_name = $additional_data['last_name'];
+                $phone = $additional_data['phone'];
+                $mobile = $additional_data['mobile'];
+                $address = $additional_data['address'];
+                $auth_ids = $additional_data['auth_id'];
+                $branch_id = $additional_data['branch_id'];
+                $designation_id = $additional_data['designation_id'];
+		
+               
+                     // Users table.
 		$data = array(
 		    $this->identity_column   => $identity,
 		    'username'   => $identity,
@@ -916,9 +926,13 @@ class Ion_auth_model extends CI_Model
 		    'email'      => $email,
 		    'ip_address' => $ip_address,
 		    'created_on' => time(),
-		    'active'     => ($manual_activation === false ? 1 : 0)
+		    'active'     => ($manual_activation === false ? 1 : 0),
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'user_branch_id' => $branch_id,
+                    'user_designation_id' => $designation_id
 		);
-
+                
 		if ($this->store_salt)
 		{
 			$data['salt'] = $salt;
@@ -933,7 +947,25 @@ class Ion_auth_model extends CI_Model
 		$this->db->insert($this->tables['users'], $user_data);
 
 		$id = $this->db->insert_id();
-
+                
+                //insert to Auth table
+                $auth_count = count($auth_ids);
+                for($i=0 ; $i < $auth_count; $i++ ) {
+                
+                foreach ($auth_ids as $value) {
+                    
+                    $auth_data = array(
+                    'auth_id' => $value[$i],
+                    'user_id' => $id,
+                     'status' => 1
+                );
+                    
+                    $this->db->insert('user_auth', $auth_data);
+                    
+                } 
+                
+                }
+                
 		// add in groups array if it doesn't exists and stop adding into default group if default group ids are set
 		if( isset($default_group->id) && empty($groups) )
 		{
@@ -2311,6 +2343,16 @@ class Ion_auth_model extends CI_Model
           public function getDesignations(){
             $query = $this->db->get_where('designation', array('status' => 1));
             return $query->result();
+        }
+        
+         public function getAuths(){
+            $query = $this->db->get_where('auth', array('status' => 1));
+            return $query->result();
+        }
+        
+          public function getUserDetails($user_id){
+            $query = $this->db->get_where('users', array('active' => 1 , 'id' => $user_id));
+            return $query->row();
         }
         
 }

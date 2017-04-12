@@ -418,9 +418,11 @@ class Auth extends CI_Controller {
 //        //get branches   
         $this->load->model("ion_auth_model");
         $this->data['branches'] = $this->ion_auth->getBranches();
-       //get 
+       //get designations
         $this->data['designations'] = $this->ion_auth->getDesignations();
         
+        //get Auth
+        $this->data['auth'] = $this->ion_auth->getAuths();
         
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
         {
@@ -455,18 +457,28 @@ class Auth extends CI_Controller {
             $password = $this->input->post('password');
 
             $additional_data = array(
-                'first_name' => $this->input->post('first_name'),
-                'last_name'  => $this->input->post('last_name'),
-                'company'    => $this->input->post('company'),
-                'phone'      => $this->input->post('phone'),
+            'first_name' => $this->input->post('first_name'),
+            'last_name'  => $this->input->post('last_name'),
+            'company'    => $this->input->post('company'),
+            'phone'      => $this->input->post('phone'),
+            'mobile'      => $this->input->post('mobile'),
+             'address'      => $this->input->post('address'),
+            'auth_id'      => $this->input->post('auth_id[]'),
+            'branch_id'      => $this->input->post('branch_id'),
+            'designation_id'      => $this->input->post('designation_id'),
+
             );
+            
+            $group = array($this->input->post('designation_id'));
+            
+            
         }
-        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data))
+        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data , $group))
         {
             // check to see if we are creating the user
             // redirect them back to the admin page
             $this->session->set_flashdata('message', $this->ion_auth->messages());
-            redirect("auth", 'refresh');
+            redirect("Users/auth", 'refresh');
         }
         else
         {
@@ -531,6 +543,25 @@ class Auth extends CI_Controller {
 	public function edit_user($id)
 	{
 		$this->data['title'] = $this->lang->line('edit_user_heading');
+                
+                  //get branches   
+        $this->load->model("ion_auth_model");
+        $this->data['branches'] = $this->ion_auth->getBranches();
+        
+        //get designations
+        $this->data['designations'] = $this->ion_auth->getDesignations();
+        
+        //get Auth
+        $this->data['auth'] = $this->ion_auth->getAuths();
+        
+         //get Auth
+        $this->data['mobile'] = $this->ion_auth->getAuths();
+        
+        
+        $this->data['userDetails'] = $this->ion_auth->getUserDetails($id);
+        
+        
+        
 
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
 		{
@@ -663,6 +694,12 @@ class Auth extends CI_Controller {
 			'id'    => 'phone',
 			'type'  => 'text',
 			'value' => $this->form_validation->set_value('phone', $user->phone),
+		);
+                $this->data['mobile'] = array(
+			'name'  => 'phone',
+			'id'    => 'phone',
+			'type'  => 'text',
+			'value' => $this->form_validation->set_value('mobile', $user->mobile),
 		);
 		$this->data['password'] = array(
 			'name' => 'password',

@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/var/www/html/aip/ADMIN%20DASHBOARD/form-common.html</file>
-            <file>file:/var/www/html/aip/application/modules/Dashboard/views/templates/footer.php</file>
-            <file>file:/var/www/html/aip/application/modules/Users/libraries/Ion_auth.php</file>
-            <file>file:/var/www/html/aip/application/modules/Users/models/Ion_auth_model.php</file>
-            <file>file:/var/www/html/aip/application/modules/Dashboard/views/templates/header.php</file>
-            <file>file:/var/www/html/aip/application/modules/Users/views/auth/create_user.php</file>
-            <file>file:/var/www/html/aip/application/modules/Users/config/ion_auth.php</file>
-            <file>file:/var/www/html/aip/public/js/masked.js</file>
-            <file>file:/var/www/html/aip/application/modules/Users/controllers/Auth.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

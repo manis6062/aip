@@ -52,6 +52,10 @@
 function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
+
+
+  $('select').select2();
+
 </script>
 </body>
 </html>

@@ -4,7 +4,13 @@
 <i class="icon-user"></i>
 </span><?php echo $title; ?></h1>
   </div>
-<div id="infoMessage"><?php echo $message;?></div>
+<div class="container-fluid"><hr>
+    <div class="row-fluid">
+        <div id="infoMessage" style="color:red;"><?php echo $message;?></div>
+    </div>
+</div>
+
+
   <div class="container-fluid"><hr>
     <div class="row-fluid">
       <div class="span6">
@@ -32,9 +38,10 @@
                      <div class="control-group">
               <label class="control-label">Branch</label>
               <div class="controls">
-                <select >
+                  <select name="branch_id">
                     <?php foreach($branches as $key => $branchList) : ?>
-                  <option name = "<?php echo $branchList->Id ; ?>"><?php echo $branchList->Name . '  (' .  $branchList->ParentName . ')' ;?></option>
+                  <option id = "designation_id"  value = "<?php echo $branchList->Id ; ?>">
+                      <?php echo $branchList->Name . '  (' .  $branchList->ParentName . ')' ;?></option>
                   <?php endforeach; ?>
                 </select>
               </div>
@@ -43,10 +50,10 @@
                     <div class="control-group">
               <label class="control-label">Designation</label>
               <div class="controls">
-                <select>
+                <select name="designation_id">
                     <?php 
                     foreach($designations as $key => $designationsList) : ?>
-                  <option name = "<?php echo $designationsList->id ; ?>">
+                  <option id = "designation_id"  value = "<?php echo $designationsList->id ; ?>">
                       <?php 
                       if ($this->ion_auth->is_admin()){
                       echo  $designationsList->name;
@@ -93,22 +100,29 @@
               <div class="widget-content nopadding">
                <div class="form-horizontal">
                <div class="control-group">
-                <label class="control-label">Email</label>
+                <label class="control-label"> Email</label>
                 <div class="controls">
-                  <?php echo form_input($identity);?>
+                   <input type="text" id="email" name = "email">
                 </div>
               </div>
-          <div class="widget-content nopadding">
-               <div class="form-horizontal">
+                   
+                   
+                    <div class="control-group">
+                <label class="control-label"> <?php echo lang('login_identity_label', 'identity');?></label>
+                <div class="controls">
+                   <?php echo form_input($identity);?>
+                </div>
+              </div>
+          
                <div class="control-group">
-                <label class="control-label">Password</label>
+                <label class="control-label"><?php echo lang('create_user_validation_password_label', 'password');?></label>
                 <div class="controls">
                   <?php echo form_input($password);?>
                 </div>
               </div>
                 
                    <div class="control-group">
-                <label class="control-label"> Confirm Password</label>
+                <label class="control-label"><?php echo lang('create_user_validation_password_confirm_label', 'password_confirm');?></label>
                 <div class="controls">
                   <?php echo form_input($password_confirm);?>
                 </div>
@@ -116,30 +130,19 @@
                <div class="control-group">
               <label class="control-label">User Access</label>
               <div class="controls">
-                <label>
-                  <input type="checkbox" name="radios" />
-                  Add User</label>
-                <label>
-                  <input type="checkbox" name="radios" />
-                  Edit User</label>
-                <label>
-                  <input type="checkbox" name="radios" />
-                  Delete User</label>
+                <?php foreach($auth as $authList) : ?>
+                   <label>   <input type="checkbox" value="<?php echo $authList->id ;?>" name="auth_id[]"/>
+                  <?php echo $authList->title ;?></label>
+          <?php endforeach; ?>
               </div>
-              
-                <label class="control-label">Stucent Access</label>
+            </div>
+                   
+                    <div class="control-group">
+              <label class="control-label">Status</label>
               <div class="controls">
-                <label>
-                  <input type="checkbox" name="radios" />
-                  Add Student</label>
-                <label>
-                  <input type="checkbox" name="radios" />
-                  Edit Student</label>
-                <label>
-                  <input type="checkbox" name="radios" />
-                  Delete Student</label>
+                  <input type="radio" name="status" value="1"/>Enable
+                  <input type="radio" name="status" value="0" />Disable
               </div>
-              
             </div>
               
           
@@ -147,12 +150,7 @@
              
           </div>
       <div class="form-actions">
-            <div class="control-group">
-              <label class="control-label">Status</label>
-              <div class="controls">
-                  <input type="checkbox" name="radios" />
-              </div>
-            </div>
+           
                 <input type="submit" value="Submit" class="btn btn-success">
               </div>
               
@@ -170,6 +168,4 @@
       </div>
     </div>
   </div>
-<script type="text/javascript">
-  $('select').select2();
-</script>
+
