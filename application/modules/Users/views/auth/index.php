@@ -1,10 +1,4 @@
-<div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
-     <h1 class="text-center"><span class="icon">
-<i class="icon-user"></i>
-</span><?php echo "Users"; ?></h1>
-  </div>
-  <div class="container-fluid">
+<div class="container-fluid">
       <div id="infoMessage"><?php echo $message;?></div>
     <hr>
     <div class="row-fluid">
@@ -58,16 +52,3 @@
       </div>
     </div>
   </div>
-
-
-<!--<script>
-$.fn.editable.defaults.mode = 'inline';
-         $(document).ready(function() {
-           $('.first_name').editable({
-        type: 'text',
-        url: '<?php // echo base_url() . 'Users/auth/edit_user/'?>' + 1,
-        title: 'Enter First name',
-        send: 'always'
-    });
-    });
-</script>-->

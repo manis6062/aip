@@ -1,9 +1,3 @@
-<div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Form elements</a> <a href="#" class="current">Validation</a> </div>
-    <h1 class="text-center"><span class="icon">
-            <i class="icon-user"></i>
-        </span><?php echo $title; ?></h1>
-</div>
 <div class="container-fluid"><hr>
     <div class="row-fluid">
         <div id="infoMessage" style="color:red;"><?php echo $message; ?></div>
