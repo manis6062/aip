@@ -949,21 +949,26 @@ class Ion_auth_model extends CI_Model
                 
                 //insert to Auth table
                 $auth_count = count($auth_ids);
-                for($i=0 ; $i < $auth_count; $i++ ) {
-                
-                foreach ($auth_ids as $value) {
-                    
-                    $auth_data = array(
-                    'auth_id' => $value[$i],
-                    'user_id' => $id,
-                     'status' => 1
+                $auth_data = array();
+                for($i=0 ; $i <= $auth_count; $i++ ) {
+                foreach ($auth_ids as $key => $values) {
+                    $auth_data[] = array(
+                                'auth_id' => $values[$i],
+                                'user_id' => $id,
+                                 'status' => 1
                 );
                     
-                    $this->db->insert('user_auth', $auth_data);
+                    
                     
                 } 
                 
-                //insert to User Branch Table
+                }
+                
+                var_dump($auth_data);
+                
+                $this->db->insert('user_auth', $auth_data);
+                
+                 //insert to User Branch Table
                 $branch_data = array(
                     'user_id' => $id,
                     'branch_id' => $branch_id,
@@ -973,8 +978,6 @@ class Ion_auth_model extends CI_Model
                 $this->db->insert('user_branch', $branch_data);
                 
                 
-                
-                }
                 
 		// add in groups array if it doesn't exists and stop adding into default group if default group ids are set
 		if( isset($default_group->id) && empty($groups) )
