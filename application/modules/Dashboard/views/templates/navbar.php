@@ -111,7 +111,12 @@
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Others</a></li>
       </ul>
     </li>
-    
+        <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-link"></i> <span>Universities</span></a>
+      <ul>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Universities</a></li>
+         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Add Universities</a></li>
+      </ul>
+    </li>
     
     
      <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-link"></i> <span>Branch</span></a>

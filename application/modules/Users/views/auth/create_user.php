@@ -39,17 +39,17 @@
                 </select>
               </div>
             </div>
-                  
+              
                     <div class="control-group">
               <label class="control-label">Designation</label>
               <div class="controls">
-                <select name="designation_id">
+                <select name="group_id">
                     <?php 
-                    foreach($designations as $key => $designationsList) : ?>
-                  <option id = "designation_id"  value = "<?php echo $designationsList->id ; ?>">
+                    foreach($groups as $key => $groupsList) : ?>
+                  <option id = "group_id"  value = "<?php echo $groupsList['id'] ; ?>">
                       <?php 
                       if ($this->ion_auth->is_admin()){
-                      echo  $designationsList->name;
+                      echo  $groupsList['description'];
                       };?>
                   </option>
                   <?php endforeach; ?>
@@ -92,20 +92,21 @@
             
               <div class="widget-content nopadding">
                <div class="form-horizontal">
-               <div class="control-group">
+                  <div class="control-group">
+                <label class="control-label"> Username</label>
+                <div class="controls">
+                   <?php echo form_input($identity);?>
+                </div>
+              </div>
+                 
+                   
+                   <div class="control-group">
                 <label class="control-label"> Email</label>
                 <div class="controls">
                    <input type="text" id="email" name = "email">
                 </div>
               </div>
-                   
-                   
-                    <div class="control-group">
-                <label class="control-label"> <?php echo lang('login_identity_label', 'identity');?></label>
-                <div class="controls">
-                   <?php echo form_input($identity);?>
-                </div>
-              </div>
+               
           
                <div class="control-group">
                 <label class="control-label"><?php echo lang('create_user_validation_password_label', 'password');?></label>

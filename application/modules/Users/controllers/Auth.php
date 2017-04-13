@@ -35,10 +35,20 @@ class Auth extends CI_Controller {
 
 			//list the users
 			$this->data['users'] = $this->ion_auth->users()->result();
+                     
 			foreach ($this->data['users'] as $k => $user)
+                            
 			{
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-			}
+                                
+
+                                //GET BRANCH NAME
+                                $user_branch = $this->ion_auth->getBranchToUser($user->id)->row();
+                                $branch = $user_branch->branch_id;
+                                $this->data['users'][$k]->branches = $this->ion_auth->getBranchName($branch)->row();
+                                
+                        }
+
                         $this->_render_page('Users/auth/index', $this->data);
 
 
@@ -418,15 +428,17 @@ class Auth extends CI_Controller {
 //        //get branches   
         $this->load->model("ion_auth_model");
         $this->data['branches'] = $this->ion_auth->getBranches();
-       //get designations
-        $this->data['designations'] = $this->ion_auth->getDesignations();
+//       //get designations
+//        $this->data['designations'] = $this->ion_auth->getDesignations();
         
         //get Auth
         $this->data['auth'] = $this->ion_auth->getAuths();
         
+        $this->data['groups']=$this->ion_auth->groups()->result_array();
+        
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
         {
-            redirect('auth', 'refresh');
+            redirect('Users/auth/login', 'refresh');
         }
 
         $tables = $this->config->item('tables','ion_auth');
@@ -465,11 +477,11 @@ class Auth extends CI_Controller {
              'address'      => $this->input->post('address'),
             'auth_id'      => $this->input->post('auth_id[]'),
             'branch_id'      => $this->input->post('branch_id'),
-            'designation_id'      => $this->input->post('designation_id'),
+            'designation_id'      => $this->input->post('group_id'),
 
             );
             
-            $group = array($this->input->post('designation_id'));
+            $group = array($this->input->post('group_id'));
             
             
         }
@@ -565,7 +577,7 @@ class Auth extends CI_Controller {
 
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
 		{
-			redirect('auth', 'refresh');
+			redirect('Users/auth/login', 'refresh');
 		}
 
 		$user = $this->ion_auth->user($id)->row();

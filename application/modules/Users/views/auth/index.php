@@ -6,6 +6,10 @@
         <div class="widget-box">
             <div class="widget-title"> <a href="<?php echo base_url() . 'Users/auth/create_user' ?>"><span class="icon"><i class="icon-plus"></i></span></a>
             <h5>Create User</h5>
+            
+            
+            
+            
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
@@ -25,11 +29,12 @@
                       <tbody>
                 <?php 
                 $count = 1;
-                foreach ($users as $user):?>
-               
+                foreach ($users as $key => $user):
+                    ?>
+                
                 <tr class="gradeU">
                   <td><?php echo $count++ ; ?></td>
-                  <td><?php echo $user->user_branch_id;?></td>
+                  <td><?php echo $user->branches->title;?></td>
                   <td><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></td>
                   <td><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></td>
                  <td><?php echo htmlspecialchars($user->username,ENT_QUOTES,'UTF-8');?></td>

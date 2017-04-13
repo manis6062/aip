@@ -929,7 +929,6 @@ class Ion_auth_model extends CI_Model
 		    'active'     => ($manual_activation === false ? 1 : 0),
                     'first_name' => $first_name,
                     'last_name' => $last_name,
-                    'user_branch_id' => $branch_id,
                     'user_designation_id' => $designation_id
 		);
                 
@@ -963,6 +962,17 @@ class Ion_auth_model extends CI_Model
                     $this->db->insert('user_auth', $auth_data);
                     
                 } 
+                
+                //insert to User Branch Table
+                $branch_data = array(
+                    'user_id' => $id,
+                    'branch_id' => $branch_id,
+                        'status' => 1
+                );
+                
+                $this->db->insert('user_branch', $branch_data);
+                
+                
                 
                 }
                 
@@ -2353,6 +2363,21 @@ class Ion_auth_model extends CI_Model
           public function getUserDetails($user_id){
             $query = $this->db->get_where('users', array('active' => 1 , 'id' => $user_id));
             return $query->row();
+        }
+        
+        public function getBranchName($child_branch_id){
+            $query = $this->db->query("SELECT parent.id, child.id as child_id, CONCAT(child.name, ' (', parent.name , ')' ) AS title
+    FROM branch AS parent
+    JOIN branch AS child
+        ON (child.parent_id = parent.id)
+         where child.id = $child_branch_id");
+            return $query;
+        }
+        
+        
+           public function getBranchToUser($user_id){
+            $query = $this->db->query("SELECT branch_id from  user_branch where user_id = $user_id");
+            return $query;
         }
         
 }
