@@ -592,6 +592,8 @@ class Auth extends CI_Controller {
         
         
         
+        
+        
         $this->data['userDetails'] = $this->ion_auth->getUserDetails($id);
         
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
@@ -754,6 +756,9 @@ class Auth extends CI_Controller {
 	public function create_group()
 	{
 		$this->data['title'] = $this->lang->line('create_group_title');
+                
+                        $this->data['groups']=$this->ion_auth->groups()->result_array();
+
 
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
@@ -771,7 +776,7 @@ class Auth extends CI_Controller {
 				// check to see if we are creating the group
 				// redirect them back to the admin page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("Users/auth", 'refresh');
+				redirect('Users/auth/create_group', 'refresh');
 			}
 		}
 		else

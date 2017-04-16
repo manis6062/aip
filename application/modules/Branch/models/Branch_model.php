@@ -14,33 +14,31 @@
 class Branch_model extends CI_Model{
     public $_table = 'branch';
 
-    public function getBranch(){
-          $query = $this->db->get_where($this->_table, array('status' => 1));
+  
+    
+    public function getCountries(){
+          $query = $this->db->get_where($this->_table, array('status' => 1 , 'parent_id' => 0));
           return $query->result();
     }
-    
-     public function getSubBranch($cat_id) {
-        $this->db->select('*');
-        $this->db->from($this->_table);
-        $this->db->where(array('parent_id' => $cat_id, 'status' => 1));
-        $query = $this->db->get();
-        return $query->result();
-    }
-    
-        public function getCategoryForParentId($parent_id = 0){
-          $query = $this->db->get_where($this->_table, array('status' => 1, 'parent_id' => $parent_id));
-           $categories = array();
-          foreach ($query->result() as $value) {
-              $category = array();
-              $category['id'] = $value->id;
-              $category['name'] = $value->name;
-              $category['parent_id'] = $value->parent_id;
-              $category['sub_categories'] = $this->getCategoryForParentId($category['id']);
-              $categories[$value->id] = $category;
-          }
-          return $categories;
-          
-    }
+
+     public function getAllBranch(){
+            $query = $this->db->query("SELECT parent.name as country ,child.name, child.email ,child.phone,child.status ,parent.id, child.id as child_id, CONCAT(child.name, ' (', parent.name , ')' ) AS title
+                                       FROM branch AS parent
+                                       JOIN branch AS child
+                                       ON (child.parent_id = parent.id) where child.status = 1");
+            return $query->result();
+        }
+        
+         public function create_branch($posted_date){
+            if(!empty($posted_date)){
+                $this->db->insert($this->_table , $posted_date);
+                return $this->db->insert_id();
+            }
+        }
+        
+        
+        
+       
     
     
     

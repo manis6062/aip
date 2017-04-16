@@ -51,8 +51,10 @@
     
     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-user"></i> <span>Users / Staffs</span></a>
       <ul>
-        <li><a href="<?php echo base_url() . 'Users/auth' ?>">View Users</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Add Users</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-eye-open"></i> <span>View Users</span></a></a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>"><i class="icon icon-plus"></i> <span>Add User</span></a></li>
+        <li> <a href="<?php echo base_url() . 'Users/auth/create_group' ?>"><i class="icon icon-star-half"></i> <span>Profession</span></a>
+    </li>
       </ul>
     </li>
     
@@ -119,15 +121,10 @@
     </li>
     
     
-     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-lemon"></i> <span>Branch</span></a>
-      <ul>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Branch</a></li>
-         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Add Branch</a></li>
-      </ul>
+     <li> <a href="<?php echo base_url() . 'Branch' ?>"><i class="icon icon-lemon"></i> <span>Branch</span></a>
     </li>
     
-     <li> <a href="<?php echo base_url() . 'Users/auth/create_group' ?>"><i class="icon-star-half"></i> <span>Profession</span></a>
-    </li>
+     
     
    
   </ul>     
