@@ -147,8 +147,8 @@
                         <div class="control-group">
                             <label class="control-label">Status</label>
                             <div class="controls">
-                                <input type="checkbox" name="active" value="1" checked="checked"/> Active
-                                <input type="hidden" name="active" value="0" />
+                                <input type="checkbox" name="active" value="1" /> Active
+                               
                             </div>
                         </div>
 
@@ -157,9 +157,6 @@
                         <input type="submit" value="Submit" class="btn btn-success">
                     </div>
 
-                    <?php if ($this->ion_auth->is_admin()) { ?>
-                        <input type="hidden" value="1" name = "user_auth_id">
-                    <?php } ?>
                     <?php echo form_close(); ?>
                 </div></div>
         </div>

@@ -465,6 +465,17 @@ class Auth extends CI_Controller {
             $email    = strtolower($this->input->post('email'));
             $identity = ($identity_column==='email') ? $email : $this->input->post('identity');
             $password = $this->input->post('password');
+            $active = (isset($_REQUEST['active']));
+                                if ($active == 1 )
+                                  {
+                                    $active = 1;
+                                  }
+                                else
+                                 {
+                                   $active = 0;
+                                 }
+            
+            
 
             $additional_data = array(
             'first_name' => $this->input->post('first_name'),
@@ -476,7 +487,7 @@ class Auth extends CI_Controller {
             'auth_id'      => $this->input->post('auth_id[]'),
             'branch_id'      => $this->input->post('branch_id'),
             'designation_id'      => $this->input->post('group_id'),
-                'active'      => $this->input->post('active'),
+                'active'      => $active,
 
             );
             
@@ -746,7 +757,7 @@ class Auth extends CI_Controller {
 
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
-			redirect('auth', 'refresh');
+			redirect('Users/auth', 'refresh');
 		}
 
 		// validate form input
@@ -760,7 +771,7 @@ class Auth extends CI_Controller {
 				// check to see if we are creating the group
 				// redirect them back to the admin page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("auth", 'refresh');
+				redirect("Users/auth", 'refresh');
 			}
 		}
 		else

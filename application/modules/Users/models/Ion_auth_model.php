@@ -929,7 +929,6 @@ class Ion_auth_model extends CI_Model
 		    'active'     => ($status === 1 ? 1 : 0),
                     'first_name' => $first_name,
                     'last_name' => $last_name,
-                    'user_designation_id' => $designation_id
 		);
                 
 		if ($this->store_salt)
