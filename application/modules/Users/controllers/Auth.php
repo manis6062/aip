@@ -480,8 +480,6 @@ class Auth extends CI_Controller {
             );
             
             $group = array($this->input->post('group_id'));
-            
-            
         }
         if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data , $group))
         {
@@ -525,6 +523,12 @@ class Auth extends CI_Controller {
                 'id'    => 'company',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('company'),
+            );
+              $this->data['mobile'] = array(
+                'name'  => 'mobile',
+                'id'    => 'company',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('mobile'),
             );
             $this->data['phone'] = array(
                 'name'  => 'phone',

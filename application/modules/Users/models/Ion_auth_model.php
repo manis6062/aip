@@ -2362,10 +2362,10 @@ class Ion_auth_model extends CI_Model
         
         public function getBranchName($child_branch_id){
             $query = $this->db->query("SELECT parent.id, child.id as child_id, CONCAT(child.name, ' (', parent.name , ')' ) AS title
-                            FROM branch AS parent
-                            JOIN branch AS child
-                                ON (child.parent_id = parent.id)
-                                 where child.id = $child_branch_id");
+                                       FROM branch AS parent
+                                       JOIN branch AS child
+                                       ON (child.parent_id = parent.id)
+                                       where child.id = $child_branch_id");
             return $query;
         }
         
