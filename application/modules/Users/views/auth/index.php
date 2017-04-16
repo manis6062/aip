@@ -41,7 +41,7 @@
                         <?php echo htmlspecialchars($group->name,ENT_QUOTES,'UTF-8') ;?><br />
                         <?php endforeach?>
                   </td>
-                  <td><?php echo ($user->active) ? anchor("Users/auth/deactivate/".$user->id, lang('index_active_link')) : anchor("auth/activate/". $user->id, lang('index_inactive_link'));?></td>
+                  <td><?php echo ($user->active) ? anchor("Users/auth/deactivate/".$user->id, lang('index_active_link')) : anchor("Users/auth/activate/". $user->id, lang('index_inactive_link'));?></td>
                 <td><span class="icon">
                         <a href="<?php echo 'auth/edit_user/' . $user->id ;?>"   <i class="icon-edit"></i></a>
                     </span>  

@@ -414,7 +414,7 @@ class Auth extends CI_Controller {
 			}
 
 			// redirect them back to the auth page
-			redirect('auth', 'refresh');
+			redirect('Users/auth', 'refresh');
 		}
 	}
 
