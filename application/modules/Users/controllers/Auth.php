@@ -40,12 +40,10 @@ class Auth extends CI_Controller {
                             
 			{
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-                                
-
                                 //GET BRANCH NAME
                                 $user_branch = $this->ion_auth->getBranchToUser($user->id)->row();
-                                $branch = $user_branch->branch_id;
-                                $this->data['users'][$k]->branches = $this->ion_auth->getBranchName($branch)->row();
+                                $branch_id = $user_branch->branch_id;
+                                $this->data['users'][$k]->branches = $this->ion_auth->getBranchName($branch_id)->row();
                                 
                         }
 

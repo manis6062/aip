@@ -948,25 +948,16 @@ class Ion_auth_model extends CI_Model
 		$id = $this->db->insert_id();
                 
                 //insert to Auth table
-                $auth_count = count($auth_ids);
-                $auth_data = array();
-                for($i=0 ; $i <= $auth_count; $i++ ) {
-                foreach ($auth_ids as $key => $values) {
+                foreach ($auth_ids as $key => $authid) {
                     $auth_data[] = array(
-                                'auth_id' => $values[$i],
+                                'auth_id' => $authid,
                                 'user_id' => $id,
                                  'status' => 1
                 );
-                    
-                    
-                    
                 } 
+                $this->db->insert_batch('user_auth', $auth_data);
+             
                 
-                }
-                
-                var_dump($auth_data);
-                
-                $this->db->insert('user_auth', $auth_data);
                 
                  //insert to User Branch Table
                 $branch_data = array(
@@ -1348,6 +1339,7 @@ class Ion_auth_model extends CI_Model
 	public function users($groups = NULL)
 	{
 		$this->trigger_events('users');
+               $this->order_by('id' , 'desc');
 
 		if (isset($this->_ion_select) && !empty($this->_ion_select))
 		{
@@ -2370,10 +2362,10 @@ class Ion_auth_model extends CI_Model
         
         public function getBranchName($child_branch_id){
             $query = $this->db->query("SELECT parent.id, child.id as child_id, CONCAT(child.name, ' (', parent.name , ')' ) AS title
-    FROM branch AS parent
-    JOIN branch AS child
-        ON (child.parent_id = parent.id)
-         where child.id = $child_branch_id");
+                            FROM branch AS parent
+                            JOIN branch AS child
+                                ON (child.parent_id = parent.id)
+                                 where child.id = $child_branch_id");
             return $query;
         }
         
