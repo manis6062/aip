@@ -63,8 +63,8 @@
                 
                 <tr class="gradeU">
                   <td><?php echo $count++ ; ?></td>
-                  <td><?php echo $group['name'];?></td>
-                  <td><?php echo $group['description'];?></td>
+                  <td><a href="#" id= "name"  data-value="<?php echo $group['name']; ?>"class = "group_name" data-pk="<?php echo $group['id'] ; ?>"><?php echo $group['name'];?></a></td>
+                  <td><a href="#" id= "description"  data-value="<?php echo $group['description']; ?>"class = "group_description" data-pk="<?php echo $group['id'] ; ?>"><?php echo $group['description'];?></td>
                  <?php endforeach;?>
                </tbody>
             </table>
@@ -73,6 +73,32 @@
       </div>
     </div>
   </div>
+
+
+<script type= text/javascript>
+    jQuery( document ).ready(function( $ ) {
+		// setting defaults for the editable
+		$.fn.editable.defaults.mode = 'popup';
+		$.fn.editable.defaults.showbuttons = true;
+		$.fn.editable.defaults.url = '<?php echo base_url() . 'Dashboard/post'?>';
+		$.fn.editable.defaults.type = 'text';
+                
+   
+    $('.group_name').editable({
+        type: 'text',
+        title: 'Enter Group Name',
+        params:{table: 'groups'}
+    });
+    
+     $('.group_description').editable({
+        type: 'text',
+        title: 'Enter Group Name',
+        params:{table: 'groups'}
+    });
+    
+    
+    
+});</script>
 
 
 

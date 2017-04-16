@@ -130,9 +130,9 @@
                 <tr class="gradeU">
                   <td><?php echo $count++ ; ?></td>
                    <td><?php echo $branch->country ; ?></td>
-                     <td><?php echo $branch->name ; ?></td>
-                     <td><?php echo $branch->email ; ?></td>
-                      <td><?php echo $branch->phone ; ?></td>
+                   <td><a href="" id= "name"  data-value="<?php echo $branch->name; ?>"class = "branch_name" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->name ; ?></a></td>
+                     <td><a href="" id = "email"  data-value="<?php echo $branch->email; ?>"class = "branch_email" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->email ; ?></a></td>
+                      <td><a href="" id="phone"  data-value="<?php echo $branch->phone; ?>" class = "branch_phone" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->phone ; ?></a></td>
                        <td><?php echo ($branch->status == 1) ? 'Active' : 'Inactive' ; ?></td>
                  <?php endforeach;?>
                </tbody>
@@ -142,6 +142,35 @@
       </div>
     </div>
   </div>
+
+<script type= text/javascript>
+    jQuery( document ).ready(function( $ ) {
+		// setting defaults for the editable
+		$.fn.editable.defaults.mode = 'popup';
+		$.fn.editable.defaults.showbuttons = true;
+		$.fn.editable.defaults.url = '<?php echo base_url() . 'Dashboard/post'?>';
+		$.fn.editable.defaults.type = 'text';
+                
+   
+    $('.branch_name').editable({
+        type: 'text',
+        title: 'Enter Branch Name',
+        params:{table: 'branch'}
+    });
+    
+    $('.branch_email').editable({
+        type: 'text',
+        title: 'Enter Branch Email',
+        params:{table: 'branch'}
+    });
+    
+     $('.branch_phone').editable({
+        type: 'text',
+        title: 'Enter Branch Phone',
+        params:{table: 'branch'}
+    });
+    
+});</script>
 
 
 

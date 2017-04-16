@@ -10,7 +10,7 @@
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/masked.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/excanvas.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.ui.custom.js"></script> 
-<script src="<?php echo PUBLIC_SITE_URL ; ?>js/bootstrap.min.js"></script> 
+
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.flot.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.flot.resize.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.peity.min.js"></script> 

@@ -17,5 +17,6 @@
 </head>
 <body>
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery-3.2.1.min.js"></script> 
+<script src="<?php echo PUBLIC_SITE_URL ; ?>js/bootstrap.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
