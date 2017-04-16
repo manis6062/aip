@@ -28,7 +28,7 @@
                     <div class="control-group">
                         <label class="control-label">Last Name</label>
                         <div class="controls">
-<?php echo form_input($first_name); ?>
+<?php echo form_input($last_name); ?>
                         </div>
                     </div>
 
@@ -44,8 +44,9 @@
                         <label class="control-label">Mobile</label>
                         <div class="controls">
                             <input type="text" name="mobile" value="<?php 
+                            
                                                 if(isset($userDetails->mobile))
-                                                    {echo $userDetails->mobile ; }; ?> ">
+                                                    {echo $userDetails->mobile ; }; ?>">
                         </div>
                     </div>
                     
@@ -77,7 +78,7 @@
               
 
 <?php echo form_hidden('id', $user->id); ?>
-<?php echo form_hidden($csrf); ?>
+
                  
 
 
@@ -101,27 +102,42 @@
                             <div class="controls">
                                 <select name="branch_id">
                                         <?php foreach ($branches as $key => $branchList) : ?>
-                                        <option id = "designation_id"  value = "<?php echo $branchList->Id; ?>">
-                                        <?php echo $branchList->Name . '  (' . $branchList->ParentName . ')'; ?></option>
-<?php endforeach; ?>
+                                    <option id = "branch_id"  value = "<?php echo $branchList->Id; ?>" <?php if($branch_id->branch_id == $branchList->Id) echo "selected='selected'";?>>
+                                        <?php 
+                                        echo $branchList->Name . '  (' . $branchList->ParentName . ')'; ?></option>
+                                        <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
+                        
+                        
+                         <?php if ($this->ion_auth->is_admin()): ?>
+
+       
 
                         <div class="control-group">
-                            <label class="control-label">Designation</label>
+                            <label class="control-label">Profession</label>
                             <div class="controls">
-                                <select name="designation_id">
-                                    <?php foreach ($designations as $key => $designationsList) : ?>
-                                        <option id = "designation_id"  value = "<?php echo $designationsList->id; ?>">
-                                            <?php
-                                            if ($this->ion_auth->is_admin()) {
-                                                echo $designationsList->name;
-                                            };
-                                            ?>
-                                        </option>
-<?php endforeach; ?>
-                                </select>
+                              
+          <?php foreach ($groups as $group):?>
+              <label class="checkbox">
+              <?php
+                  $gID=$group['id'];
+                  $checked = null;
+                  $item = null;
+                  foreach($currentGroups as $grp) {
+                      if ($gID == $grp->id) {
+                          $checked= ' checked="checked"';
+                      break;
+                      }
+                  }
+              ?>
+              <input type="checkbox" name="groups[]" value="<?php echo $group['id'];?>"<?php echo $checked;?>>
+              <?php echo htmlspecialchars($group['name'],ENT_QUOTES,'UTF-8');?>
+              </label>
+          <?php endforeach?>
+
+      <?php endif ?>
                             </div>
                         </div>
                         

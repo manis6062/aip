@@ -41,7 +41,7 @@ class Auth extends CI_Controller {
 			{
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
                                 //GET BRANCH NAME
-                                $user_branch = $this->ion_auth->getBranchToUser($user->id)->row();
+                                $user_branch = $this->ion_auth->getBranchToUser($user->id);
                                 $branch_id = $user_branch->branch_id;
                                 $this->data['users'][$k]->branches = $this->ion_auth->getBranchName($branch_id)->row();
                                 
@@ -459,7 +459,7 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'trim');
         $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
         $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
-
+        $this->form_validation->set_rules('address', 'Address', 'required');
         if ($this->form_validation->run() == true)
         {
             $email    = strtolower($this->input->post('email'));
@@ -476,6 +476,7 @@ class Auth extends CI_Controller {
             'auth_id'      => $this->input->post('auth_id[]'),
             'branch_id'      => $this->input->post('branch_id'),
             'designation_id'      => $this->input->post('group_id'),
+                'active'      => $this->input->post('active'),
 
             );
             
@@ -548,6 +549,13 @@ class Auth extends CI_Controller {
                 'type'  => 'password',
                 'value' => $this->form_validation->set_value('password_confirm'),
             );
+              $this->data['address'] = array(
+                'name'  => 'address',
+                'id'    => 'address',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('address'),
+            );
+              
 
             $this->_render_page('Users/auth/create_user', $this->data);
         }
@@ -568,15 +576,13 @@ class Auth extends CI_Controller {
         //get Auth
         $this->data['auth'] = $this->ion_auth->getAuths();
         
-         //get Auth
-        $this->data['mobile'] = $this->ion_auth->getAuths();
+         //get Branch
+        $this->data['branch_id'] = $this->ion_auth->getBranchToUser($id);
+        
         
         
         $this->data['userDetails'] = $this->ion_auth->getUserDetails($id);
         
-        
-        
-
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
 		{
 			redirect('Users/auth/login', 'refresh');
@@ -590,15 +596,15 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('first_name', $this->lang->line('edit_user_validation_fname_label'), 'required');
 		$this->form_validation->set_rules('last_name', $this->lang->line('edit_user_validation_lname_label'), 'required');
 		$this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'required');
-		$this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'required');
+//		$this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'required');
 
 		if (isset($_POST) && !empty($_POST))
 		{
 			// do we have a valid request?
-			if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id'))
-			{
-				show_error($this->lang->line('error_csrf'));
-			}
+//			if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id'))
+//			{
+//				show_error($this->lang->line('error_csrf'));
+//			}
 
 			// update the password if it was posted
 			if ($this->input->post('password'))
@@ -612,8 +618,12 @@ class Auth extends CI_Controller {
 				$data = array(
 					'first_name' => $this->input->post('first_name'),
 					'last_name'  => $this->input->post('last_name'),
-					'company'    => $this->input->post('company'),
+//					'company'    => $this->input->post('company'),
 					'phone'      => $this->input->post('phone'),
+                                    'mobile'      => $this->input->post('mobile'),
+                                    'address'      => $this->input->post('address'),
+                                    'branch'      => $this->input->post('branch'),
+                                    
 				);
 
 				// update the password if it was posted
@@ -648,7 +658,7 @@ class Auth extends CI_Controller {
 				    $this->session->set_flashdata('message', $this->ion_auth->messages() );
 				    if ($this->ion_auth->is_admin())
 					{
-						redirect('auth', 'refresh');
+						redirect('Users/auth', 'refresh');
 					}
 					else
 					{
@@ -662,7 +672,7 @@ class Auth extends CI_Controller {
 				    $this->session->set_flashdata('message', $this->ion_auth->errors() );
 				    if ($this->ion_auth->is_admin())
 					{
-						redirect('auth', 'refresh');
+						redirect('Users/auth', 'refresh');
 					}
 					else
 					{
@@ -675,7 +685,7 @@ class Auth extends CI_Controller {
 		}
 
 		// display the edit user form
-		$this->data['csrf'] = $this->_get_csrf_nonce();
+//		$this->data['csrf'] = $this->_get_csrf_nonce();
 
 		// set the flash data error message if there is one
 		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));

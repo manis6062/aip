@@ -916,7 +916,7 @@ class Ion_auth_model extends CI_Model
                 $auth_ids = $additional_data['auth_id'];
                 $branch_id = $additional_data['branch_id'];
                 $designation_id = $additional_data['designation_id'];
-		
+                $status = $additional_data['active'];
                
                      // Users table.
 		$data = array(
@@ -926,7 +926,7 @@ class Ion_auth_model extends CI_Model
 		    'email'      => $email,
 		    'ip_address' => $ip_address,
 		    'created_on' => time(),
-		    'active'     => ($manual_activation === false ? 1 : 0),
+		    'active'     => ($status === 1 ? 1 : 0),
                     'first_name' => $first_name,
                     'last_name' => $last_name,
                     'user_designation_id' => $designation_id
@@ -2356,7 +2356,7 @@ class Ion_auth_model extends CI_Model
         }
         
           public function getUserDetails($user_id){
-            $query = $this->db->get_where('users', array('active' => 1 , 'id' => $user_id));
+            $query = $this->db->get_where('users', array('active' => 1 , 'id' => $user_id , 'status' => 1));
             return $query->row();
         }
         
@@ -2372,7 +2372,7 @@ class Ion_auth_model extends CI_Model
         
            public function getBranchToUser($user_id){
             $query = $this->db->query("SELECT branch_id from  user_branch where user_id = $user_id");
-            return $query;
+            return $query->row();
         }
         
 }

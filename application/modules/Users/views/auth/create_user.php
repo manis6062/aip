@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label">Branch *</label>
+                        <label class="control-label">Branch</label>
                         <div class="controls">
                             <select name="branch_id">
                                 <?php foreach ($branches as $key => $branchList) : ?>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label">Designation *</label>
+                        <label class="control-label">Profession</label>
                         <div class="controls">
                             <select name="group_id">
                                     <?php foreach ($groups as $key => $groupsList) : ?>
@@ -63,21 +63,23 @@
                         <div class="control-group">
                             <label class="control-label">Phone</label>
                             <div class="controls">
-                                <input type="text" id="phone" name = "phone">
+                                 <?php echo form_input($phone); ?>
                             </div>
                         </div>
 
                         <div class="control-group">
                             <label class="control-label">Mobile</label>
                             <div class="controls">
-                                <input type="text" id="mobile" name = "mobile">
+                              <?php
+                              echo  form_input(array('id' => 'mobile', 'name' => 'mobile','value'=> set_value('mobile', $this->data['mobile']['value'])));  ?>
                             </div>
                         </div>
 
                         <div class="control-group">
                             <label class="control-label">Address *</label>
                             <div class="controls">
-                                <input type="text" id="address" name = "address">
+                                 <?php
+                              echo  form_input(array('id' => 'address', 'name' => 'address','value'=> set_value('address', $this->data['address']['value'])));  ?>
                             </div>
                         </div>
 
@@ -111,22 +113,22 @@
 
 
                         <div class="control-group">
-                            <label class="control-label"> <?php echo lang('create_user_email_label', 'email'); ?></label>
+                            <label class="control-label"> Email *</label>
                             <div class="controls">
                             <?php echo form_input($email); ?>
                             </div>
                         </div>
-
+                       
 
                         <div class="control-group">
-                            <label class="control-label"><?php echo lang('create_user_validation_password_label', 'password'); ?></label>
+                            <label class="control-label">Password *</label>
                             <div class="controls">
                             <?php echo form_input($password); ?>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label"><?php echo lang('create_user_validation_password_confirm_label', 'password_confirm'); ?></label>
+                            <label class="control-label">Password Confirmation *</label>
                             <div class="controls">
                             <?php echo form_input($password_confirm); ?>
                             </div>
@@ -145,8 +147,8 @@
                         <div class="control-group">
                             <label class="control-label">Status</label>
                             <div class="controls">
-                                <input type="radio" name="status" value="1"/>Enable
-                                <input type="radio" name="status" value="0" />Disable
+                                <input type="checkbox" name="active" value="1" checked="checked"/> Active
+                                <input type="hidden" name="active" value="0" />
                             </div>
                         </div>
 

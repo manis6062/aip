@@ -126,8 +126,11 @@
       </ul>
     </li>
     
+     <li> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-link"></i> <span>Profession</span></a>
+    </li>
+    
    
-  </ul>
+  </ul>      
 </div>
 <!--sidebar-menu-->
 
