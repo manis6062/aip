@@ -34,9 +34,9 @@
                 <tr class="gradeU">
                   <td><?php echo $count++ ; ?></td>
                   <td><?php echo $user->branches->title;?></td>
-                  <td><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></td>
-                  <td><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></td>
-                  <td><?php echo htmlspecialchars($user->email,ENT_QUOTES,'UTF-8');?></td>
+                  <td><a href="#" id= "first_name"  data-value="<?php echo $user->first_name; ?>"class = "first_name" data-pk="<?php echo $user->id ; ?>"><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></a></td>
+                  <td><a href="#" id= "last_name"  data-value="<?php echo $user->last_name; ?>"class = "last_name" data-pk="<?php echo $user->id ; ?>"><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></a></td>
+                  <td><a href="#" id= "email"  data-value="<?php echo $user->email; ?>"class = "email" data-pk="<?php echo $user->id ; ?>"><?php echo htmlspecialchars($user->email,ENT_QUOTES,'UTF-8');?></a></td>
                   <td><?php foreach ($user->groups as $group):?>
                         <?php echo htmlspecialchars($group->name,ENT_QUOTES,'UTF-8') ;?><br />
                         <?php endforeach?>
@@ -55,3 +55,34 @@
       </div>
     </div>
   </div>
+
+<script type= text/javascript>
+    jQuery( document ).ready(function( $ ) {
+		// setting defaults for the editable
+		$.fn.editable.defaults.mode = 'popup';
+		$.fn.editable.defaults.showbuttons = true;
+		$.fn.editable.defaults.url = '<?php echo base_url() . 'Dashboard/post'?>';
+		$.fn.editable.defaults.type = 'text';
+                
+   
+    $('.first_name').editable({
+        type: 'text',
+        title: 'Enter First Name',
+        params:{table: 'users'}
+    });
+    
+     $('.last_name').editable({
+        type: 'text',
+        title: 'Enter Last Name',
+        params:{table: 'users'}
+    });
+    
+     $('.email').editable({
+        type: 'text',
+        title: 'Enter Email Address',
+        params:{table: 'users'}
+    });
+    
+    
+    
+});</script>
