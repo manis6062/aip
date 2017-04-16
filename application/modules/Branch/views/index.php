@@ -105,10 +105,16 @@
 <div class="container-fluid">
     <div class="row-fluid">
       <div class="span10">
+          
         <div class="widget-box">
             <div class="widget-title"> 
             <h5>Branch List</h5>
           </div>
+            <div id="dialog" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+            
+            
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
@@ -130,10 +136,10 @@
                 <tr class="gradeU">
                   <td><?php echo $count++ ; ?></td>
                    <td><?php echo $branch->country ; ?></td>
-                   <td><a href="" id= "name"  data-value="<?php echo $branch->name; ?>"class = "branch_name" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->name ; ?></a></td>
-                     <td><a href="" id = "email"  data-value="<?php echo $branch->email; ?>"class = "branch_email" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->email ; ?></a></td>
-                      <td><a href="" id="phone"  data-value="<?php echo $branch->phone; ?>" class = "branch_phone" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->phone ; ?></a></td>
-                       <td><?php echo ($branch->status == 1) ? 'Active' : 'Inactive' ; ?></td>
+                   <td><a href="#" id= "name"  data-value="<?php echo $branch->name; ?>"class = "branch_name" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->name ; ?></a></td>
+                     <td><a href="#" id = "email"  data-value="<?php echo $branch->email; ?>"class = "branch_email" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->email ; ?></a></td>
+                      <td><a href="#" id="phone"  data-value="<?php echo $branch->phone; ?>" class = "branch_phone" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->phone ; ?></a></td>
+                      <td><a href="#" id="status" data-source="[{value: 0, text: 'Inactive'}, {value: 0, text: 'Active'}]" data-value="<?php echo $branch->status; ?>" class = "branch_status" data-pk="<?php echo $branch->child_id ; ?>"><?php echo ($branch->status == 1) ? 'Active' : 'Inactive' ; ?></a></td>
                  <?php endforeach;?>
                </tbody>
             </table>
@@ -169,6 +175,17 @@
         title: 'Enter Branch Phone',
         params:{table: 'branch'}
     });
+    
+     $('.branch_status').editable({
+        type: 'select',
+        title: 'Choose Status',
+        params:{table: 'branch'}
+    });
+    
+    
+      $( function() {
+    $( "#dialog" ).dialog();
+  } );
     
 });</script>
 

@@ -3,11 +3,24 @@
     <hr>
     <div class="row-fluid">
       <div class="span12">
+           <div class="widget-box">
+          <div class="widget-content"> 
+            <div id="myAlert" class="modal hide">
+              <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h3>Deactivate User</h3>
+              </div>
+              <div class="modal-body">
+                <p>
+Are you sure you want to deactivate the user 'manu@admin.com'</p>
+              </div>
+              <div class="modal-footer"> <a data-dismiss="modal" class="btn btn-primary" href="#">Confirm</a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+            </div>
+          </div>
+        </div>
         <div class="widget-box">
             <div class="widget-title"> <a href="<?php echo base_url() . 'Users/auth/create_user' ?>"><span class="icon"><i class="icon-plus"></i></span></a>
             <h5>Create User</h5>
-            
-            
             
             
           </div>
@@ -41,7 +54,9 @@
                         <?php echo htmlspecialchars($group->name,ENT_QUOTES,'UTF-8') ;?><br />
                         <?php endforeach?>
                   </td>
-                  <td><?php echo ($user->active) ? anchor("Users/auth/deactivate/".$user->id, lang('index_active_link')) : anchor("Users/auth/activate/". $user->id, lang('index_inactive_link'));?></td>
+                  <td>
+<!--                      <a href="#myAlert" data-toggle="modal">alert</a>-->
+                      <?php echo ($user->active) ? anchor("Users/auth/deactivate/".$user->id, lang('index_active_link')) : anchor("Users/auth/activate/". $user->id, lang('index_inactive_link'));?></td>
                 <td><span class="icon">
                         <a href="<?php echo 'auth/edit_user/' . $user->id ;?>"   <i class="icon-edit"></i></a>
                     </span>  

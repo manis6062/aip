@@ -58,10 +58,10 @@
       </ul>
     </li>
     
-    <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-group"></i> <span>Students</span></a>
+    <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-group"></i> <span>Leads</span></a>
       <ul>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Students</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Add Students</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Leads</a></li>
+        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Add Leads</a></li>
       </ul>
     </li>
     

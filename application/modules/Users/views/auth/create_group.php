@@ -92,7 +92,7 @@
     
      $('.group_description').editable({
         type: 'text',
-        title: 'Enter Group Name',
+        title: 'Enter Group Description',
         params:{table: 'groups'}
     });
     
