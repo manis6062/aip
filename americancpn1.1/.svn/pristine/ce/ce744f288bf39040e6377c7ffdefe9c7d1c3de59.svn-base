@@ -1,0 +1,30 @@
+
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Menu extends CI_Controller {
+
+
+    public function __construct() {
+        parent::__construct();
+        $this->load->helper('general');
+        $this->load->helper(array('form', 'url'));
+        $this->load->helper('path');
+        $this->load->helper('string');
+
+    }
+   public function index() {
+        $data['main_content'] = ADMIN_PATH . "menus";
+        $this->load->view(ADMIN_PATH . 'inc/template', $data);
+    }
+
+    public function menuAdd() {
+        $data['main_content'] = ADMIN_PATH . "menuadd";
+        $this->load->view(ADMIN_PATH . 'inc/template', $data);
+    }
+
+}
+
+?>
