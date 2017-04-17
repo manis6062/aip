@@ -2389,5 +2389,11 @@ class Ion_auth_model extends CI_Model
         return $query->row();
         
     }
+    
+      public function deleteAuth($user_id) {
+          $this->db->where('user_id', $user_id);
+          $this->db->delete('user_auth'); 
+        
+    }
         
 }

@@ -36,8 +36,6 @@ class Auth extends CI_Controller {
         }
 
         if (!$this->ion_auth->is_admin()) {
-            
-            
             // Check User Access
             $this->auth_perm = $this->ion_auth->getAuthPerm('view_user');
             $perm_id = $this->auth_perm->id;
@@ -45,7 +43,8 @@ class Auth extends CI_Controller {
                 show_error(PAGE_NO_PERMISSION);
             }
             
-        else {
+        }
+            
             // set the flash data error message if there is one
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
@@ -62,8 +61,7 @@ class Auth extends CI_Controller {
 
             $this->_render_page('Users/auth/index', $this->data);
         }
-    }
-    }
+    
     // log the user in
     public function login() {
         $this->data['title'] = $this->lang->line('login_heading');
@@ -553,7 +551,12 @@ class Auth extends CI_Controller {
                 show_error(PAGE_NO_PERMISSION);
             }
         }
-        $this->data['auth_access'] = $this->authAccessArray;
+        $getAuthAccess = $this->ion_auth->getAuthAccess($id);
+        $this->data['auth_access'] = explode(',', $getAuthAccess->auth_ids);
+        
+        
+        
+        
         $this->data['title'] = $this->lang->line('edit_user_heading');
         //get branches   
         $this->load->model("ion_auth_model");
@@ -628,11 +631,16 @@ class Auth extends CI_Controller {
                 
                 
                 $posted_auths = $this->input->post('auth_id[]');
-                var_dump($posted_auths); 
-                die;
+                $this->ion_auth->deleteAuth($id);
+                foreach ($posted_auths as $key => $auths_ids) {
+                    $auth_datas[] = array(
+                                'auth_id' => $auths_ids,
+                                'user_id' => $id,
+                                 'status' => 1
+                );
+                } 
+                $this->db->insert_batch('user_auth', $auth_datas); 
                 
-                
-
                 // check to see if we are updating the user
                 if ($this->ion_auth->update($user->id, $data)) {
                     // redirect them back to the admin page if admin, or to the base url if non admin
