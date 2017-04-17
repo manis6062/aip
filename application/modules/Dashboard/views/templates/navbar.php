@@ -1,3 +1,10 @@
+<?php 
+
+      $ci =& get_instance();
+      
+
+?>
+
 <!--Header-part-->
 <div id="header">
   <h1><a href="<?php echo base_url() . 'Dashboard/dashboard/index'; ?>"><?php echo SITE_NAME ;?></a></h1>
@@ -8,7 +15,7 @@
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User </span><b class="caret"></b></a>
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome <?php if(!empty($this->session->userdata('username'))){ echo $this->session->userdata('username'); }?> </span><b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
         <li class="divider"></li>
@@ -57,7 +64,6 @@
     </li>
       </ul>
     </li>
-    
     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-group"></i> <span>Leads</span></a>
       <ul>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Leads</a></li>

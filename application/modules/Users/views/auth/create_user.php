@@ -22,13 +22,17 @@
                     <div class="control-group">
                         <label class="control-label">First Name * </label>
                         <div class="controls">
-                        <?php echo form_input($first_name); ?>
+                        <?php
+                        $first_name['placeholder']='Enter First Name';
+                        echo form_input($first_name); ?>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">Last Name * </label>
                         <div class="controls">
-                         <?php echo form_input($last_name); ?>
+                         <?php 
+                         $last_name['placeholder']='Enter Last Name';
+                         echo form_input($last_name); ?>
                         </div>
                     </div>
 
@@ -63,7 +67,9 @@
                         <div class="control-group">
                             <label class="control-label">Phone</label>
                             <div class="controls">
-                                 <?php echo form_input($phone); ?>
+                                 <?php 
+                                 $phone['placeholder']='Enter Residental No.';
+                                 echo form_input($phone); ?>
                             </div>
                         </div>
 
@@ -71,7 +77,7 @@
                             <label class="control-label">Mobile</label>
                             <div class="controls">
                               <?php
-                              echo  form_input(array('id' => 'mobile', 'name' => 'mobile','value'=> set_value('mobile', $this->data['mobile']['value'])));  ?>
+                              echo  form_input(array('id' => 'mobile','placeholder' => 'Enter Cell No.', 'name' => 'mobile','value'=> set_value('mobile', $this->data['mobile']['value'])));  ?>
                             </div>
                         </div>
 
@@ -79,7 +85,7 @@
                             <label class="control-label">Address *</label>
                             <div class="controls">
                                  <?php
-                              echo  form_input(array('id' => 'address', 'name' => 'address','value'=> set_value('address', $this->data['address']['value'])));  ?>
+                              echo  form_input(array('id' => 'address', 'placeholder' => 'City/Town','name' => 'address','value'=> set_value('address', $this->data['address']['value'])));  ?>
                             </div>
                         </div>
 
@@ -110,12 +116,22 @@
                             echo '</p>';
                         }
                         ?> 
+                        
+                        
+                         <div class="control-group">
+                            <label class="control-label"> Username *</label>
+                            <div class="controls">
+                            <?php echo  form_input(array('id' => 'username', 'placeholder' => 'Enter Username','name' => 'username','value'=> set_value('username', $this->data['username']['value'])));  ?>
+                            </div>
+                        </div>
 
 
                         <div class="control-group">
                             <label class="control-label"> Email *</label>
                             <div class="controls">
-                            <?php echo form_input($email); ?>
+                            <?php 
+                             $email['placeholder']='Enter Email Address.';
+                            echo form_input($email); ?>
                             </div>
                         </div>
                        
@@ -123,14 +139,18 @@
                         <div class="control-group">
                             <label class="control-label">Password *</label>
                             <div class="controls">
-                            <?php echo form_input($password); ?>
+                            <?php 
+                            $password['placeholder']='Enter Password';
+                            echo form_input($password); ?>
                             </div>
                         </div>
 
                         <div class="control-group">
                             <label class="control-label">Password Confirmation *</label>
                             <div class="controls">
-                            <?php echo form_input($password_confirm); ?>
+                            <?php 
+                            $password_confirm['placeholder']='Enter Same Password.';
+                            echo form_input($password_confirm); ?>
                             </div>
                         </div>
                         <div class="control-group">

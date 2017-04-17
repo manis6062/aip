@@ -379,7 +379,7 @@ class Auth extends CI_Controller {
 
     // create a new user
     public function create_user() {
-        // Check Admin
+        // Check Logged In
         if (!$this->ion_auth->logged_in()) {
             redirect('Users/auth/login', 'refresh');
         }
@@ -389,7 +389,7 @@ class Auth extends CI_Controller {
             $this->auth_perm = $this->ion_auth->getAuthPerm('create_user');
             $perm_id = $this->auth_perm->id;
 
-            if (in_array($perm_id, $this->authAccessArray)) {
+            if (!in_array($perm_id, $this->authAccessArray)) {
                 show_error(PAGE_NO_PERMISSION);
             }
         }
@@ -448,6 +448,7 @@ class Auth extends CI_Controller {
                 'first_name' => $this->input->post('first_name'),
                 'last_name' => $this->input->post('last_name'),
                 'company' => $this->input->post('company'),
+                'username' => $this->input->post('username'),
                 'phone' => $this->input->post('phone'),
                 'mobile' => $this->input->post('mobile'),
                 'address' => $this->input->post('address'),
@@ -498,6 +499,12 @@ class Auth extends CI_Controller {
                 'id' => 'company',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('company'),
+            );
+              $this->data['username'] = array(
+                'name' => 'company',
+                'id' => 'company',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('username'),
             );
             $this->data['mobile'] = array(
                 'name' => 'mobile',

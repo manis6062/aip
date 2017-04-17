@@ -469,7 +469,7 @@ class Ion_auth
 	 * @return bool
 	 * @author Ben Edmunds
 	 **/
-	public function is_admin($id=false)
+	public function is_admin($id=false , $auth_name = NULL)
 	{
 		$this->ion_auth_model->trigger_events('is_admin');
 

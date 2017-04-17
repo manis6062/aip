@@ -52,8 +52,8 @@ class Branch extends MX_Controller {
 			$new_branch_id = $this->branch_model->create_branch($posted_data);
 			if($new_branch_id)
 			{
-                             $this->session->set_flashdata('message',"Successfully added");
-				redirect('Branch', 'refresh');
+                            $data['message'] = $this->session->set_flashdata('message',"Successfully added");
+				$this->load->template('index' , $data);
 			}
 		}
 		else

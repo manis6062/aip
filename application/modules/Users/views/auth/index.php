@@ -7,18 +7,17 @@
             <div class="widget-title"> <a href="<?php echo base_url() . 'Users/auth/create_user' ?>"><span class="icon"><i class="icon-plus"></i></span></a>
             <h5>Add User</h5>
             
-            
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
                 <tr class="gradeC">
                   <td>S.N.</td>
-                  <td>Branch</td>
-                  <td>First Name</td>
-                  <td>Last Name</td>
+                  <td>Name</td>
                   <td>Email</td>
+                  <td>Username</td>
                   <td>Profession</td>
+                   <td>Branch</td>
                   <td>Status</td>
                   <td>Action</td>
                 </tr>
@@ -31,14 +30,15 @@
                 
                 <tr class="gradeU">
                   <td><?php echo $count++ ; ?></td>
-                  <td><?php echo $user->branches->title;?></td>
-                  <td><a href="#" id= "first_name"  data-value="<?php echo $user->first_name; ?>"class = "first_name" data-pk="<?php echo $user->id ; ?>"><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></a></td>
-                  <td><a href="#" id= "last_name"  data-value="<?php echo $user->last_name; ?>"class = "last_name" data-pk="<?php echo $user->id ; ?>"><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></a></td>
+                 
+                  <td><a href="#" id= "first_name"  data-value="<?php echo $user->first_name; ?>"class = "first_name" data-pk="<?php echo $user->id ; ?>"><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></a><a href="#" id= "last_name"  data-value="<?php echo $user->last_name; ?>"class = "last_name" data-pk="<?php echo $user->id ; ?>"><?php echo htmlspecialchars('  ' .$user->last_name,ENT_QUOTES,'UTF-8');?></a></td>
                   <td><a href="#" id= "email"  data-value="<?php echo $user->email; ?>"class = "email" data-pk="<?php echo $user->id ; ?>"><?php echo htmlspecialchars($user->email,ENT_QUOTES,'UTF-8');?></a></td>
+                  <td><a href="#" id= "username"  data-value="<?php echo $user->username; ?>"class = "username" data-pk="<?php echo $user->id ; ?>"><?php echo htmlspecialchars($user->username,ENT_QUOTES,'UTF-8');?></a></td>
                   <td><?php foreach ($user->groups as $group):?>
                         <?php echo htmlspecialchars($group->name,ENT_QUOTES,'UTF-8') ;?><br />
                         <?php endforeach?>
                   </td>
+                   <td><?php echo $user->branches->title;?></td>
                   <td>
 <!--                      <a href="#myAlert" data-toggle="modal">alert</a>-->
                       <?php echo ($user->active) ? anchor("Users/auth/deactivate/".$user->id, lang('index_active_link')) : anchor("Users/auth/activate/". $user->id, lang('index_inactive_link'));?></td>
@@ -80,6 +80,12 @@
      $('.email').editable({
         type: 'text',
         title: 'Enter Email Address',
+        params:{table: 'users'}
+    });
+    
+     $('.username').editable({
+        type: 'text',
+        title: 'Enter Username',
         params:{table: 'users'}
     });
     

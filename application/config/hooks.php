@@ -11,3 +11,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	http://codeigniter.com/user_guide/general/hooks.html
 |
 */
+//TODO Activity Log
+ // $hook['post_controller_constructor'][] = array('class' => 'Usertracking', 'function' => 'auto_track', 'filename' => 'Usertracking.php', 'filepath' => 'libraries');

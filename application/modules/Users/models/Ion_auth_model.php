@@ -910,6 +910,7 @@ class Ion_auth_model extends CI_Model
 
                 $first_name = $additional_data['first_name'];
                 $last_name = $additional_data['last_name'];
+                $username = $additional_data['username'];
                 $phone = $additional_data['phone'];
                 $mobile = $additional_data['mobile'];
                 $address = $additional_data['address'];
@@ -921,7 +922,7 @@ class Ion_auth_model extends CI_Model
                      // Users table.
 		$data = array(
 		    $this->identity_column   => $identity,
-		    'username'   => $identity,
+		    'username'   => $username,
 		    'password'   => $password,
 		    'email'      => $email,
 		    'ip_address' => $ip_address,
@@ -1041,6 +1042,11 @@ class Ion_auth_model extends CI_Model
 				}
 
 				$this->set_session($user);
+                                
+                                // TODO Header USERNAME 
+//                                $query = $this->db->get_where('users' , array('id' , $user->id));
+//                                $row = $query->row();
+//                               $this->session->set_userdata('username', $row->username);
 
 				$this->update_last_login($user->id);
 
