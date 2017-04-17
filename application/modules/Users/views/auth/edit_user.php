@@ -55,17 +55,17 @@
                         <label class="control-label">Address</label>
                         <div class="controls">
                             <input type="text" name="address" value="<?php
-                                   if (isset($userDetails->address)) {
-                                       echo $userDetails->address;
-                                   };
-                                   ?>">
+                            if (isset($userDetails->address)) {
+                                echo $userDetails->address;
+                            };
+                            ?>">
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label">Password</label>
                         <div class="controls">
-<?php echo form_input($password); ?>
+                            <?php echo form_input($password); ?>
                         </div>
                     </div>
 
@@ -74,13 +74,13 @@
                     <div class="control-group">
                         <label class="control-label"> Confirm Password</label>
                         <div class="controls">
-<?php echo form_input($password_confirm); ?>
+                            <?php echo form_input($password_confirm); ?>
                         </div>
                     </div>
 
 
 
-<?php echo form_hidden('id', $user->id); ?>
+                    <?php echo form_hidden('id', $user->id); ?>
 
 
 
@@ -104,50 +104,57 @@
                             <label class="control-label">Branch</label>
                             <div class="controls">
                                 <select name="branch_id">
-                                        <?php foreach ($branches as $key => $branchList) : ?>
+                                    <?php foreach ($branches as $key => $branchList) : ?>
                                         <option id = "branch_id"  value = "<?php echo $branchList->Id; ?>" <?php if ($branch_id->branch_id == $branchList->Id) echo "selected='selected'"; ?>>
-    <?php echo $branchList->Name . '  (' . $branchList->ParentName . ')'; ?></option>
-<?php endforeach; ?>
+                                            <?php echo $branchList->Name . '  (' . $branchList->ParentName . ')'; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
 
 
-<?php if ($this->ion_auth->is_admin()): ?>
-                            <div class="control-group">
-                                <label class="control-label">Profession</label>
-                                <div class="controls">
+                        <?php // if ($this->ion_auth->is_admin()): ?>
+                        <div class="control-group">
+                            <label class="control-label">Profession</label>
+                            <div class="controls">
 
-                                        <?php foreach ($groups as $group): ?>
-                                        <label class="checkbox">
-                                            <?php
-                                            $gID = $group['id'];
-                                            $checked = null;
-                                            $item = null;
-                                            foreach ($currentGroups as $grp) {
-                                                if ($gID == $grp->id) {
-                                                    $checked = ' checked="checked"';
-                                                    break;
-                                                }
+                                <?php foreach ($groups as $group): ?>
+                                    <label class="checkbox">
+                                        <?php
+                                        $gID = $group['id'];
+                                        $checked = null;
+                                        $item = null;
+                                        foreach ($currentGroups as $grp) {
+                                            if ($gID == $grp->id) {
+                                                $checked = ' checked="checked"';
+                                                break;
                                             }
-                                            ?>
-                                            <input type="checkbox" name="groups[]" value="<?php echo $group['id']; ?>"<?php echo $checked; ?>>
+                                        }
+                                        ?>
+                                        <input type="checkbox" name="groups[]" value="<?php echo $group['id']; ?>"<?php echo $checked; ?>>
                                         <?php echo htmlspecialchars($group['name'], ENT_QUOTES, 'UTF-8'); ?>
-                                        </label>
-                                    <?php endforeach ?>
+                                    </label>
+                                <?php endforeach ?>
 
-<?php endif ?>
+                                <?php // endif ?>
                             </div>
                         </div>
 
                         <div class="control-group">
                             <label class="control-label">User Access</label>
                             <div class="controls">
-                                    <?php foreach ($auth as $authList) : ?>
-                                    <label>   
-                                        <input type="checkbox" value="<?php echo $authList->id; ?>" name="auth_id[]" checked="checked"/>
-    <?php echo $authList->title; ?></label>
-<?php endforeach; ?>
+                                <?php
+                                foreach ($auth as $authList) :
+                                    $auth_checked = null;
+                                    ?>
+                                    <label>  
+                                        <?php
+                                        if (in_array($authList->id, $auth_access)) {
+                                            $auth_checked = 'checked="checked"';
+                                        }
+                                        ?>
+                                        <input type="checkbox" <?php echo $auth_checked; ?> value="<?php echo $authList->id; ?>" name="auth_id[]" />       <?php echo $authList->title; ?></label>
+                                <?php endforeach; ?>
                             </div>
                         </div>
 
@@ -161,7 +168,7 @@
             </div>
 
         </div>
-<?php echo form_close(); ?>
+        <?php echo form_close(); ?>
     </div>
 
 

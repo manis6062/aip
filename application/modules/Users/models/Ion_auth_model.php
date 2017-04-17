@@ -2374,4 +2374,20 @@ class Ion_auth_model extends CI_Model
             return $query->row();
         }
         
+        public function getAuthAccess($user_id) {
+        $query = $this->db->query("SELECT GROUP_CONCAT(auth_id) AS auth_ids
+                                    FROM  user_auth where user_id = $user_id
+                                    GROUP BY user_id
+                                    ORDER BY user_id ");
+        return $query->row();
+        
+    }
+    
+    
+      public function getAuthPerm($name) {
+        $query = $this->db->get_where("auth" , array('name' => $name , 'status' => 1));
+        return $query->row();
+        
+    }
+        
 }
