@@ -25,7 +25,9 @@
                     <div class="controls">
                         <div class="main_input_box">
                             <span class="add-on bg_lg"><i class="icon-user"> </i></span> 
-                                <?php  echo form_input($identity);?>
+                                <?php 
+                                $identity['placeholder']='Enter Email';
+                                echo form_input($identity);?>
                         </div>
                     </div>
                 </div>
@@ -33,7 +35,9 @@
                     <div class="controls">
                         <div class="main_input_box">
                             <span class="add-on bg_ly"><i class="icon-lock"></i></span>
-                                <?php echo form_input($password);?>
+                                <?php 
+                                $password['placeholder']='Enter Password';
+                                echo form_input($password);?>
                         </div>
                     </div>
                 </div>
@@ -60,13 +64,14 @@
                
                 <div class="form-actions">
                     <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; Back to login</a></span>
-                    <span class="pull-right"><a class="btn btn-info"/>Reecover</a></span>
+                    <span class="pull-right"><a class="btn btn-info"/>Recover</a></span>
                 </div>
             </form>
         </div>
         
-        <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.min.js"></script>  
+      <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery-3.2.1.min.js"></script>   
         <script src="<?php echo PUBLIC_SITE_URL ; ?>js/matrix.login.js"></script> 
     </body>
 
 </html>
+

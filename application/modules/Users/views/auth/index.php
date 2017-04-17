@@ -3,24 +3,9 @@
     <hr>
     <div class="row-fluid">
       <div class="span12">
-           <div class="widget-box">
-          <div class="widget-content"> 
-            <div id="myAlert" class="modal hide">
-              <div class="modal-header">
-                <button data-dismiss="modal" class="close" type="button">×</button>
-                <h3>Deactivate User</h3>
-              </div>
-              <div class="modal-body">
-                <p>
-Are you sure you want to deactivate the user 'manu@admin.com'</p>
-              </div>
-              <div class="modal-footer"> <a data-dismiss="modal" class="btn btn-primary" href="#">Confirm</a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
-            </div>
-          </div>
-        </div>
         <div class="widget-box">
             <div class="widget-title"> <a href="<?php echo base_url() . 'Users/auth/create_user' ?>"><span class="icon"><i class="icon-plus"></i></span></a>
-            <h5>Create User</h5>
+            <h5>Add User</h5>
             
             
           </div>
