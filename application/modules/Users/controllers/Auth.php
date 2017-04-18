@@ -11,40 +11,18 @@ class Auth extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->database();
-        $this->load->library(array('Users/ion_auth', 'form_validation'));
+        $this->load->library('form_validation');
         $this->load->helper(array('url', 'language'));
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
         $this->lang->load('auth');
-
-        if(!empty($this->session->userdata('user_id'))){
-           $this->authAccess = $this->ion_auth->getAuthAccess($this->session->userdata('user_id'));
-        }
-        
-        if(!empty($this->authAccess)){
-          $this->authAccessArray = explode(',', $this->authAccess->auth_ids);
-        }
         
     }
 
     // redirect if needed, otherwise display the user list
     public function index() {
-
-          if (!$this->ion_auth->logged_in()) {
-            redirect('Users/auth/login', 'refresh');
-        }
-
-        if (!$this->ion_auth->is_admin()) {
-            // Check User Access
-            $this->auth_perm = $this->ion_auth->getAuthPerm('view_user');
-            $perm_id = $this->auth_perm->id;
-            if (!in_array($perm_id, $this->authAccessArray)) {
-                show_error(PAGE_NO_PERMISSION);
-            }
-            
-        }
-            
+        $this->has_permission('view_user');
             // set the flash data error message if there is one
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
@@ -334,15 +312,7 @@ class Auth extends CI_Controller {
         }
         
         
-        if(!$this->ion_auth->is_admin()){
-            // Check User Access
-            $this->auth_perm = $this->ion_auth->getAuthPerm('delete_user');
-            $perm_id = $this->auth_perm->id;
-            
-            if(!in_array($perm_id, $this->authAccessArray)){
-                 show_error(PAGE_NO_PERMISSION);
-            }
-        }
+        $this->has_permission('delete_user');
         
         
 
@@ -379,21 +349,8 @@ class Auth extends CI_Controller {
 
     // create a new user
     public function create_user() {
-        // Check Admin
-        if (!$this->ion_auth->logged_in()) {
-            redirect('Users/auth/login', 'refresh');
-        }
-
-        if (!$this->ion_auth->is_admin()) {
-            // Check User Access
-            $this->auth_perm = $this->ion_auth->getAuthPerm('create_user');
-            $perm_id = $this->auth_perm->id;
-
-            if (in_array($perm_id, $this->authAccessArray)) {
-                show_error(PAGE_NO_PERMISSION);
-            }
-        }
-
+        // Check Logged In
+       $this->has_permission('create_user');
 
 
 
@@ -408,10 +365,6 @@ class Auth extends CI_Controller {
         $this->data['auth'] = $this->ion_auth->getAuths();
 
         $this->data['groups'] = $this->ion_auth->groups()->result_array();
-
-        if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
-            redirect('Users/auth/login', 'refresh');
-        }
 
         $tables = $this->config->item('tables', 'ion_auth');
         $identity_column = $this->config->item('identity', 'ion_auth');
@@ -448,6 +401,7 @@ class Auth extends CI_Controller {
                 'first_name' => $this->input->post('first_name'),
                 'last_name' => $this->input->post('last_name'),
                 'company' => $this->input->post('company'),
+                'username' => $this->input->post('username'),
                 'phone' => $this->input->post('phone'),
                 'mobile' => $this->input->post('mobile'),
                 'address' => $this->input->post('address'),
@@ -499,6 +453,12 @@ class Auth extends CI_Controller {
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('company'),
             );
+              $this->data['username'] = array(
+                'name' => 'company',
+                'id' => 'company',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('username'),
+            );
             $this->data['mobile'] = array(
                 'name' => 'mobile',
                 'id' => 'company',
@@ -538,19 +498,8 @@ class Auth extends CI_Controller {
     // edit a user
     public function edit_user($id) {
 
-        if (!$this->ion_auth->logged_in()) {
-            redirect('Users/auth/login', 'refresh');
-        }
+            $this->has_permission('edit_user');
 
-        if (!$this->ion_auth->is_admin()) {
-            // Check User Access
-            $this->auth_perm = $this->ion_auth->getAuthPerm('edit_user');
-            $perm_id = $this->auth_perm->id;
-
-            if (!in_array($perm_id, $this->authAccessArray)) {
-                show_error(PAGE_NO_PERMISSION);
-            }
-        }
         $getAuthAccess = $this->ion_auth->getAuthAccess($id);
         $this->data['auth_access'] = explode(',', $getAuthAccess->auth_ids);
         
@@ -843,5 +792,33 @@ class Auth extends CI_Controller {
         if ($returnhtml)
             return $view_html; //This will return html on 3rd argument being true
     }
+    
+    
+       function has_permission($perm_name) {
+
+        if (!empty($this->session->userdata('user_id'))) {
+            $this->authAccess = $this->ion_auth->getAuthAccess($this->session->userdata('user_id'));
+        }
+        if (!empty($this->authAccess)) {
+            $this->authAccessArray = explode(',', $this->authAccess->auth_ids);
+        }
+
+        //user permission
+        if (!$this->ion_auth->logged_in()) {
+            redirect('Users/auth/login', 'refresh');
+        }
+
+
+        if (!$this->ion_auth->is_admin()) {
+            // Check User Access
+            $this->auth_perm = $this->ion_auth->getAuthPerm($perm_name);
+            $perm_id = $this->auth_perm->id;
+            if (!in_array($perm_id, $this->authAccessArray)) {
+                show_error(PAGE_NO_PERMISSION);
+            }
+        }
+    }
+    
+    
 
 }

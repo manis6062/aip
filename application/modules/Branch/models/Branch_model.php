@@ -25,7 +25,7 @@ class Branch_model extends CI_Model{
             $query = $this->db->query("SELECT parent.name as country ,child.name, child.email ,child.phone,child.status ,parent.id, child.id as child_id, CONCAT(child.name, ' (', parent.name , ')' ) AS title
                                        FROM branch AS parent
                                        JOIN branch AS child
-                                       ON (child.parent_id = parent.id) where child.status = 1");
+                                       ON (child.parent_id = parent.id) where child.status = 1 order by country ");
             return $query->result();
         }
         
