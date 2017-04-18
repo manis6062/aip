@@ -4,6 +4,17 @@
 <title><?php echo SITE_NAME ;?></title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!--TODO put in custom css-->
+<style>
+    .add_pointer{
+        cursor:pointer;
+        cursor:hand;
+    }
+    
+    
+</style>
+
 <link rel="stylesheet" href="<?php echo PUBLIC_SITE_URL ; ?>css/bootstrap.min.css" />
 <link rel="stylesheet" href="<?php echo PUBLIC_SITE_URL ; ?>css/bootstrap-responsive.min.css" />
 <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>

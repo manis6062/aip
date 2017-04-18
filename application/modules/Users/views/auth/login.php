@@ -26,7 +26,7 @@
                         <div class="main_input_box">
                             <span class="add-on bg_lg"><i class="icon-user"> </i></span> 
                                 <?php 
-                                $identity['placeholder']='Enter Email';
+                                $identity['placeholder']='E-mail address';
                                 echo form_input($identity);?>
                         </div>
                     </div>
@@ -41,10 +41,11 @@
                         </div>
                     </div>
                 </div>
-                <p>
+                                 <div>
                  <?php echo lang('login_remember_label', 'remember');?>
+                    
                  <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
-                </p>
+                </div>
                 <div class="form-actions">
                     <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Lost password?</a></span>
                     <span class="pull-right">
@@ -53,21 +54,25 @@
                 </div>
             <?php echo form_close();?> 
                                  
-            <form id="recoverform" action="#" class="form-vertical">
+                <?php 
+                $attribute = array('class' => 'form-vertical', 'id' => 'recoverform');
+                echo form_open("Users/auth/forgot_password" , $attribute);?>
 				<p class="normal_text">Enter your e-mail address below and we will send you instructions how to recover a password.</p>
 				
                     <div class="controls">
                         <div class="main_input_box">
                             <span class="add-on bg_lo"><i class="icon-envelope"></i></span>
-                            <input type="text" placeholder="E-mail address" />
+                            <?php 
+                                $identity['placeholder']='E-mail address';
+                                echo form_input($identity);?>
                         </div>
                     </div>
                
                 <div class="form-actions">
                     <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; Back to login</a></span>
-                    <span class="pull-right"><a class="btn btn-info"/>Recover</a></span>
+                    <span class="pull-right"><a id="recover_password" class="btn btn-info"/>Recover</a></span>
                 </div>
-            </form>
+             <?php echo form_close();?> 
         </div>
         
       <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery-3.2.1.min.js"></script>   

@@ -41,9 +41,9 @@
                                     <td><?php echo $user->branches->title; ?></td>
                                     <td>
                                         <?php if($user->active == 0)  { ?>
-                                        <span id= "deactivate_user" onclick="activate_user('<?php echo $user->id ?>', '<?php echo $user->first_name . ' ' . $user->last_name; ?>')"><?php echo ($user->active == 0)?"Inactive":"Active" ; ?></span>
+                                        <span class="add_pointer" id= "deactivate_user" onclick="activate_user('<?php echo $user->id ?>', '<?php echo $user->first_name . ' ' . $user->last_name; ?>')"><?php echo ($user->active == 0)?"Inactive":"Active" ; ?></span>
                                         <?php } else { ?>
-                                        <span id= "activate_user" onclick="deactivate_user('<?php echo $user->id ?>', '<?php echo $user->first_name . ' ' . $user->last_name; ?>')"><?php echo ($user->active == 1)?"Active":"Inctive" ; ?></span>
+                                        <span class="add_pointer" id= "activate_user" onclick="deactivate_user('<?php echo $user->id ?>', '<?php echo $user->first_name . ' ' . $user->last_name; ?>')"><?php echo ($user->active == 1)?"Active":"Inctive" ; ?></span>
                                         <?php } ?>
                                     </td>
                                     <td><span class="icon">

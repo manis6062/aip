@@ -155,6 +155,7 @@ class Auth extends MY_Controller {
 
     // forgot password
     public function forgot_password() {
+        $this->email->set_newline("\r\n");
         // setting validation rules by checking whether identity is username or email
         if ($this->config->item('identity', 'ion_auth') != 'email') {
             $this->form_validation->set_rules('identity', $this->lang->line('forgot_password_identity_label'), 'required');
@@ -789,7 +790,7 @@ class Auth extends MY_Controller {
 
         $this->viewdata = (empty($data)) ? $this->data : $data;
         //show templates beside login
-        $view_html = ($this->uri->segment(3) == 'login') ? $this->load->view($view, $this->viewdata, $returnhtml) : $this->load->template($view, $this->viewdata, $returnhtml);
+        $view_html = ($this->uri->segment(3) == 'login' || $this->uri->segment(3) == 'forgot_password') ? $this->load->view($view, $this->viewdata, $returnhtml) : $this->load->template($view, $this->viewdata, $returnhtml);
         if ($returnhtml)
             return $view_html; //This will return html on 3rd argument being true
     }

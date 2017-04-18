@@ -4,6 +4,10 @@ $(document).ready(function(){
 	var login = $('#loginform');
 	var recover = $('#recoverform');
 	var speed = 400;
+        
+        $('#recover_password').click(function(){
+		 $('#recoverform').submit();
+	});
 
 	$('#to-recover').click(function(){
 		
