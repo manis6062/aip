@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth extends MY_Controller {
 
     var $authAccess;
     var $auth_perm;
@@ -13,9 +13,7 @@ class Auth extends CI_Controller {
         $this->load->database();
         $this->load->library('form_validation');
         $this->load->helper(array('url', 'language'));
-
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-
         $this->lang->load('auth');
         
     }
@@ -672,9 +670,8 @@ class Auth extends CI_Controller {
         $this->data['groups'] = $this->ion_auth->groups()->result_array();
 
 
-        if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
-            redirect('Users/auth', 'refresh');
-        }
+       $this->has_permission('profession');
+
 
         // validate form input
         $this->form_validation->set_rules('group_name', $this->lang->line('create_group_validation_name_label'), 'required|alpha_dash');
@@ -793,32 +790,5 @@ class Auth extends CI_Controller {
             return $view_html; //This will return html on 3rd argument being true
     }
     
-    
-       function has_permission($perm_name) {
-
-        if (!empty($this->session->userdata('user_id'))) {
-            $this->authAccess = $this->ion_auth->getAuthAccess($this->session->userdata('user_id'));
-        }
-        if (!empty($this->authAccess)) {
-            $this->authAccessArray = explode(',', $this->authAccess->auth_ids);
-        }
-
-        //user permission
-        if (!$this->ion_auth->logged_in()) {
-            redirect('Users/auth/login', 'refresh');
-        }
-
-
-        if (!$this->ion_auth->is_admin()) {
-            // Check User Access
-            $this->auth_perm = $this->ion_auth->getAuthPerm($perm_name);
-            $perm_id = $this->auth_perm->id;
-            if (!in_array($perm_id, $this->authAccessArray)) {
-                show_error(PAGE_NO_PERMISSION);
-            }
-        }
-    }
-    
-    
-
+ 
 }

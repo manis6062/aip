@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Branch extends MX_Controller {
+class Branch extends MY_Controller {
 
     var $authAccess;
     var $auth_perm;
@@ -63,29 +63,6 @@ class Branch extends MX_Controller {
         }
     }
 
-    function has_permission($perm_name) {
-
-        if (!empty($this->session->userdata('user_id'))) {
-            $this->authAccess = $this->ion_auth->getAuthAccess($this->session->userdata('user_id'));
-        }
-        if (!empty($this->authAccess)) {
-            $this->authAccessArray = explode(',', $this->authAccess->auth_ids);
-        }
-
-        //user permission
-        if (!$this->ion_auth->logged_in()) {
-            redirect('Users/auth/login', 'refresh');
-        }
-
-
-        if (!$this->ion_auth->is_admin()) {
-            // Check User Access
-            $this->auth_perm = $this->ion_auth->getAuthPerm($perm_name);
-            $perm_id = $this->auth_perm->id;
-            if (!in_array($perm_id, $this->authAccessArray)) {
-                show_error(PAGE_NO_PERMISSION);
-            }
-        }
-    }
+  
 
 }

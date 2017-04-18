@@ -47,7 +47,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="control-group">
                         <label class="control-label">Profession</label>
                         <div class="controls">
@@ -55,15 +54,13 @@
                                     <?php foreach ($groups as $key => $groupsList) : ?>
                                     <option id = "group_id"  value = "<?php echo $groupsList['id']; ?>">
                                         <?php
-                                        if ($this->ion_auth->is_admin()) {
                                             echo $groupsList['description'];
-                                        };
                                         ?>
                                     </option>
                                         <?php endforeach; ?>
                             </select>
                         </div>
-
+                    </div>
                         <div class="control-group">
                             <label class="control-label">Phone</label>
                             <div class="controls">
@@ -91,7 +88,6 @@
 
                         <br>
 
-                    </div>
 
                 </div>
             </div>

@@ -1,9 +1,3 @@
-<?php 
-
-      $ci =& get_instance();
-      
-
-?>
 
 <!--Header-part-->
 <div id="header">
@@ -126,10 +120,8 @@
       </ul>
     </li>
     
-    
      <li> <a href="<?php echo base_url() . 'Branch' ?>"><i class="icon icon-lemon"></i> <span>Branch</span></a>
     </li>
-    
      
     
    
