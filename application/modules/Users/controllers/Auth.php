@@ -302,6 +302,10 @@ class Auth extends MY_Controller {
         }
     }
 
+    
+    
+    
+    
     // deactivate the user
     public function deactivate($id = NULL) {
         if (!$this->ion_auth->logged_in()) {
@@ -789,6 +793,20 @@ class Auth extends MY_Controller {
         if ($returnhtml)
             return $view_html; //This will return html on 3rd argument being true
     }
+    
+    public function deactivate_user() {
+         $id = $this->input->post('id');
+         $this->ion_auth->deactivate($id);
+         $this->session->set_flashdata('message', 'The user has been successfully deactivated.');
+    }
+    
+     // activate the user
+    public function activate_user($id) {
+         $id = $this->input->post('id');
+         $this->ion_auth->activate($id);
+         $this->session->set_flashdata('message', 'The user has been successfully activated.');
+    }
+    
     
  
 }
