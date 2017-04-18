@@ -40,7 +40,7 @@
                   </td>
                    <td><?php echo $user->branches->title;?></td>
                   <td>
-<!--                      <a href="#myAlert" data-toggle="modal">alert</a>-->
+                      <span id="deactivate_user" onclick="deativate_user('<?php echo $user->id?>' , '<?php echo $user->first_name . ' ' . $user->last_name ;?>')">Status</span>
                       <?php echo ($user->active) ? anchor("Users/auth/deactivate/".$user->id, lang('index_active_link')) : anchor("Users/auth/activate/". $user->id, lang('index_inactive_link'));?></td>
                 <td><span class="icon">
                         <a href="<?php echo 'auth/edit_user/' . $user->id ;?>"   <i class="icon-edit"></i></a>
@@ -57,6 +57,45 @@
   </div>
 
 <script type= text/javascript>
+    
+    
+    
+    function deativate_user(id , name){
+            $.confirm({
+        title: 'Are you sure you want to deactivate the user ' + name + ' ?',
+        content: '' +
+        '<form id = "deactivate_user" action="<?php echo base_url() . 'Users/auth/deactivate/55'?>" class="formName">' +
+        '<div class="form-group">' +
+        '<input type="radio" name="confirm" value="yes" checked="checked" /> Yes' +
+        '<input type="radio" name="confirm" value="no" /> No</div>' +
+        '</form>',
+        buttons: {
+            formSubmit: {
+                text: 'Submit',
+                btnClass: 'btn-blue',
+                action: function () {
+                   $("#deactivate_user").submit();
+                }
+            },
+            cancel: function () {
+                //close
+            },
+        },
+        onContentReady: function () {
+            // bind to events
+            var jc = this;
+            this.$content.find('form').on('submit', function (e) {
+                // if the user submits the form by pressing enter in the field.
+                e.preventDefault();
+                jc.$$formSubmit.trigger('click'); // reference the button and click it
+            });
+        }
+    });
+    }
+    
+    
+    
+    
     jQuery( document ).ready(function( $ ) {
 		// setting defaults for the editable
 		$.fn.editable.defaults.mode = 'popup';

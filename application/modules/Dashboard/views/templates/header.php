@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<?php echo PUBLIC_SITE_URL ; ?>css/fullcalendar.css" />
 <link rel="stylesheet" href="<?php echo PUBLIC_SITE_URL ; ?>css/matrix-style.css" />
 <link rel="stylesheet" href="<?php echo PUBLIC_SITE_URL ; ?>css/matrix-media.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
 <link href="<?php echo PUBLIC_SITE_URL ; ?>font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="<?php echo PUBLIC_SITE_URL ; ?>css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
@@ -21,4 +22,4 @@
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/bootstrap.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
