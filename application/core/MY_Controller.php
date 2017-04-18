@@ -46,7 +46,7 @@ class MY_Controller extends CI_Controller {
             $this->auth_perm = $this->ion_auth->getAuthPerm($perm_name);
             $perm_id = $this->auth_perm->id;
             if (!in_array($perm_id, $this->authAccessArray)) {
-                show_404();
+                show_error("You do not have permission for this action.");
             }
         }
     }
