@@ -64,35 +64,35 @@ class CI_Email {
 	 *
 	 * @var	string
 	 */
-	public $mailpath	= '/usr/bin/sendmail';	// Sendmail path
+	public $mailpath	= '/usr/sbin/sendmail';	// Sendmail path
 
 	/**
 	 * Which method to use for sending e-mails.
 	 *
 	 * @var	string	'mail', 'sendmail' or 'smtp'
 	 */
-	public $protocol	= 'smtp';		// mail/sendmail/smtp
+	public $protocol	= '';		// mail/sendmail/smtp
 
 	/**
 	 * STMP Server host
 	 *
 	 * @var	string
 	 */
-	public $smtp_host	= 'smtp.googlemail.com';
+	public $smtp_host	= '';
 
 	/**
 	 * SMTP Username
 	 *
 	 * @var	string
 	 */
-	public $smtp_user	= 'aipedu90@gmail.com';
+	public $smtp_user	= '';
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var	string
 	 */
-	public $smtp_pass	= 'aipedu9090';
+	public $smtp_pass	= '';
 
 	/**
 	 * SMTP Server port
@@ -120,7 +120,7 @@ class CI_Email {
 	 *
 	 * @var	string	empty, 'tls' or 'ssl'
 	 */
-	public $smtp_crypto	= 'ssl';
+	public $smtp_crypto	= '';
 
 	/**
 	 * Whether to apply word-wrapping to the message body.

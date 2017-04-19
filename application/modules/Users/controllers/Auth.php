@@ -21,17 +21,23 @@ class Auth extends MY_Controller {
     // redirect if needed, otherwise display the user list
     public function index() {
         
-        
+//        $config = array(
+//    'useragent' => 'CodeIgniter',
+//    'mailpath' => '/usr/sbin/sendmail',
+//    'protocol' => 'smtp',
+//    'smtp_port' => '465',
+//    'smtp_host' => 'ssl://smtp.googlemail.com',
+//    'smtp_user' => 'aipedu90@gmail.com',
+//    'smtp_pass' => 'aipedu9090',
+//    'mailtype' => 'html',
+//    'charset' => 'iso-8859-1',
+//    'newline' => "\r\n",
+//    'wordwrap' => TRUE
+//    );
+//       $this->load->library('email' ,$config);
        
-//        $this->email->from("aipedu90@gmail.com", "AIP");
-//        $this->email->to("manis6062@gmail.com");
-//
-//        $this->email->subject('Теst Email');
-//        $this->email->message("TEST MESSAGE");
-//
-//        $this->email->send();
-        
-        
+//        
+//            echo $this->email->print_debugger();
         
         $this->user_permission->has_permission('view_user');
         
