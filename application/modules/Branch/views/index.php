@@ -8,7 +8,8 @@
 
 <div class="container-fluid"><hr>
     <div class="row-fluid">
-        
+        <?php if($access != FALSE || $this->ion_auth->is_admin()) : ?>
+
         <div class="span6">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
@@ -94,6 +95,9 @@
                     </div>
                     
                 </div></div></div>
+        
+        <?php endif; ?>
+        
     
     </div>
 
