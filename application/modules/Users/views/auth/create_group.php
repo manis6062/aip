@@ -7,6 +7,7 @@
 
 <div class="container-fluid"><hr>
     <div class="row-fluid">
+          <?php if($create_access != FALSE || $this->ion_auth->is_admin()) : ?>
         <div class="span6">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
@@ -34,7 +35,9 @@
                         <input type="submit" value="Submit" class="btn btn-success">
                     </div>
                     
-                </div></div></div></div></div>
+                </div></div></div>
+    <?php endif; ?>
+    </div></div>
 
 
 
@@ -53,6 +56,7 @@
                   <td>S.N.</td>
                   <td>Profession</td>
                   <td>Description</td>
+<!--                  <td>Action</td>-->
                 </tr>
                  </thead>
                       <tbody>
@@ -65,7 +69,10 @@
                   <td><?php echo $count++ ; ?></td>
                   <td><a href="#" id= "name"  data-value="<?php echo $group['name']; ?>"class = "group_name" data-pk="<?php echo $group['id'] ; ?>"><?php echo $group['name'];?></a></td>
                   <td><a href="#" id= "description"  data-value="<?php echo $group['description']; ?>"class = "group_description" data-pk="<?php echo $group['id'] ; ?>"><?php echo $group['description'];?></td>
-                 <?php endforeach;?>
+<!--                  <td>  <span class="icon">
+                       <span class="add_pointer" onclick="delete_group('<?php // echo $group['id']; ?>','<?php // echo $group['description']; ?>')"> <i class="icon-remove"></i></span>
+                                        </span> -->
+                      <?php endforeach;?> </td>
                </tbody>
             </table>
           </div>
@@ -75,7 +82,43 @@
   </div>
 
 
+
+
 <script type= text/javascript>
+       function delete_group(id, name) {
+        $.confirm({
+            columnClass: 'col-md-4 col-md-offset-8 col-xs-4 col-xs-offset-8',
+            theme: 'supervan',
+            title: 'Delete Profession',
+            content: 'Are you sure you want to delete this profession ' + name + ' ?',
+            buttons: {
+                Confirm: function () {
+                    delete_users_group(id);
+                },
+                Cancel: function () {
+                },
+            }
+        });
+    }
+
+
+  function delete_users_group(id) {
+        $.post("<?php echo base_url('Users/auth/delete_group'); ?>", {id: id},
+                function (data) {
+                    console.log(data);
+                }, 'json');
+        location.reload();
+    }
+</script>
+
+
+
+
+
+
+          <?php if($edit_access != FALSE || $this->ion_auth->is_admin()) : ?>
+<script type= text/javascript>
+    
     jQuery( document ).ready(function( $ ) {
 		// setting defaults for the editable
 		$.fn.editable.defaults.mode = 'popup';
@@ -99,6 +142,7 @@
     
     
 });</script>
+<?php endif; ?>
 
 
 

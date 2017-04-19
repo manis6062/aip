@@ -26,28 +26,33 @@ class MY_Controller extends CI_Controller {
         $this->lang->load('auth');
     }
     
-      function has_permission($perm_name) {
-
-        if (!empty($this->session->userdata('user_id'))) {
-            $this->authAccess = $this->ion_auth->getAuthAccess($this->session->userdata('user_id'));
-        }
-        if (!empty($this->authAccess)) {
-            $this->authAccessArray = explode(',', $this->authAccess->auth_ids);
-        }
-
-        //user permission
+      function has_permission($perm_name , $return = NULL) {
+          
+           //user permission
         if (!$this->ion_auth->logged_in()) {
             redirect('Users/auth/login', 'refresh');
         }
-
-
+        if (!empty($this->session->userdata('user_id'))) {
+            $this->authAccess = $this->ion_auth->getAuthAccess($this->session->userdata('user_id'));
+            }
+        if (!empty($this->authAccess)) {
+            $this->authAccessArray = explode(',', $this->authAccess->auth_ids);
+        }
         if (!$this->ion_auth->is_admin()) {
             // Check User Access
             $this->auth_perm = $this->ion_auth->getAuthPerm($perm_name);
             $perm_id = $this->auth_perm->id;
             if (!in_array($perm_id, $this->authAccessArray)) {
-                show_error("You do not have permission for this action.");
+                if($return){
+                    return FALSE;
+                }else{
+               show_error("You do not have permission for this action.");
+                }
             }
+            else{
+            return TRUE;
         }
+        }
+        
     }
 }
