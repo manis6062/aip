@@ -125,12 +125,13 @@
     </li>
       </ul>
     </li>
-    
-    
-    
-       
-     <li> <a href="<?php echo base_url() . 'Branch' ?>"><i class="icon icon-lemon"></i> <span>Branch</span></a>
+       <li class="submenu"> <a href="#"><i class="icon icon-link"></i> <span>Branch</span></a>
+      <ul>
+      <li> <a href="<?php echo base_url() . 'Branch' ?>"><i class="icon icon-star-half"></i> <span>View Branch</span></a>
     </li>
+      </ul>
+    </li>
+    
      
     
    

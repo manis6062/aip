@@ -8,7 +8,7 @@
 
 <div class="container-fluid"><hr>
     <div class="row-fluid">
-        <?php if($access != FALSE || $this->ion_auth->is_admin()) : ?>
+        <?php if($create_access != FALSE || $this->ion_auth->is_admin()) : ?>
 
         <div class="span6">
             <div class="widget-box">
@@ -104,7 +104,7 @@
 </div>
 
 
-
+ <?php if($view_access != FALSE || $this->ion_auth->is_admin()) : ?>
 
 <div class="container-fluid">
     <div class="row-fluid">
@@ -149,6 +149,10 @@
     </div>
   </div>
 
+<?php endif; ?>
+
+
+ <?php if($edit_access != FALSE || $this->ion_auth->is_admin()) : ?>
 <script type= text/javascript>
     jQuery( document ).ready(function( $ ) {
 		// setting defaults for the editable
@@ -184,6 +188,7 @@
     
   
 });</script>
+<?php endif ; ?>
 
 
 
