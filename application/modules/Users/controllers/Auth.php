@@ -20,10 +20,40 @@ class Auth extends MY_Controller {
 
     // redirect if needed, otherwise display the user list
     public function index() {
+        
+        
+        
+//        $config = array();
+//        $config['useragent']           = "CodeIgniter";
+//        $config['mailpath']            = "/usr/bin/sendmail"; // or "/usr/sbin/sendmail"
+//        $config['protocol']            = "smtp";
+//        $config['smtp_host']           = "localhost";
+//        $config['smtp_port']           = "25";
+//        $config['mailtype'] = 'html';
+//        $config['charset']  = 'utf-8';
+//        $config['newline']  = "\r\n";
+//        $config['wordwrap'] = TRUE;
+//
+//        $this->load->library('email');
+//
+//        $this->email->initialize($config);
+//
+//        $this->email->from("aipedu90@gmail.com", "AIP");
+//        $this->email->to("testpro@10host.top");
+//
+//        $this->email->subject('Теst Email');
+//        $this->email->message("TEST MESSAGE");
+//
+//        $this->email->send();
+        
+        
+        
         $this->has_permission('view_user');
+        
+        //returns true or false
+       $this->data['access'] =  $this->has_permission('edit_user' , 'access');
             // set the flash data error message if there is one
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
             //list the users
             $this->data['users'] = $this->ion_auth->users()->result();
 
@@ -155,7 +185,8 @@ class Auth extends MY_Controller {
 
     // forgot password
     public function forgot_password() {
-        $this->email->set_newline("\r\n");
+        
+        $this->data['title'] = "Forgot Password";
         // setting validation rules by checking whether identity is username or email
         if ($this->config->item('identity', 'ion_auth') != 'email') {
             $this->form_validation->set_rules('identity', $this->lang->line('forgot_password_identity_label'), 'required');
@@ -216,6 +247,7 @@ class Auth extends MY_Controller {
             show_404();
         }
 
+        $this->data['title'] = "Reset Password";
         $user = $this->ion_auth->forgotten_password_check($code);
 
         if ($user) {
@@ -670,19 +702,17 @@ class Auth extends MY_Controller {
 
     // create a new group
     public function create_group() {
+        
+        $this->has_permission('view_profession');
+              $this->data['edit_access'] = $this->has_permission('edit_profession' , 'access');
+       $this->data['create_access'] = $this->has_permission('create_profession' , 'access');
         $this->data['title'] = $this->lang->line('create_group_title');
-
         $this->data['groups'] = $this->ion_auth->groups()->result_array();
-
-
-       $this->has_permission('profession');
-
-
         // validate form input
         $this->form_validation->set_rules('group_name', $this->lang->line('create_group_validation_name_label'), 'required|alpha_dash');
 
         if ($this->form_validation->run() == TRUE) {
-            $new_group_id = $this->ion_auth->create_group($this->input->post('group_name'), $this->input->post('description'));
+            $new_group_id = $this->ion_auth->create_group(strtolower($this->input->post('group_name')), $this->input->post('description'));
             if ($new_group_id) {
                 // check to see if we are creating the group
                 // redirect them back to the admin page
@@ -790,7 +820,7 @@ class Auth extends MY_Controller {
 
         $this->viewdata = (empty($data)) ? $this->data : $data;
         //show templates beside login
-        $view_html = ($this->uri->segment(3) == 'login' || $this->uri->segment(3) == 'forgot_password') ? $this->load->view($view, $this->viewdata, $returnhtml) : $this->load->template($view, $this->viewdata, $returnhtml);
+        $view_html = ($this->uri->segment(3) == 'login' || $this->uri->segment(3) == 'forgot_password' || $this->uri->segment(3) == 'reset_password') ? $this->load->view($view, $this->viewdata, $returnhtml) : $this->load->template($view, $this->viewdata, $returnhtml);
         if ($returnhtml)
             return $view_html; //This will return html on 3rd argument being true
     }
@@ -806,6 +836,13 @@ class Auth extends MY_Controller {
          $id = $this->input->post('id');
          $this->ion_auth->activate($id);
          $this->session->set_flashdata('message', 'The user has been successfully activated.');
+    }
+    
+    
+    public function delete_group($id) {
+        $id = $this->input->post('id');
+        $this->ion_auth->delete_group($id);
+        $this->session->set_flashdata('message', 'The profession has been deleted successfully.');
     }
     
     

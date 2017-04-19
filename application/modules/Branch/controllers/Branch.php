@@ -18,7 +18,9 @@ class Branch extends MY_Controller {
     }
 
     public function index() {
-        $this->has_permission('branch');
+        $data['view_access'] = $this->has_permission('view_branch' , 'access');
+        $data['create_access'] = $this->has_permission('create_branch' , 'access');
+        $data['edit_access'] = $this->has_permission('edit_branch' , 'access');
         $data['branches'] = $this->branch_model->getAllBranch();
         $data['countries'] = $this->branch_model->getCountries();
         $this->load->template('index', $data);

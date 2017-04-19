@@ -2,7 +2,7 @@
 	if (!defined('BASEPATH'))
 		exit('No direct script access allowed');
 
-	class Post extends MX_Controller
+	class Post extends MY_Controller
 	{
 
 		public function __construct()

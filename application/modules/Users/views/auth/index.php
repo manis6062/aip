@@ -60,6 +60,8 @@
     </div>
 </div>
 
+
+<?php if($access != FALSE || $this->ion_auth->is_admin()) : ?>
 <script type= text/javascript>
 
     function deactivate_user(id, name) {
@@ -113,8 +115,6 @@
         location.reload();
     }
 
-
-
     jQuery(document).ready(function ($) {
         // setting defaults for the editable
         $.fn.editable.defaults.mode = 'popup';
@@ -150,3 +150,5 @@
 
 
     });</script>
+
+<?php endif; ?>

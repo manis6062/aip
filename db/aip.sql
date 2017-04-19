@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: aip
 -- ------------------------------------------------------
--- Server version	5.7.17-0ubuntu0.16.10.1
+-- Server version	5.7.17-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `auth` (
   `status` tinyint(1) DEFAULT NULL,
   `title` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `auth` (
 
 LOCK TABLES `auth` WRITE;
 /*!40000 ALTER TABLE `auth` DISABLE KEYS */;
-INSERT INTO `auth` VALUES (1,'create_user',1,'Create User'),(2,'edit_user',1,'Edit User'),(3,'delete_user',1,'Delete User'),(4,'view_user',1,'View Users'),(5,'create_leads',1,'Create Leads'),(6,'edit_leads',1,'Edit Leads'),(7,'view_leads',1,'View Leads'),(8,'delete_leads',1,'Delete Leads'),(9,'profession',1,'Profession'),(10,'branch',1,'Branch');
+INSERT INTO `auth` VALUES (1,'create_user',1,'Create User'),(2,'edit_user',1,'Edit User'),(3,'delete_user',1,'Delete User'),(4,'view_user',1,'View Users'),(5,'create_leads',1,'Create Leads'),(6,'edit_leads',1,'Edit Leads'),(7,'view_leads',1,'View Leads'),(8,'delete_leads',1,'Delete Leads'),(9,'view_profession',1,'View Profession'),(10,'create_profession',1,'Create Profession'),(11,'edit_profession',1,'Edit Profession'),(12,'view_branch',1,'View Branch'),(13,'create_branch',1,'Create Branch'),(14,'edit_branch',1,'Edit Branch');
 /*!40000 ALTER TABLE `auth` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -420,7 +420,7 @@ CREATE TABLE `groups` (
   `name` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,7 +429,7 @@ CREATE TABLE `groups` (
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'admin','Administrator'),(2,'Reception','Reception'),(3,'Trainer','Trainer'),(4,'Counsellor','Counsellor'),(5,'Marketing','Marketing'),(6,'CEO','CEO'),(7,'Accountant','Accountant');
+INSERT INTO `groups` VALUES (1,'admin','Administrator'),(2,'reception','Reception'),(3,'trainer','Trainer'),(4,'counsellor','Counsellor'),(5,'marketing','Marketing'),(6,'ceo','CEO'),(7,'accountant','Accountant'),(8,'hr','Human Resource');
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -962,7 +962,7 @@ CREATE TABLE `user_auth` (
   KEY `fk_user_auth_2_idx` (`user_id`),
   CONSTRAINT `fk_user_auth_1` FOREIGN KEY (`auth_id`) REFERENCES `auth` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_auth_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -971,7 +971,7 @@ CREATE TABLE `user_auth` (
 
 LOCK TABLES `user_auth` WRITE;
 /*!40000 ALTER TABLE `user_auth` DISABLE KEYS */;
-INSERT INTO `user_auth` VALUES (2,2,4,1),(3,3,2,1),(4,4,2,1),(46,48,1,1),(47,48,2,1),(48,48,3,1),(49,48,4,1),(50,48,5,1),(51,48,6,1),(52,49,1,1),(53,49,2,1),(54,49,3,1),(55,50,1,1),(56,50,2,1),(57,50,3,1),(58,50,4,1),(59,50,5,1),(60,51,3,1),(61,51,4,1),(62,51,5,1),(63,52,4,1),(64,52,5,1),(65,52,6,1),(66,53,1,1),(67,53,2,1),(68,53,3,1),(108,54,1,1),(109,54,2,1),(110,54,3,1),(111,54,4,1),(112,54,5,1),(113,54,6,1),(114,54,7,1),(115,54,8,1),(120,55,1,1),(121,55,2,1),(122,55,3,1),(123,55,4,1);
+INSERT INTO `user_auth` VALUES (2,2,4,1),(3,3,2,1),(4,4,2,1),(46,48,1,1),(47,48,2,1),(48,48,3,1),(49,48,4,1),(50,48,5,1),(51,48,6,1),(52,49,1,1),(53,49,2,1),(54,49,3,1),(55,50,1,1),(56,50,2,1),(57,50,3,1),(58,50,4,1),(59,50,5,1),(60,51,3,1),(61,51,4,1),(62,51,5,1),(63,52,4,1),(64,52,5,1),(65,52,6,1),(66,53,1,1),(67,53,2,1),(68,53,3,1),(108,54,1,1),(109,54,2,1),(110,54,3,1),(111,54,4,1),(112,54,5,1),(113,54,6,1),(114,54,7,1),(115,54,8,1),(120,55,1,1),(121,55,2,1),(122,55,3,1),(123,55,4,1),(149,56,1,1),(150,56,2,1),(151,56,3,1),(152,56,4,1),(153,56,5,1),(154,56,6,1),(155,56,7,1),(156,56,8,1),(157,56,9,1),(158,56,10,1),(159,56,11,1),(160,56,12,1),(161,56,13,1),(162,56,14,1),(163,57,1,1),(164,57,2,1),(165,57,3,1),(166,57,4,1),(167,57,9,1),(168,57,10,1),(169,57,11,1),(170,57,12,1),(171,57,13,1),(172,57,14,1);
 /*!40000 ALTER TABLE `user_auth` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -992,7 +992,7 @@ CREATE TABLE `user_branch` (
   KEY `fk_user_branch_2_idx` (`user_id`),
   CONSTRAINT `fk_user_branch_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_branch_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1001,7 +1001,7 @@ CREATE TABLE `user_branch` (
 
 LOCK TABLES `user_branch` WRITE;
 /*!40000 ALTER TABLE `user_branch` DISABLE KEYS */;
-INSERT INTO `user_branch` VALUES (1,1,5,1),(2,2,5,1),(3,3,6,1),(4,4,7,1),(25,48,8,1),(26,49,8,1),(27,50,7,1),(28,51,9,1),(29,52,8,1),(30,53,9,1),(31,54,16,1),(32,55,9,1);
+INSERT INTO `user_branch` VALUES (1,1,5,1),(2,2,5,1),(3,3,6,1),(4,4,7,1),(25,48,8,1),(26,49,8,1),(27,50,7,1),(28,51,9,1),(29,52,8,1),(30,53,9,1),(31,54,16,1),(32,55,9,1),(33,56,12,1),(34,57,6,1);
 /*!40000 ALTER TABLE `user_branch` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1068,7 +1068,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `forgotten_password_time_UNIQUE` (`forgotten_password_time`),
   UNIQUE KEY `last_login_UNIQUE` (`last_login`),
   UNIQUE KEY `created_on_UNIQUE` (`created_on`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1077,7 +1077,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'administrator','59zE6QwGByDHk','Admin','istrator','admin@admin.com','Admin',NULL,'8798797','545645646','koteshwor',1,'127.0.0.1',NULL,NULL,NULL,NULL,'jbU1VZXXlRiniTmgj7xa4O',1492457531,'ADMIN',NULL,1),(2,'trainer','$2y$08$6YA8jRdEN2akIdhXPi2hsOSkzgth9T1CGsVFSF9cYZ2PitUlVV71q','Manish','Awale','trainer@trainer.com',NULL,NULL,'5646456465','54456464564','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491982112,1),(3,'counseller','$2y$08$3UP9HfgEJovsReTLWg7pIOrp5uIEIdujAbZH2xV.fEShmWxfy1iH6','Manish2','Awale2','counseller@trainer.com',NULL,NULL,'admin@admin.com','987654321','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491984031,1),(4,'train','$2y$08$Ul//m0WbasNepurm1XZIBu0TdRoFqROTgVriznKadPewmgk.3YaQy','Manish','Awale','train@trainer.com',NULL,NULL,'5646456465','54456464564','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491984318,1),(48,'administator','$2y$08$GhgSSo2vMjKAFmit.Mkb6.2d9UmvDIcl3LtbEx51mfoo0DBIGcJgG','jackaaaa','Johnson','administator@administator.com',NULL,NULL,'9805362563','98562312552','huwaii',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492322329,1),(49,'janavi','$2y$08$hyNtWlmDxd9rm8hjzzmRJucDEEeLxMol8Pdt5SNvrmjikQ5EMX3hW','Janavi','shrestha','janavi@janavi.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492329833,1),(50,'admsdfs','$2y$08$4zJzIU0eShbEsEdmjwqLvuXQy0ylTX5iARbxGEEdb7ek.x7YAmiqq','user1','user1','admsdfsdfsdfin@admin.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330462,1),(51,'staffsdfsdf','$2y$08$iPW/j8Zh/eamTeFWPlKm5OnOWNuVV0eIlxBfBYSeGOvTo.2X8mjGW','Jackie','Shroff','staffsdfsdfs@staff.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330506,1),(52,'stafdsfsdfsdff','$2y$08$10Xy/L3C3yGzQ7E/qlV8zuxoD8i1W3uc233G8rFGA3nDwLaZl1Gw.','hamro','nepal','stafdsfsdfsdff@staff.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330687,1),(53,'manu','$2y$08$AITT.PGJfcpJFfw7h.iQme.pOuVTBqeLOr7dhAIc15kERuIQchG9u','Manchester','United','manu@admin.com',NULL,NULL,'5646456465','435345345','new jersey',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,1492407320,NULL,1492330731,1),(54,'hitman','$2y$08$.QNwZYJEL5IZiKo1DAHxwOiBY3wKdb58lJodH.AFeO671lL3TZLQC','Hitman','Walesd','hitman@hitman.com',NULL,NULL,'05236523','9856324559','brisbane-street-34',1,'127.0.0.1',NULL,NULL,NULL,NULL,'v/9RICxUsehftnhTDN0cce',1492455471,NULL,1492419394,1),(55,'jimi','$2y$08$dclMZGLB9h00bdF2k8gU0.5R7MDF1AYDaRukQBifZyIyN49VMyIee','Jimi','Hendrix','jimi@jimi.com',NULL,NULL,'98563253','5236222325','Westhood-89 street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492452332,1);
+INSERT INTO `users` VALUES (1,'administrator','59zE6QwGByDHk','Admin','istrator','admin@admin.com','Admin',NULL,'8798797','545645646','koteshwor',1,'127.0.0.1',NULL,NULL,NULL,NULL,'jbU1VZXXlRiniTmgj7xa4O',1492599473,'ADMIN',NULL,1),(2,'trainer','$2y$08$6YA8jRdEN2akIdhXPi2hsOSkzgth9T1CGsVFSF9cYZ2PitUlVV71q','Manish','Awale','trainer@trainer.com',NULL,NULL,'5646456465','54456464564','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491982112,1),(3,'counseller','$2y$08$3UP9HfgEJovsReTLWg7pIOrp5uIEIdujAbZH2xV.fEShmWxfy1iH6','Manish2','Awale2','counseller@trainer.com',NULL,NULL,'admin@admin.com','987654321','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491984031,1),(4,'train','$2y$08$Ul//m0WbasNepurm1XZIBu0TdRoFqROTgVriznKadPewmgk.3YaQy','Manish','Awale','train@trainer.com',NULL,NULL,'5646456465','54456464564','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491984318,1),(48,'administator','$2y$08$GhgSSo2vMjKAFmit.Mkb6.2d9UmvDIcl3LtbEx51mfoo0DBIGcJgG','jackaaaa','Johnson','administator@administator.com',NULL,NULL,'9805362563','98562312552','huwaii',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492322329,1),(49,'janavi','$2y$08$hyNtWlmDxd9rm8hjzzmRJucDEEeLxMol8Pdt5SNvrmjikQ5EMX3hW','Janavi','shrestha','janavi@janavi.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492329833,1),(50,'admsdfs','$2y$08$4zJzIU0eShbEsEdmjwqLvuXQy0ylTX5iARbxGEEdb7ek.x7YAmiqq','user1','user1','admsdfsdfsdfin@admin.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330462,1),(51,'staffsdfsdf','$2y$08$iPW/j8Zh/eamTeFWPlKm5OnOWNuVV0eIlxBfBYSeGOvTo.2X8mjGW','Jackie','Shroff','staffsdfsdfs@staff.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330506,1),(52,'stafdsfsdfsdff','$2y$08$10Xy/L3C3yGzQ7E/qlV8zuxoD8i1W3uc233G8rFGA3nDwLaZl1Gw.','hamro','nepal','stafdsfsdfsdff@staff.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330687,1),(53,'manu','$2y$08$AITT.PGJfcpJFfw7h.iQme.pOuVTBqeLOr7dhAIc15kERuIQchG9u','Manchester','United','manu@admin.com',NULL,NULL,'5646456465','435345345','new jersey',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,1492407320,NULL,1492330731,1),(54,'hitman','$2y$08$.QNwZYJEL5IZiKo1DAHxwOiBY3wKdb58lJodH.AFeO671lL3TZLQC','Hitman','Walesd','hitman@hitman.com',NULL,NULL,'05236523','9856324559','brisbane-street-34',1,'127.0.0.1',NULL,NULL,NULL,NULL,'v/9RICxUsehftnhTDN0cce',1492455471,NULL,1492419394,1),(55,'jimi','$2y$08$dclMZGLB9h00bdF2k8gU0.5R7MDF1AYDaRukQBifZyIyN49VMyIee','Jimi','Hendrix','jimi@jimi.com',NULL,NULL,'98563253','5236222325','Westhood-89 street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492452332,1),(56,'alan','$2y$08$f5E0XyQVjG4DwCNG3/sRIO6LRBpTjEH5XsbPdRu9QGLkQjnjV.YPG','Alan Rana','Magar','aiptestuser@5music.top',NULL,NULL,'98655554','52485252574','nj-bris street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,1492597395,NULL,1492597251,1),(57,'darshan','$2y$08$sZMi.iqySrbH/OiN/6jmF.ii2d5b2b7I8L.yihxcK3hlKtviNkFG.','Darshan','Khadka','testpro@10host.top',NULL,NULL,'98655554','52485252574','nj-bris street',0,'127.0.0.1',NULL,'62496b24bf4d3d0a7b64afb47c9f3327f246e0d4','f.O0cQPp1dFS3qblj0mJGe2186d4d89396cfa70d',1492601653,NULL,NULL,NULL,1492599564,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1135,7 +1135,7 @@ CREATE TABLE `users_groups` (
   KEY `fk_users_groups_2_idx` (`group_id`),
   KEY `fk_users_userid_idx` (`user_id`),
   CONSTRAINT `fk_users_userid` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1144,7 +1144,7 @@ CREATE TABLE `users_groups` (
 
 LOCK TABLES `users_groups` WRITE;
 /*!40000 ALTER TABLE `users_groups` DISABLE KEYS */;
-INSERT INTO `users_groups` VALUES (1,1,1),(2,2,4),(4,4,2),(35,48,1),(36,49,4),(37,50,4),(38,51,4),(39,52,4),(49,3,2),(50,53,3),(57,54,6),(59,55,4);
+INSERT INTO `users_groups` VALUES (1,1,1),(2,2,4),(4,4,2),(35,48,1),(36,49,4),(37,50,4),(38,51,4),(39,52,4),(49,3,2),(50,53,3),(57,54,6),(59,55,4),(60,56,8),(61,57,4);
 /*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1186,4 +1186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-18  1:20:25
+-- Dump completed on 2017-04-19 17:22:24
