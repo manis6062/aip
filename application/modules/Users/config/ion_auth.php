@@ -124,16 +124,17 @@ $config['identity_cookie_name'] = 'identity';
  */
 $config['use_ci_email'] = TRUE; // Send Email using the builtin CI email class, if false it will return the code and the identity
 $config['email_config'] = array(
-    'protocol' => 'smtp',
-    'smtp_port' => '25',
-    'smtp_host' => 'localhost',
-    'smtp_user' => 'aipedu90@gmail.com', // actual values different
-    'smtp_pass' => 'aipedu9090',
-    'mailtype' => 'html',
-    'charset'   => 'utf-8',
-    'wordwrap' => TRUE,
-    'newline' => '\r\n',
-);
+//    'useragent' => 'CodeIgniter',
+//    'mailpath' => '/usr/bin/sendmail',
+//    'protocol' => 'smtp',
+//    'smtp_host' => 'ssl://smtp.googlemail.com',
+//    'smtp_user' => 'aipedu90@gmail.com',
+//    'smtp_pass' => 'aipedu9090',
+//    'mailtype' => 'html',
+//    'charset' => 'utf-8',
+//    'newline' => "\r\n",
+//    'wordwrap' => TRUE
+    );
 
 /*
  | -------------------------------------------------------------------------

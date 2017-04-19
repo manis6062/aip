@@ -11,7 +11,7 @@ class Auth extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->database();
-        $this->load->library('form_validation');
+        $this->load->library('form_validation' , 'user_permission');
         $this->load->helper(array('url', 'language'));
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
         $this->lang->load('auth');
@@ -22,24 +22,9 @@ class Auth extends MY_Controller {
     public function index() {
         
         
-        
-//        $config = array();
-//        $config['useragent']           = "CodeIgniter";
-//        $config['mailpath']            = "/usr/bin/sendmail"; // or "/usr/sbin/sendmail"
-//        $config['protocol']            = "smtp";
-//        $config['smtp_host']           = "localhost";
-//        $config['smtp_port']           = "25";
-//        $config['mailtype'] = 'html';
-//        $config['charset']  = 'utf-8';
-//        $config['newline']  = "\r\n";
-//        $config['wordwrap'] = TRUE;
-//
-//        $this->load->library('email');
-//
-//        $this->email->initialize($config);
-//
+       
 //        $this->email->from("aipedu90@gmail.com", "AIP");
-//        $this->email->to("testpro@10host.top");
+//        $this->email->to("manis6062@gmail.com");
 //
 //        $this->email->subject('Теst Email');
 //        $this->email->message("TEST MESSAGE");
@@ -48,15 +33,19 @@ class Auth extends MY_Controller {
         
         
         
-        $this->has_permission('view_user');
+        $this->user_permission->has_permission('view_user');
         
         //returns true or false
-       $this->data['access'] =  $this->has_permission('edit_user' , 'access');
+       $this->data['access'] =  $this->user_permission->has_permission('edit_user' , 'access');
             // set the flash data error message if there is one
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
             //list the users
             $this->data['users'] = $this->ion_auth->users()->result();
 
+            
+                $this->load->library('user_permission');
+                $this->user_permission->has_permission('create_user');
+                
             foreach ($this->data['users'] as $k => $user) {
                 $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
                 //GET BRANCH NAME
@@ -347,7 +336,7 @@ class Auth extends MY_Controller {
         }
         
         
-        $this->has_permission('delete_user');
+        $this->user_permission->has_permission('delete_user');
         
         
 
@@ -385,7 +374,7 @@ class Auth extends MY_Controller {
     // create a new user
     public function create_user() {
         // Check Logged In
-       $this->has_permission('create_user');
+       $this->user_permission->has_permission('create_user');
 
 
 
@@ -533,7 +522,7 @@ class Auth extends MY_Controller {
     // edit a user
     public function edit_user($id) {
 
-            $this->has_permission('edit_user');
+            $this->user_permission->has_permission('edit_user');
 
         $getAuthAccess = $this->ion_auth->getAuthAccess($id);
         $this->data['auth_access'] = explode(',', $getAuthAccess->auth_ids);
@@ -703,9 +692,9 @@ class Auth extends MY_Controller {
     // create a new group
     public function create_group() {
         
-        $this->has_permission('view_profession');
-              $this->data['edit_access'] = $this->has_permission('edit_profession' , 'access');
-       $this->data['create_access'] = $this->has_permission('create_profession' , 'access');
+        $this->user_permission->has_permission('view_profession');
+              $this->data['edit_access'] = $this->user_permission->has_permission('edit_profession' , 'access');
+       $this->data['create_access'] = $this->user_permission->has_permission('create_profession' , 'access');
         $this->data['title'] = $this->lang->line('create_group_title');
         $this->data['groups'] = $this->ion_auth->groups()->result_array();
         // validate form input
