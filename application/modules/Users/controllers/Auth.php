@@ -217,6 +217,7 @@ class Auth extends MY_Controller {
             show_404();
         }
 
+        $this->data['title'] = "Reset Password";
         $user = $this->ion_auth->forgotten_password_check($code);
 
         if ($user) {
