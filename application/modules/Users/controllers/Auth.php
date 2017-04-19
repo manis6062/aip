@@ -20,6 +20,34 @@ class Auth extends MY_Controller {
 
     // redirect if needed, otherwise display the user list
     public function index() {
+        
+        
+        
+//        $config = array();
+//        $config['useragent']           = "CodeIgniter";
+//        $config['mailpath']            = "/usr/bin/sendmail"; // or "/usr/sbin/sendmail"
+//        $config['protocol']            = "smtp";
+//        $config['smtp_host']           = "localhost";
+//        $config['smtp_port']           = "25";
+//        $config['mailtype'] = 'html';
+//        $config['charset']  = 'utf-8';
+//        $config['newline']  = "\r\n";
+//        $config['wordwrap'] = TRUE;
+//
+//        $this->load->library('email');
+//
+//        $this->email->initialize($config);
+//
+//        $this->email->from("aipedu90@gmail.com", "AIP");
+//        $this->email->to("testpro@10host.top");
+//
+//        $this->email->subject('Теst Email');
+//        $this->email->message("TEST MESSAGE");
+//
+//        $this->email->send();
+        
+        
+        
         $this->has_permission('view_user');
         
         //returns true or false
