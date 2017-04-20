@@ -1,4 +1,12 @@
+<?php 
+$view_branch_permission = $this->user_permission->has_permission('view_branch' , 'access'); 
+$view_profession_permission = $this->user_permission->has_permission('view_profession' , 'access'); 
+$view_user_permission = $this->user_permission->has_permission('view_user' , 'access'); 
+$create_user_permission = $this->user_permission->has_permission('create_user' , 'access'); 
 
+
+
+?>
 <!--Header-part-->
 <div id="header">
   <h1><a href="<?php echo base_url() . 'Dashboard/dashboard/index'; ?>"><?php echo SITE_NAME ;?></a></h1>
@@ -50,13 +58,25 @@
   <ul>
     <li class="active"><a href="<?php echo base_url() . 'Dashboard/dashboard/index'; ?>"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     
+  
+    <?php 
+         if($view_user_permission != FALSE || $create_user_permission != FALSE || $this->ion_auth->is_admin()) : ?>
     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-user"></i> <span>Users / Staffs</span></a>
       <ul>
+           <?php 
+         if($view_user_permission != FALSE || $this->ion_auth->is_admin()) : ?>
         <li><a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-eye-open"></i> <span>View Users</span></a></a></li>
+        <?php endif ; ?>
+       <?php 
+         if($create_user_permission != FALSE || $this->ion_auth->is_admin()) : ?>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>"><i class="icon icon-plus"></i> <span>Add User</span></a></li>
-     
+<?php endif ; ?>
       </ul>
     </li>
+    <?php endif ; ?>
+    
+    
+    
     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-group"></i> <span>Leads</span></a>
       <ul>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Leads</a></li>
@@ -112,37 +132,35 @@
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Others</a></li>
       </ul>
     </li>
-        <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-link"></i> <span>Universities</span></a>
+        <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-align-center"></i> <span>Universities</span></a>
       <ul>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Universities</a></li>
          <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Add Universities</a></li>
       </ul>
     </li>
     
+    
+    <?php 
+         if($view_profession_permission != FALSE || $this->ion_auth->is_admin()) : ?>
       <li class="submenu"> <a href="#"><i class="icon icon-link"></i> <span>Profession</span></a>
       <ul>
-      <li> <a href="<?php echo base_url() . 'Users/auth/create_group' ?>"><i class="icon icon-star-half"></i> <span>View Profession</span></a>
+      <li> <a href="<?php echo base_url() . 'Users/auth/create_group' ?>"><i class="icon icon-eye-open"></i> <span>View Profession</span></a>
     </li>
       </ul>
     </li>
+    <?php endif ; ?>
     
-    
-       <li class="submenu"> <a href="#"><i class="icon icon-link"></i> <span>Branch</span></a>
-      <ul>
-          
+            
           <?php 
-     
-          
-       //   if($obj->has_permission('view_branch')) : ?>
-      <li> <a href="<?php echo base_url() . 'Branch' ?>"><i class="icon icon-star-half"></i> <span>View Branch</span></a>
+         if($view_branch_permission != FALSE || $this->ion_auth->is_admin()) : ?>
+       <li class="submenu"> <a href="#"><i class="icon icon-columns"></i> <span>Branch</span></a>
+      <ul>
+      <li> <a href="<?php echo base_url() . 'Branch' ?>"><i class="icon icon-eye-open"></i> <span>View Branch</span></a>
     </li>
-    <?php // endif; ?>
-    
-    
       </ul>
     </li>
     
-     
+     <?php  endif; ?>
     
    
   </ul>     

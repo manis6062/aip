@@ -47,7 +47,9 @@
                                         <?php } ?>
                                     </td>
                                     <td><span class="icon">
-                                            <a href="<?php echo 'auth/edit_user/' . $user->id; ?>"   <i class="icon-edit"></i></a>
+                                            <a href="<?php 
+                                  echo 'auth/edit_user/' . $user->id; 
+                                            ?>"   <i class="icon-edit"></i></a>
                                         </span>  
                                 </tr>
 
@@ -61,7 +63,7 @@
 </div>
 
 
-<?php if($access != FALSE || $this->ion_auth->is_admin()) : ?>
+<?php if($this->user_permission->has_permission('edit_user' , 'access') != FALSE || $this->ion_auth->is_admin()) : ?>
 <script type= text/javascript>
 
     function deactivate_user(id, name) {

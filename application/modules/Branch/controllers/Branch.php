@@ -9,12 +9,17 @@ class Branch extends MY_Controller {
     var $authAccessArray;
 
     public function __construct() {
+        
+        
         parent::__construct();
         $this->load->model('branch_model');
         // User Auth Access
         $this->load->library('form_validation');
         $this->load->helper(array('url', 'language'));
         $this->lang->load('auth');
+            if (!$this->ion_auth->logged_in()) {
+            redirect('Users/auth/login', 'refresh');
+        }
     }
 
     public function index() {

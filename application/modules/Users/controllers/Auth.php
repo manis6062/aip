@@ -38,20 +38,14 @@ class Auth extends MY_Controller {
        
 //        
 //            echo $this->email->print_debugger();
-        
-        $this->user_permission->has_permission('view_user');
-        
-        //returns true or false
-       $this->data['access'] =  $this->user_permission->has_permission('edit_user' , 'access');
-            // set the flash data error message if there is one
+       $view_permission =  $this->user_permission->has_permission('view_user' , 'access');
+// set the flash data error message if there is one
+       
+     //   Check User Permission
+            if($view_permission != FALSE || $this->ion_auth->is_admin()) {
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
             //list the users
             $this->data['users'] = $this->ion_auth->users()->result();
-
-            
-                $this->load->library('user_permission');
-                $this->user_permission->has_permission('create_user');
-                
             foreach ($this->data['users'] as $k => $user) {
                 $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
                 //GET BRANCH NAME
@@ -59,8 +53,12 @@ class Auth extends MY_Controller {
                 $branch_id = $user_branch->branch_id;
                 $this->data['users'][$k]->branches = $this->ion_auth->getBranchName($branch_id)->row();
             }
-
-            $this->_render_page('Users/auth/index', $this->data);
+          
+            $this->_render_page('Users/auth/index', $this->data);  }
+            else{
+                 show_error("You do not have permission for this action.");
+            }
+       
         }
     
     // log the user in
@@ -80,7 +78,7 @@ class Auth extends MY_Controller {
                 //if the login is successful
                 //redirect them back to the home page
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect('Dashboard/dashboard/index', 'refresh');
+                redirect('Dashboard/dashboard', 'refresh');
             } else {
                 // if the login was un-successful
                 // redirect them back to the login page
@@ -379,10 +377,11 @@ class Auth extends MY_Controller {
 
     // create a new user
     public function create_user() {
+        
+        
+           $this->user_permission->has_permission('create_user');
+
         // Check Logged In
-       $this->user_permission->has_permission('create_user');
-
-
 
         $this->data['title'] = $this->lang->line('create_user_heading');
 
@@ -527,15 +526,8 @@ class Auth extends MY_Controller {
 
     // edit a user
     public function edit_user($id) {
-
-            $this->user_permission->has_permission('edit_user');
-
         $getAuthAccess = $this->ion_auth->getAuthAccess($id);
         $this->data['auth_access'] = explode(',', $getAuthAccess->auth_ids);
-        
-        
-        
-        
         $this->data['title'] = $this->lang->line('edit_user_heading');
         //get branches   
         $this->load->model("ion_auth_model");
@@ -564,6 +556,7 @@ class Auth extends MY_Controller {
 //		$this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'required');
 
         if (isset($_POST) && !empty($_POST)) {
+              $this->user_permission->has_permission('edit_user');
             // do we have a valid request?
 //			if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id'))
 //			{
