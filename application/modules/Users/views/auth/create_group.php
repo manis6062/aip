@@ -88,7 +88,7 @@
        function delete_group(id, name) {
         $.confirm({
             columnClass: 'col-md-4 col-md-offset-8 col-xs-4 col-xs-offset-8',
-            theme: 'supervan',
+            theme: '<?php echo jquery_confirm_theme; ?>',
             title: 'Delete Profession',
             content: 'Are you sure you want to delete this profession ' + name + ' ?',
             buttons: {

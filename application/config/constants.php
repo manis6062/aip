@@ -93,3 +93,4 @@ define('PUBLIC_SITE_URL', BASE_URL.'public/');
 define('USER_UPLOAD_URL', BASE_URL."uploads/user_uploads/");
 define('SITE_NAME' , 'AIP');
 define('PAGE_NO_PERMISSION' , 'Access denied - You are not authorized to access this page.');
+define("jquery_confirm_theme", "supervan");

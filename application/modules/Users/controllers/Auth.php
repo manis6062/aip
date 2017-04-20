@@ -553,7 +553,8 @@ class Auth extends MY_Controller {
         $this->form_validation->set_rules('first_name', $this->lang->line('edit_user_validation_fname_label'), 'required');
         $this->form_validation->set_rules('last_name', $this->lang->line('edit_user_validation_lname_label'), 'required');
         $this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'required');
-//		$this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'required');
+	$this->form_validation->set_rules('groups[]', "Please select at least one profession.", 'required');
+	$this->form_validation->set_rules('auth_id[]', "Please select at least one user access.", 'required');
 
         if (isset($_POST) && !empty($_POST)) {
               $this->user_permission->has_permission('edit_user');

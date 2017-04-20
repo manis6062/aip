@@ -69,7 +69,7 @@
     function deactivate_user(id, name) {
         $.confirm({
             columnClass: 'col-md-4 col-md-offset-8 col-xs-4 col-xs-offset-8',
-            theme: 'supervan',
+            theme: '<?php echo jquery_confirm_theme; ?>',
             title: 'Deactivate User',
             content: 'Are you sure you want to deactivate the user ' + name + ' ?',
             buttons: {
@@ -95,7 +95,7 @@
   function activate_user(id, name) {
         $.confirm({
             columnClass: 'col-md-4 col-md-offset-8 col-xs-4 col-xs-offset-8',
-            theme: 'supervan',
+            theme: '<?php echo jquery_confirm_theme; ?>',
             title: 'Activate User',
             content: 'Are you sure you want to activate the user ' + name + ' ?',
             buttons: {
