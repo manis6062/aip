@@ -125,10 +125,20 @@
     </li>
       </ul>
     </li>
+    
+    
        <li class="submenu"> <a href="#"><i class="icon icon-link"></i> <span>Branch</span></a>
       <ul>
+          
+          <?php 
+     
+          
+       //   if($obj->has_permission('view_branch')) : ?>
       <li> <a href="<?php echo base_url() . 'Branch' ?>"><i class="icon icon-star-half"></i> <span>View Branch</span></a>
     </li>
+    <?php // endif; ?>
+    
+    
       </ul>
     </li>
     

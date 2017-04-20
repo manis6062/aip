@@ -89,7 +89,7 @@ $config['admin_group']                = 'admin';             // Default administ
 $config['identity']                   = 'email';             // You can use any unique column in your table as identity column. The values in this column, alongside password, will be used for login purposes
 $config['min_password_length']        = 8;                   // Minimum Required Length of Password
 $config['max_password_length']        = 20;                  // Maximum Allowed Length of Password
-$config['email_activation']           = TRUE;               // Email Activation for registration
+$config['email_activation']           = FALSE;               // Email Activation for registration
 $config['manual_activation']          = FALSE;               // Manual Activation for registration
 $config['remember_users']             = TRUE;                // Allow users to be remembered and enable auto-login
 $config['user_expire']                = 86500;               // How long to remember the user (seconds). Set to zero for no expiration
@@ -124,16 +124,18 @@ $config['identity_cookie_name'] = 'identity';
  */
 $config['use_ci_email'] = TRUE; // Send Email using the builtin CI email class, if false it will return the code and the identity
 $config['email_config'] = array(
+ 'useragent' => 'CodeIgniter',
+    'mailpath' => '/usr/sbin/sendmail',
     'protocol' => 'smtp',
-    'smtp_port' => '25',
-    'smtp_host' => 'localhost',
-    'smtp_user' => 'aipedu90@gmail.com', // actual values different
+    'smtp_port' => '465',
+    'smtp_host' => 'ssl://smtp.googlemail.com',
+    'smtp_user' => 'aipedu90@gmail.com',
     'smtp_pass' => 'aipedu9090',
     'mailtype' => 'html',
-    'charset'   => 'utf-8',
-    'wordwrap' => TRUE,
-    'newline' => '\r\n',
-);
+    'charset' => 'iso-8859-1',
+    'newline' => "\r\n",
+    'wordwrap' => TRUE
+    );
 
 /*
  | -------------------------------------------------------------------------
