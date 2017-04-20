@@ -12,4 +12,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //TODO Activity Log
- // $hook['post_controller_constructor'][] = array('class' => 'Usertracking', 'function' => 'auto_track', 'filename' => 'Usertracking.php', 'filepath' => 'libraries');
+$hook['post_controller_constructor'][] = array('class' => 'Usertracking', 'function' => 'auto_track', 'filename' => 'Usertracking.php', 'filepath' => 'libraries'); 

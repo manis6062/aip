@@ -19,7 +19,7 @@
 |
 | default: null
 */
-$config['usertracking']['user_identifier'] = NULL;
+$config['usertracking']['user_identifier']= array('model', 'ion_auth_model', 'get_user', 'id');
 
 
 
@@ -40,7 +40,7 @@ $config['usertracking']['user_identifier'] = NULL;
 |
 | default: false
 */
-$config['usertracking']['auto_track'] = FALSE;
+$config['usertracking']['auto_track'] = TRUE;
 
 
 
@@ -64,7 +64,7 @@ $config['usertracking']['auto_track'] = FALSE;
 |
 | default: [] = null
 */
-$config['usertracking']['tracking_filter'][] = NULL;
+$config['usertracking']['tracking_filter'][] = array("library", "ion_auth", "logged_in", TRUE);
 
 
 /*

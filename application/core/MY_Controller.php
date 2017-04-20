@@ -24,7 +24,16 @@ class MY_Controller extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->helper(array('url', 'language'));
         $this->lang->load('auth');
+      
+//         $this->CI =& get_instance();
+//         $this->CI->load->model('branch_model');        
+
+//  $this->load->model('my_model');
+               // var_dump($this->my_model->getAllBranch());
+
     }
+    
+   
     
    
 }

@@ -10,38 +10,16 @@ class Auth extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->database();
-        $this->load->library('form_validation' , 'user_permission');
-        $this->load->helper(array('url', 'language'));
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-        $this->lang->load('auth');
+        //TODO enable for user tracking        
+        //$this->load->library('usertracking'); $this->usertracking->track_this();
         
     }
 
-    // redirect if needed, otherwise display the user list
     public function index() {
-        
-//        $config = array(
-//    'useragent' => 'CodeIgniter',
-//    'mailpath' => '/usr/sbin/sendmail',
-//    'protocol' => 'smtp',
-//    'smtp_port' => '465',
-//    'smtp_host' => 'ssl://smtp.googlemail.com',
-//    'smtp_user' => 'aipedu90@gmail.com',
-//    'smtp_pass' => 'aipedu9090',
-//    'mailtype' => 'html',
-//    'charset' => 'iso-8859-1',
-//    'newline' => "\r\n",
-//    'wordwrap' => TRUE
-//    );
-//       $this->load->library('email' ,$config);
-       
-//        
-//            echo $this->email->print_debugger();
-       $view_permission =  $this->user_permission->has_permission('view_user' , 'access');
-// set the flash data error message if there is one
-       
+      
      //   Check User Permission
+            $view_permission =  $this->user_permission->has_permission('view_user' , 'access');
             if($view_permission != FALSE || $this->ion_auth->is_admin()) {
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
             //list the users
@@ -53,18 +31,15 @@ class Auth extends MY_Controller {
                 $branch_id = $user_branch->branch_id;
                 $this->data['users'][$k]->branches = $this->ion_auth->getBranchName($branch_id)->row();
             }
-          
             $this->_render_page('Users/auth/index', $this->data);  }
             else{
                  show_error("You do not have permission for this action.");
             }
-       
         }
     
     // log the user in
     public function login() {
         $this->data['title'] = $this->lang->line('login_heading');
-
         //validate form input
         $this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
         $this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
@@ -107,10 +82,8 @@ class Auth extends MY_Controller {
     // log the user out
     public function logout() {
         $this->data['title'] = "Logout";
-
         // log the user out
         $logout = $this->ion_auth->logout();
-
         // redirect them to the login page
         $this->session->set_flashdata('message', $this->ion_auth->messages());
         redirect('Users/auth/login', 'refresh');
@@ -125,9 +98,7 @@ class Auth extends MY_Controller {
         if (!$this->ion_auth->logged_in()) {
             redirect('Users/auth/login', 'refresh');
         }
-
         $user = $this->ion_auth->user()->row();
-
         if ($this->form_validation->run() == false) {
             // display the form
             // set the flash data error message if there is one
@@ -809,7 +780,7 @@ class Auth extends MY_Controller {
 
         $this->viewdata = (empty($data)) ? $this->data : $data;
         //show templates beside login
-        $view_html = ($this->uri->segment(3) == 'login' || $this->uri->segment(3) == 'forgot_password' || $this->uri->segment(3) == 'reset_password') ? $this->load->view($view, $this->viewdata, $returnhtml) : $this->load->template($view, $this->viewdata, $returnhtml);
+        $view_html = ($this->uri->segment(3) == 'login' || $this->uri->segment(3) == 'forgot_password' || $this->uri->segment(3) == 'reset_password' || $this->uri->segment(1) == 'login') ? $this->load->view($view, $this->viewdata, $returnhtml) : $this->load->template($view, $this->viewdata, $returnhtml);
         if ($returnhtml)
             return $view_html; //This will return html on 3rd argument being true
     }

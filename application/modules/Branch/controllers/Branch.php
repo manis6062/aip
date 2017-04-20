@@ -13,10 +13,7 @@ class Branch extends MY_Controller {
         
         parent::__construct();
         $this->load->model('branch_model');
-        // User Auth Access
-        $this->load->library('form_validation');
-        $this->load->helper(array('url', 'language'));
-        $this->lang->load('auth');
+        
             if (!$this->ion_auth->logged_in()) {
             redirect('Users/auth/login', 'refresh');
         }
@@ -36,6 +33,13 @@ class Branch extends MY_Controller {
 
         $data['branches'] = $this->branch_model->getAllBranch();
         $data['countries'] = $this->branch_model->getCountries();
+        
+        //user access
+        $data['view_access'] = $this->user_permission->has_permission('view_branch' , 'access');
+        $data['create_access'] = $this->user_permission->has_permission('create_branch' , 'access');
+        $data['edit_access'] = $this->user_permission->has_permission('edit_branch' , 'access');
+        
+        
         // validate form input
         $this->form_validation->set_rules('branch', "Branch", 'required');
 

@@ -1472,6 +1472,15 @@ class Ion_auth_model extends CI_Model
 
 		return $this;
 	}
+        
+        
+        public function get_user($id = NULL)
+	{
+
+		// if no id was passed use the current users id
+		$id = $this->session->userdata('user_id');
+		return $id;
+	}
 
 	/**
 	 * get_users_groups
