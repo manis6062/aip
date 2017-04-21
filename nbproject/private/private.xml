@@ -3,25 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/aip/application/models/My_model.php</file>
-            <file>file:/var/www/html/aip/application/config/usertracking_config.php</file>
-            <file>file:/var/www/html/aip/application/libraries/Usertracking.php</file>
-            <file>file:/var/www/html/aip/application/modules/Students/views/create_student.php</file>
-            <file>file:/var/www/html/aip/application/modules/Branch/views/index.php</file>
-            <file>file:/var/www/html/aip/application/modules/Users/views/auth/create_user.php</file>
-            <file>file:/var/www/html/aip/application/core/MY_Controller.php</file>
-            <file>file:/var/www/html/aip/application/modules/Students/controllers/Students.php</file>
-            <file>file:/var/www/html/aip/application/libraries/Ion_auth.php</file>
-            <file>file:/var/www/html/aip/application/models/Ion_auth_model.php</file>
-            <file>file:/var/www/html/aip/application/modules/Branch/controllers/Branch.php</file>
-            <file>file:/var/www/html/aip/application/config/database.php</file>
-            <file>file:/var/www/html/aip/application/modules/Users/controllers/Auth.php</file>
-            <file>file:/var/www/html/aip/application/config/hooks.php</file>
-            <file>file:/var/www/html/aip/application/config/config.php</file>
-            <file>file:/var/www/html/aip/application/modules/Dashboard/views/templates/navbar.php</file>
-            <file>file:/var/www/html/aip/application/modules/Dashboard/controllers/Dashboard.php</file>
-            <file>file:/var/www/html/aip/application/config/routes.php</file>
-            <file>file:/var/www/html/aip/application/modules/Students/models/Students_model.php</file>
+            <file>file:/var/www/html/aip/application/modules/Courses/models/Courses_model.php</file>
+            <file>file:/var/www/html/aip/application/modules/Courses/controllers/Courses.php</file>
+            <file>file:/var/www/html/aip/application/modules/Courses/views/index.php</file>
         </group>
     </open-files>
 </project-private>

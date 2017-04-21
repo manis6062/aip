@@ -41,4 +41,23 @@ class MY_Loader extends MX_Loader {
             show_error('Unable to load the requested controller class: ' . $class_name);
         }
     }
+    
+      public function module_model($file_name , $module_name) {
+        $CI = & get_instance();
+        $file_path = APPPATH.'modules/' . $module_name . '/models/' . $file_name . '.php';
+        $object_name = $file_name;
+        $class_name = ucfirst($file_name);
+
+        if (file_exists($file_path)) {
+            require $file_path;
+
+            $CI->$object_name = new $class_name();
+            return $CI->$object_name;
+        }
+        else {
+            show_error('Unable to load the requested controller class: ' . $class_name);
+        }
+    }
+    
+    
 }

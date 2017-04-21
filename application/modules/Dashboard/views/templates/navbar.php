@@ -80,12 +80,13 @@ $create_user_permission = $this->user_permission->has_permission('create_user' ,
     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-group"></i> <span>Leads</span></a>
       <ul>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Leads</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Add Leads</a></li>
+        <li><a href="<?php echo base_url() . 'Students/students/create_student' ?>">Add Leads</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-user-md"></i> <span>Students</span></a>
       <ul>
         <li><a href="<?php echo base_url() . 'Students/students/create_student' ?>">Manage Students</a></li>
+       <li><a href="<?php echo base_url() . 'Students/students/create_student' ?>">Add Students</a></li>
       </ul>
     </li>
     
