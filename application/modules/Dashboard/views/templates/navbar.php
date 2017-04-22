@@ -126,11 +126,7 @@ $create_user_permission = $this->user_permission->has_permission('create_user' ,
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Accepted Universities</a></li>
       </ul>
     </li>
-      <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-fire"></i> <span>Courses</span></a>
-      <ul>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Courses</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Add Courses</a></li>
-      </ul>
+      <li> <a href="<?php echo base_url() . 'Courses/courses' ?>"><i class="icon icon-fire"></i> <span>Courses</span></a>
     </li>
      <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-pencil"></i> <span>Registration</span></a>
       <ul>

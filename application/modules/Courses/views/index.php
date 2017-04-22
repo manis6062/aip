@@ -13,23 +13,27 @@
         <div class="span6">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-                    <h5>Add Branch</h5>
+                    <h5>Add Course</h5>
                 </div>
                 <div class="widget-content nopadding">
                     <?php
                     $create_branch_attr = array('class' => 'form-horizontal');
-                    echo form_open("Branch/create_branch", $create_branch_attr);
+                    echo form_open("Courses/courses/create_course", $create_branch_attr);
                     ?>
                     
                        <div class="control-group">
-                        <label class="control-label">Country * </label>
+                        <label class="control-label">Course * </label>
                         <div class="controls">
-                            <select name="country_id">
-                                <?php 
-                foreach ($countries as $key => $country):?>
-                                <option value ="<?php echo $country->id ;?>"> <?php echo $country->name ;?></option>
-                          <?php endforeach; ?>      
-                            </select>
+                            <?php 
+                        $course_data = array(
+                                        'type'  => 'text',
+                                        'name'  => 'course',
+                                        'id'    => 'course',
+                                        'value' => '',
+                                        'placeholder' => 'Enter course name',
+                                    );
+
+                        echo form_input($course_data);?>
                         </div>
                     </div>
                     
@@ -37,49 +41,56 @@
                     
                     
                     <div class="control-group">
-                        <label class="control-label">Branch * </label>
+                        <label class="control-label">Duration * </label>
                         <div class="controls">
                         <?php 
-                        $branch_data = array(
+                        $course_data = array(
                                         'type'  => 'text',
-                                        'name'  => 'branch',
-                                        'id'    => 'branch',
+                                        'name'  => 'duration',
+                                        'id'    => 'duration',
                                         'value' => '',
+                                        'placeholder' => 'Enter course duration',
                                     );
 
-                        echo form_input($branch_data);?>
+                        echo form_input($course_data);?>
                         </div>
                     </div>
                     
                       <div class="control-group">
-                        <label class="control-label">Branch Email Id </label>
+                        <label class="control-label">Fee </label>
                         <div class="controls">
                        <?php 
-                        $branch_email_data = array(
+                        $course_fee = array(
                                         'type'  => 'text',
-                                        'name'  => 'email',
-                                        'id'    => 'email',
+                                        'name'  => 'fee',
+                                        'id'    => 'fee',
                                         'value' => '',
+                                        'placeholder' => 'Enter course fee',
+
                                     );
 
-                        echo form_input($branch_email_data);?>
+                        echo form_input($course_fee);?>
                         </div>
                     </div>
                     
                     
                     
                       <div class="control-group">
-                        <label class="control-label">Branch Contact No. </label>
+                        <label class="control-label">Description </label>
                         <div class="controls">
                         <?php 
-                        $branch_contact_data = array(
-                                        'type'  => 'text',
-                                        'name'  => 'phone',
-                                        'id'    => 'phone',
+                        $course_description = array(
+                                        'type'  => 'textarea',
+                                        'name'  => 'description',
+                                        'id'    => 'description',
                                         'value' => '',
+                                        'placeholder' => 'Enter course description here',
+                                        'rows'        => '8',
+                                        'cols'        => '50',
+
                                     );
 
-                        echo form_input($branch_contact_data);?>
+                        echo form_textarea($course_description);?>
                         </div>
                     </div>
                     
@@ -112,7 +123,7 @@
           
         <div class="widget-box">
             <div class="widget-title"> 
-            <h5>Branch List</h5>
+            <h5>Courses</h5>
           </div>
           
           <div class="widget-content nopadding">
@@ -120,10 +131,10 @@
               <thead>
                 <tr class="gradeC">
                   <td>S.N.</td>
-                  <td>Country</td>
-                  <td>Branch</td>
-                   <td>Email</td>
-                    <td>Contact</td>
+                  <td>Course</td>
+                  <td>Duration</td>
+                   <td>Fee</td>
+                    <td>Description</td>
                      <td>Status</td>
                 </tr>
                  </thead>
@@ -134,10 +145,12 @@
                     ?>
                 
                 <tr class="gradeU">
-                  <td><?php echo $count++ ; ?></td>
-                   <td><a href="#" id= "name"  data-value="<?php echo $branch->duration; ?>"class = "branch_name" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->name ; ?></a></td>
-                   <td><a href="#" id= "name"  data-value="<?php echo $branch->duration; ?>"class = "branch_name" data-pk="<?php echo $branch->child_id ; ?>"><?php echo $branch->name ; ?></a></td>
-                      <td><a href="#" id="status" data-source="[{value: 0, text: 'Inactive'}, {value: 1, text: 'Active'}]" data-value="<?php echo $branch->status; ?>" class = "branch_status" data-pk="<?php echo $branch->child_id ; ?>"><?php echo ($branch->status == 1) ? 'Active' : 'Inactive' ; ?></a></td>
+                    <td><?php echo $count++ ; ?></td>
+                    <td><a href="#" id= "name"  data-value="<?php echo $course->name; ?>"class = "course_name" data-pk="<?php echo $course->id ; ?>"><?php echo $course->name ; ?></a></td>
+                    <td><a href="#" id= "duration"  data-value="<?php echo $course->duration; ?>"class = "course_duration" data-pk="<?php echo $course->id ; ?>"><?php echo $course->duration . ' months' ; ?></a></td>
+                    <td><a href="#" id= "fee"  data-value="<?php echo $course->fee; ?>"class = "course_fee" data-pk="<?php echo $course->id ; ?>"><?php echo '$' . $course->fee ; ?></a></td>  
+                    <td><a href="#" id= "description"  data-value="<?php echo $course->description; ?>"class = "course_description" data-pk="<?php echo $course->id ; ?>"><?php echo $course->description ; ?></a></td>
+                    <td><a href="#" id="status" data-source="[{value: 0, text: 'Inactive'}, {value: 1, text: 'Active'}]" data-value="<?php echo $course->status; ?>" class = "course_status" data-pk="<?php echo $course->id ; ?>"><?php echo ($course->status == 1) ? 'Active' : 'Inactive' ; ?></a></td>
                  <?php endforeach;?>
                </tbody>
             </table>
@@ -160,29 +173,34 @@
 		$.fn.editable.defaults.type = 'text';
                 
    
-    $('.branch_name').editable({
+    $('.course_name').editable({
         type: 'text',
-        title: 'Enter Branch Name',
-        params:{table: 'branch'}
+        title: 'Enter Course Name',
+        params:{table: 'course'}
     });
     
-    $('.branch_email').editable({
+    $('.course_duration').editable({
         type: 'text',
-        title: 'Enter Branch Email',
-        params:{table: 'branch'}
+        title: 'Enter Course Duration',
+        params:{table: 'course'}
+    });
+     $('.course_fee').editable({
+        type: 'text',
+        title: 'Enter Course Fee',
+        params:{table: 'course'}
     });
     
-     $('.branch_phone').editable({
-        type: 'text',
-        title: 'Enter Branch Phone',
-        params:{table: 'branch'}
+    $('.course_description').editable({
+        type: 'textarea',
+        title: 'Enter Course Description',
+        params:{table: 'course'}
     });
-    
-     $('.branch_status').editable({
+     $('.course_status').editable({
         type: 'select',
-        title: 'Choose Status',
-        params:{table: 'branch'}
+        title: 'Enter Course Status',
+        params:{table: 'course'}
     });
+  
     
   
 });</script>
