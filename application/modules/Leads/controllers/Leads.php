@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Students extends MY_Controller {
+class Leads extends MY_Controller {
 
 
     public function __construct() {
@@ -31,8 +31,10 @@ class Students extends MY_Controller {
         
     }
     
-     public function create_student() {
-        $this->load->template('create_student');
+     public function create_leads() {
+         $data['get_all_countries'] = $this->getAllCountries();
+         $this->load->template('create_leads' , $data);
+        
         
     }
     

@@ -12,7 +12,7 @@ class Branch extends MY_Controller {
         
         
         parent::__construct();
-        $this->load->model('branch_model');
+        $this->load->model('Branch_model');
         
             if (!$this->ion_auth->logged_in()) {
             redirect('Users/auth/login', 'refresh');
@@ -23,16 +23,16 @@ class Branch extends MY_Controller {
         $data['view_access'] = $this->user_permission->has_permission('view_branch' , 'access');
         $data['create_access'] = $this->user_permission->has_permission('create_branch' , 'access');
         $data['edit_access'] = $this->user_permission->has_permission('edit_branch' , 'access');
-        $data['branches'] = $this->branch_model->getAllBranch();
-        $data['countries'] = $this->branch_model->getCountries();
+        $data['branches'] = $this->Branch_model->getAllBranch();
+        $data['countries'] = $this->Branch_model->getCountries();
         $this->load->template('index', $data);
     }
 
     // create a new branch
     public function create_branch() {
 
-        $data['branches'] = $this->branch_model->getAllBranch();
-        $data['countries'] = $this->branch_model->getCountries();
+        $data['branches'] = $this->Branch_model->getAllBranch();
+        $data['countries'] = $this->Branch_model->getCountries();
         
         //user access
         $data['view_access'] = $this->user_permission->has_permission('view_branch' , 'access');

@@ -1,10 +1,14 @@
 <?php 
 $view_branch_permission = $this->user_permission->has_permission('view_branch' , 'access'); 
 $view_profession_permission = $this->user_permission->has_permission('view_profession' , 'access'); 
+$view_courses_permission = $this->user_permission->has_permission('view_course' , 'access'); 
 $view_user_permission = $this->user_permission->has_permission('view_user' , 'access'); 
 $create_user_permission = $this->user_permission->has_permission('create_user' , 'access'); 
 
-
+// $this->load->module_model('Courses_model' , 'Courses');
+//        $data['$all_courses'] = $this->Courses_model->getCourses();
+        
+    
 
 ?>
 <!--Header-part-->
@@ -77,10 +81,10 @@ $create_user_permission = $this->user_permission->has_permission('create_user' ,
     
     
     
-    <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-group"></i> <span>Leads</span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Leads</span></a>
       <ul>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">View Leads</a></li>
-        <li><a href="<?php echo base_url() . 'Students/students/create_student' ?>">Add Leads</a></li>
+        <li><a href="<?php echo base_url() . 'Leads/leads/create_leads' ?>">Add Leads</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-user-md"></i> <span>Students</span></a>
@@ -100,13 +104,11 @@ $create_user_permission = $this->user_permission->has_permission('create_user' ,
     
     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-bookmark"></i> <span>Training</span></a>
       <ul>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">IELTS Preparation</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">GMAT Preparation</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">SAT Preparation</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">TOEFL Preparation</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">PTE Preparation</a></li>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Others</a></li>
-
+        
+        <?php  foreach ($all_courses as $key => $value) : ?>
+          <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>"><?php echo ucwords($value->name); ?></a></li>
+        <?php endforeach; ?>
+     
       </ul>
     </li>
     
@@ -126,8 +128,16 @@ $create_user_permission = $this->user_permission->has_permission('create_user' ,
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Accepted Universities</a></li>
       </ul>
     </li>
-      <li> <a href="<?php echo base_url() . 'Courses/courses' ?>"><i class="icon icon-fire"></i> <span>Courses</span></a>
+    
+      <?php 
+         if($view_courses_permission != FALSE || $this->ion_auth->is_admin()) : ?>
+      <li class="submenu"> <a href="#"><i class="icon icon-fire"></i> <span>Courses</span></a>
+    <ul>
+      <li> <a href="<?php echo base_url() . 'Courses/courses' ?>"><i class="icon icon-eye-open"></i> <span>View Courses</span></a>
     </li>
+      </ul>
+      </li>
+      <?php endif; ?>
      <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-pencil"></i> <span>Registration</span></a>
       <ul>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">British</a></li>

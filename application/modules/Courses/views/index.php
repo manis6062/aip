@@ -43,6 +43,8 @@
                     <div class="control-group">
                         <label class="control-label">Duration * </label>
                         <div class="controls">
+                            <div class="input-append">
+                                
                         <?php 
                         $course_data = array(
                                         'type'  => 'text',
@@ -53,12 +55,16 @@
                                     );
 
                         echo form_input($course_data);?>
+                                <span class="add-on">months</span>
+                        </div>
                         </div>
                     </div>
                     
                       <div class="control-group">
                         <label class="control-label">Fee </label>
                         <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on">$</span>
                        <?php 
                         $course_fee = array(
                                         'type'  => 'text',
@@ -71,7 +77,7 @@
 
                         echo form_input($course_fee);?>
                         </div>
-                    </div>
+                    </div></div>
                     
                     
                     
