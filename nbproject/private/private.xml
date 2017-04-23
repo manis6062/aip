@@ -4,12 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/var/www/html/aip/application/modules/Leads/views/create_leads.php</file>
-            <file>file:/var/www/html/aip/ADMIN%20DASHBOARD/form-common.html</file>
-            <file>file:/var/www/html/aip/application/modules/Dashboard/views/templates/footer.php</file>
-            <file>file:/var/www/html/aip/application/modules/Dashboard/views/templates/header.php</file>
-            <file>file:/var/www/html/aip/application/modules/Leads/models/Leads_model.php</file>
-            <file>file:/var/www/html/aip/public/css/datepicker.css</file>
+            <file>file:/var/www/html/aip/application/modules/Users/libraries/Ion_auth.php</file>
             <file>file:/var/www/html/aip/application/core/MY_Controller.php</file>
+            <file>file:/var/www/html/aip/application/modules/Courses/models/Courses_model.php</file>
+            <file>file:/var/www/html/aip/application/models/Ion_auth_model.php</file>
             <file>file:/var/www/html/aip/application/modules/Leads/controllers/Leads.php</file>
         </group>
     </open-files>

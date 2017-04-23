@@ -15,11 +15,49 @@
                     echo form_open("Users/auth/create_user", $create_user_attr);
                     ?>
         <div class="span6">
+              <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+                    <h5>Official</h5>
+                </div>
+                  <div class="widget-content nopadding form-horizontal">
+                       <div class="control-group">
+                        <label class="control-label">Reason To Visit  * </label>
+                        <div class="controls">
+     
+     <?php
+$service_options = array('Enquiry' , 'Training' , 'Study Abroad','Examination');
+echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $service_options); ?>
+                    </div>
+                         </div>
+                      
+                                   <div class="control-group">
+                        <label class="control-label">Assigned to * </label>
+                        <div class="controls">
+                            <select name="user_group" id="user_group">
+                                <?php  foreach ($get_groups as $value): ?>
+                                <option id="<?php echo $value->id ;?>"><?php echo ucwords($value->name) ; ?></option>
+                               <?php endforeach; ?>
+                            </select>
+                        </div>
+                          <div class="controls">
+                                  <select name="user" id="users"></select>
+                        </div>
+                    </div>
+                      
+                      
+                  </div></div>
+            
+            
+            
+            
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
                     <h5>Personal</h5>
                 </div>
                 <div class="widget-content nopadding">
+                    
+                    
+                        
                  
 
                     <div class="control-group">
@@ -133,28 +171,23 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $country_opt
         <div class="span6">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-                    <h5>Official</h5>
+                    <h5>Educational</h5>
                 </div>
                 <div class="widget-content nopadding form-horizontal">
                     <div class="control-group">
                         <label class="control-label">Education * </label>
                         <div class="controls">
-                            <?php echo form_input(array('id' => 'sal', 'placeholder' => 'Enter Salutation.', 'name' => 'sal')); ?>
-
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Reason To Visit * </label>
-                        <div class="controls">
-                            <?php echo form_input(array('id' => 'first_name', 'placeholder' => 'Enter First Name.', 'name' => 'first_name')); ?>
-
+<?php
+$education_options = $get_education;
+echo form_dropdown(array('id' => 'education' , 'name' => 'education') , $education_options); ?>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">Preferred Course * </label>
                         <div class="controls">
-                            <?php echo form_input(array('id' => 'last_name', 'placeholder' => 'Enter Last Name.', 'name' => 'last_name')); ?>
-
+<?php
+$course_options = $get_courses;
+echo form_dropdown(array('id' => 'course' , 'name' => 'course') , $course_options); ?>
                         </div>
                     </div>
                     <div class="control-group">
@@ -234,26 +267,7 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $country_opt
                     <h5>Assign Lead</h5>
                 </div>
                 <div class="widget-content nopadding form-horizontal">
-                    
-                      <div class="control-group">
-                        <label class="control-label">Service Type * </label>
-                        <div class="controls">
- <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Services
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Enquiry</a></li>
-    <li><a href="#">Training</a></li>
-    <li><a href="#">Study Abroad</a></li>
-     <li><a href="#">Examination</a></li>
-  </ul>
-</div> 
-                        </div>
-                    </div>
-                  
-                  
-                    
-                  
+                
                               <div class="control-group">
                         <label class="control-label">Assigned to * </label>
                         <div class="controls">
@@ -290,3 +304,25 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $country_opt
     
     
 </div>
+
+<script type="text/javascript">
+$('#user_group').change(function(){
+    var id = $(this).children(":selected").attr("id");
+    $.ajax({
+        url:"<?php echo base_url() . 'Leads/leads/getUserGroups' ?>",
+        type: "POST",
+        data: {id: id},
+        success: 
+              function(data){
+
+
+                alert(data); 
+              },
+        error: 
+              function(){
+                alert('data error');  
+              }
+          });// you have missed this bracket
+});
+
+</script>
