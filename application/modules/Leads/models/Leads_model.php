@@ -12,7 +12,15 @@
  * @author rh
  */
 class Leads_model extends CI_Model{
-   // public $_table = 'branch';
+    
+   public function __construct() {
+       parent::__construct();
+   }
+   
+   public function getAllDestination() {
+       $this->load->module_model('Destinations_model' , 'Destinations');
+       $this->Destinations_model->getDestinations();       
+   }
 
   
         

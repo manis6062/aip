@@ -39,9 +39,41 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $service_opt
                                <?php endforeach; ?>
                             </select>
                         </div>
-                          <div class="controls">
-                                  <select name="user" id="users"></select>
+                        <div id="user_option" style="display:none;">
+                              <div class="control-group">
+                           <label class="control-label">Choose User * </label>
+                            <div class="controls">
+                             
+                              <select name="user" id="user">
+                                  
+                              </select>
                         </div>
+                              </div>
+                            </div>
+                        
+                          <div class="control-group">
+                        <label class="control-label">Preferred Destination * </label>
+                        <div class="controls">
+                            
+                            <select name="destinations">
+                                <?php foreach ($get_destinations as $value)  : ?>
+                                <option value="<?php echo $value->id ; ?>"><?php echo $value->name ; ?></option>
+                                 <?php endforeach; ?>
+                            </select>
+           
+                        </div>
+                    </div>
+                        
+                           
+                    <div class="control-group">
+                        <label class="control-label">Preferred Course * </label>
+                        <div class="controls">
+<?php
+$course_options = $get_courses;
+echo form_dropdown(array('id' => 'course' , 'name' => 'course') , $course_options); ?>
+                        </div>
+                    </div>
+                        
                     </div>
                       
                       
@@ -89,7 +121,7 @@ echo form_dropdown(array('id' => 'sal' , 'name' => 'sal') , $options); ?>
                         <label class="control-label">Date of Birth * </label>
                         <div class="controls">
                             
-                            <input class="span9 datepicker" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" type="text">
+                            <input class="span9 datepicker dob" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" type="text">
                             
 
                         </div>
@@ -143,6 +175,29 @@ $country_options = $get_all_countries;
 echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $country_options); ?>
                         </div>
                     </div>
+                    
+                    
+                     <div class="control-group">
+                        <label class="control-label">Fathers Name* </label>
+                        <div class="controls">
+                    <?php echo form_input(array('id' => 'father_name', 'placeholder' => 'Enter Fathers Name', 'name' => 'father_name')); ?>
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Mothers Name* </label>
+                        <div class="controls">
+                    <?php echo form_input(array('id' => 'mother_name', 'placeholder' => 'Enter Mothers name.', 'name' => 'mother_name')); ?>
+
+                        </div>
+                    </div>
+                      <div class="control-group">
+                        <label class="control-label">Guardians Name* </label>
+                        <div class="controls">
+                    <?php echo form_input(array('id' => 'guardian', 'placeholder' => 'Enter Guardian name.', 'name' => 'guardian')); ?>
+
+                        </div>
+                    </div>
 
                     <div class="control-group">
                         <label class="control-label">Nationality * </label>
@@ -173,31 +228,71 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $country_opt
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
                     <h5>Educational</h5>
                 </div>
-                <div class="widget-content nopadding form-horizontal">
+                
+                <div class="widget-content nopadding form-horizontal" id="educational_div">
+                    
+                    
                     <div class="control-group">
-                        <label class="control-label">Education * </label>
+                        <label class="control-label">Degree* </label>
                         <div class="controls">
-<?php
-$education_options = $get_education;
-echo form_dropdown(array('id' => 'education' , 'name' => 'education') , $education_options); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Preferred Course * </label>
-                        <div class="controls">
-<?php
-$course_options = $get_courses;
-echo form_dropdown(array('id' => 'course' , 'name' => 'course') , $course_options); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Preferred Destination * </label>
-                        <div class="controls">
-                            <?php echo form_input(array('id' => 'dob', 'placeholder' => 'Enter date of Birth.', 'name' => 'dob')); ?>
+                    <?php echo form_input(array('id' => 'degree', 'placeholder' => 'Enter Degree Name.', 'name' => 'degree')); ?>
 
                         </div>
                     </div>
+                    
+                       <div class="control-group">
+                        <label class="control-label">University* </label>
+                        <div class="controls">
+                    <?php echo form_input(array('id' => 'university', 'placeholder' => 'Enter University Name.', 'name' => 'university')); ?>
+
+                        </div>
+                    </div>
+                    
+                    
+                      
+                       <div class="control-group">
+                        <label class="control-label">Affiliate University* </label>
+                        <div class="controls">
+                    <?php echo form_input(array('id' => 'affiliate_university', 'placeholder' => 'Enter Affiliate University Name.', 'name' => 'affiliate_university')); ?>
+
+                        </div>
+                    </div>
+                    
+                       <div class="control-group">
+                        <label class="control-label">Start Date </label>
+                        <div class="controls">
+                    <?php echo form_input(array('id' => 'start_date', 'placeholder' => 'Enter End Date.', 'name' => 'start_date')); ?>
+
+                        </div>
+                    </div>
+                    
+                    
+                       <div class="control-group">
+                        <label class="control-label">End Date </label>
+                        <div class="controls">
+                    <?php echo form_input(array('id' => 'end_date', 'placeholder' => 'Enter Start Date.', 'name' => 'end_date')); ?>
+                        </div>
+                        <button id="clone" class="btn btn-warning">Add Next</button>
+                       
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                 
+                  
                 </div>
+                
+                
+                <div id="clone_div"></div>
+                
             </div>
             
             
@@ -308,15 +403,22 @@ echo form_dropdown(array('id' => 'course' , 'name' => 'course') , $course_option
 <script type="text/javascript">
 $('#user_group').change(function(){
     var id = $(this).children(":selected").attr("id");
+    var option = [];
     $.ajax({
         url:"<?php echo base_url() . 'Leads/leads/getUserGroups' ?>",
         type: "POST",
         data: {id: id},
         success: 
               function(data){
+                  document.getElementById("user").options.length = 0;
+              var parse_data = $.parseJSON(data);    
+              $.each(parse_data, function (index, value) {
+                  option = '<option value="'+value.id+'">'+value.first_name+' ' +value.last_name+'</option>';
+                  $('#user').append(option);
+             });
+                   $('#user_option').css('display' , 'inline');
+                  
 
-
-                alert(data); 
               },
         error: 
               function(){
@@ -324,5 +426,16 @@ $('#user_group').change(function(){
               }
           });// you have missed this bracket
 });
+
+
+$('.dob').datepicker();
+
+$('#clone').click(function(event){
+  var $edu = $('#educational_div').clone();
+  $('#clone_div').html($edu);
+  event.preventDefault();
+});
+  
+
 
 </script>

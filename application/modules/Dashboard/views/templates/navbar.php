@@ -2,8 +2,11 @@
 $view_branch_permission = $this->user_permission->has_permission('view_branch' , 'access'); 
 $view_profession_permission = $this->user_permission->has_permission('view_profession' , 'access'); 
 $view_courses_permission = $this->user_permission->has_permission('view_course' , 'access'); 
+$view_destination_permission = $this->user_permission->has_permission('view_destination' , 'access'); 
+
 $view_user_permission = $this->user_permission->has_permission('view_user' , 'access'); 
 $create_user_permission = $this->user_permission->has_permission('create_user' , 'access'); 
+
 
 // $this->load->module_model('Courses_model' , 'Courses');
 //        $data['$all_courses'] = $this->Courses_model->getCourses();
@@ -168,6 +171,19 @@ $create_user_permission = $this->user_permission->has_permission('create_user' ,
        <li class="submenu"> <a href="#"><i class="icon icon-columns"></i> <span>Branch</span></a>
       <ul>
       <li> <a href="<?php echo base_url() . 'Branch' ?>"><i class="icon icon-eye-open"></i> <span>View Branch</span></a>
+    </li>
+      </ul>
+    </li>
+    
+     <?php  endif; ?>
+    
+    
+    
+      <?php 
+         if($view_destination_permission != FALSE || $this->ion_auth->is_admin()) : ?>
+       <li class="submenu"> <a href="#"><i class="icon icon-plane"></i> <span>Destinations</span></a>
+      <ul>
+      <li> <a href="<?php echo base_url() . 'Destinations/destinations' ?>"><i class="icon icon-eye-open"></i> <span>View Destinations</span></a>
     </li>
       </ul>
     </li>

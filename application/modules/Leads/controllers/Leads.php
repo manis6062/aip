@@ -11,7 +11,7 @@ class Leads extends MY_Controller {
             parent::__construct();
       
         $this->load->module_model('Courses_model' , 'Courses');
-//        
+        $this->load->module_model('Destinations_model' , 'Destinations');
 //        
 //        
 //        var_dump($data['branches']);
@@ -26,11 +26,9 @@ class Leads extends MY_Controller {
     
      public function create_leads() {
          $data['get_all_countries'] = $this->getAllCountries();
-         $data['get_education'] = $this->getAllEducation();
           $courses = $this->Courses_model->getCourses();
            $data['get_groups'] = $this->ion_auth->groups()->result();
-           
-           $users = $this->ion_auth->users(1)->result();
+           $data['get_destinations'] = $this->Destinations_model->getDestinations();       
           foreach ($courses as $value) {
               $course_name[] = $value->name ;
               
@@ -48,7 +46,7 @@ class Leads extends MY_Controller {
     public function getUserGroups($group_id = NULL) {
         $group_id = $this->input->post('id');
         if(!empty($group_id)){
-            $users = $this->ion_auth->users($group_id);
+            $users = $this->ion_auth->users($group_id)->result();
             echo json_encode($users);
         }
         
