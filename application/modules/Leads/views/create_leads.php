@@ -272,11 +272,13 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $country_opt
                         <div class="controls">
                     <?php echo form_input(array('id' => 'end_date', 'placeholder' => 'Enter Start Date.', 'name' => 'end_date')); ?>
                         </div>
-                        <button id="clone" class="btn btn-warning">Add Next</button>
+                        
                        
                     </div>
                     
+                    <button id="clone" class="btn btn-warning">Add More..</button>
                     
+                     <button id="div_close" class="btn btn-danger pull-right">Close</button>
                     
                     
                     
@@ -401,6 +403,9 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $country_opt
 </div>
 
 <script type="text/javascript">
+    
+    
+    
 $('#user_group').change(function(){
     var id = $(this).children(":selected").attr("id");
     var option = [];
@@ -430,12 +435,19 @@ $('#user_group').change(function(){
 
 $('.dob').datepicker();
 
+
+
 $('#clone').click(function(event){
-  var $edu = $('#educational_div').clone();
-  $('#clone_div').html($edu);
+      $clone = $('#educational_div').clone(true, true).find('#clone').remove().end();
+     $clone.appendTo($('#clone_div')).find("input:text").val("").end();
+     $('#div_close').insertAfter($("educational_div"));
   event.preventDefault();
 });
-  
 
 
+   $('#div_close').click(function(event){
+        $("#clone_div").children("#educational_div").last().remove();
+          event.preventDefault();
+
+    });
 </script>
