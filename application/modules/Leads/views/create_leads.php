@@ -20,38 +20,35 @@
                     <h5>Official</h5>
                 </div>
                   <div class="widget-content nopadding form-horizontal">
-                       <div class="control-group">
-                        <label class="control-label">Reason To Visit  * </label>
-                        <div class="controls">
-     
-     <?php
-$service_options = array('Enquiry' , 'Training' , 'Study Abroad','Examination');
-echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $service_options); ?>
-                    </div>
-                         </div>
-                      
-                                   <div class="control-group">
-                        <label class="control-label">Assigned to * </label>
-                        <div class="controls">
-                            <select name="user_group" id="user_group">
-                                <?php  foreach ($get_groups as $value): ?>
-                                <option id="<?php echo $value->id ;?>"><?php echo ucwords($value->name) ; ?></option>
-                               <?php endforeach; ?>
+                                
+                                <div class="control-group">
+                                <label class="control-label">Reason To Visit  * </label>
+                                <div class="controls">
+                                    <select name="services" id="services">
+                                <?php foreach ($services as $service_value)  : ?>
+                                        <option id="<?php echo $service_value->id ; ?>" value="<?php echo $service_value->id ; ?>"><?php echo $service_value->description ; ?></option>
+                                 <?php endforeach; ?>
                             </select>
-                        </div>
-                        <div id="user_option" style="display:none;">
+                                </div>
+                                  </div>
+                      
+                      
+                       <div id="enquiry_option" style="display:none;">
                               <div class="control-group">
-                           <label class="control-label">Choose User * </label>
+                           <label class="control-label">Enquiry Of * </label>
                             <div class="controls">
                              
-                              <select name="user" id="user">
+                              <select name="enquiry_service" id="enquiry_service">
                                   
                               </select>
                         </div>
                               </div>
                             </div>
+                      
+                      
+                      
                         
-                          <div class="control-group">
+                      <div class="control-group" id="prefer_destination" style="display:none;">
                         <label class="control-label">Preferred Destination * </label>
                         <div class="controls">
                             
@@ -65,7 +62,7 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $service_opt
                     </div>
                         
                            
-                    <div class="control-group">
+                      <div class="control-group" style="display:none;" id="prefer_course">
                         <label class="control-label">Preferred Course * </label>
                         <div class="controls">
 <?php
@@ -74,7 +71,6 @@ echo form_dropdown(array('id' => 'course' , 'name' => 'course') , $course_option
                         </div>
                     </div>
                         
-                    </div>
                       
                       
                   </div></div>
@@ -298,7 +294,7 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $country_opt
             </div>
             
             
-            <div class="widget-box">
+            <div class="widget-box" id="visa_detail" style="display:none;">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
                     <h5>Visa Detail</h5>
                 </div>
@@ -365,20 +361,25 @@ echo form_dropdown(array('id' => 'country' , 'name' => 'country') , $country_opt
                 </div>
                 <div class="widget-content nopadding form-horizontal">
                 
-                              <div class="control-group">
                         <label class="control-label">Assigned to * </label>
                         <div class="controls">
- <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select User
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">HTML</a></li>
-    <li><a href="#">CSS</a></li>
-    <li><a href="#">JavaScript</a></li>
-  </ul>
-</div> 
+                            <select name="user_group" id="user_group">
+                                <?php  foreach ($get_groups as $value): ?>
+                                <option id="<?php echo $value->id ;?>"><?php echo ucwords($value->name) ; ?></option>
+                               <?php endforeach; ?>
+                            </select>
                         </div>
-                    </div>
+                        <div id="user_option" style="display:none;">
+                              <div class="control-group">
+                           <label class="control-label">Choose User * </label>
+                            <div class="controls">
+                             
+                              <select name="user" id="user">
+                                  
+                              </select>
+                        </div>
+                              </div>
+                            </div>
                     <div class="form-actions">
             <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -430,6 +431,43 @@ $('#user_group').change(function(){
                 alert('data error');  
               }
           });// you have missed this bracket
+});
+
+
+$('#enquiry_service').change(function(){
+            var enquiry_service_id = $("#enquiry_service").children(":selected").attr("id");
+            if(enquiry_service_id == 2){
+            $("#prefer_course").css('display' , 'block');
+            }
+            });
+
+
+$('#services').change(function(){
+    var id = $(this).children(":selected").attr("id");
+    //if Enquiry Selected
+    if(id == 1){
+    var option = [];
+    $.ajax({
+        url:"<?php echo base_url() . 'Leads/leads/getEnquiryServices' ?>",
+        type: "POST",
+        data: {id: id},
+        success: 
+              function(data){
+                  document.getElementById("enquiry_service").options.length = 0;
+              var parse_data = $.parseJSON(data);    
+              $.each(parse_data, function (index, value) {
+                  option = '<option value="'+value.name+'" id="'+value.id+'">'+value.name+'</option>';
+                  $('#enquiry_service').append(option);
+             });
+                   $('#enquiry_option').css('display' , 'inline');
+                  
+
+              },
+        error: 
+              function(){
+                alert('data error');  
+              }
+          });  };
 });
 
 
