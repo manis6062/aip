@@ -62,6 +62,42 @@ class Leads extends MY_Controller {
     }
     
     
+    public function create_lead() {
+        
+        $this->user_permission->has_permission('create_lead');
+        $data['title'] = "Add Leads";
+        
+            $personal_data = array(
+                 'salutation' => $this->input->post('salutation'),
+                'first_name' => $this->input->post('first_name'),
+                'last_name' => $this->input->post('last_name'),
+                'dob' => $this->input->post('dob'),
+                'email' => $this->input->post('email'),
+                'phone' => $this->input->post('phone'),
+                'mobile' => $this->input->post('mobile'),
+                'current_address' => $this->input->post('current_address'),
+                'permanent_address' => $this->input->post('permanent_address'),
+                'country' => $this->input->post('country'),
+                'fathers_name' => $this->input->post('fathers_name'),
+                'mothers_name' => $this->input->post('mothers_name'),
+                'guardians_name' => $this->input->post('mothers_name'),
+                'nationality' => $this->input->post('nationality'),
+                'referred_by' => $this->input->post('referred_by'),
+                'remarks' => $this->input->post('remarks'),
+            );
+            
+            $educational_data = array(
+                 'degree' => $this->input->post('degree[]'),
+                'university' => $this->input->post('university[]'),
+                'affiliate_university' => $this->input->post('affiliate_university[]'),
+                'start_date' => $this->input->post('start_date[]'),
+                'end_date' => $this->input->post('end_date[]'),
+            );
+        
+        
+    }
+    
+    
 
   
 
