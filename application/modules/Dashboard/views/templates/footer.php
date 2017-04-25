@@ -26,8 +26,11 @@
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.uniform.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/matrix.popover.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.dataTables.min.js"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/matrix.tables.js"></script> 
+
 
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to

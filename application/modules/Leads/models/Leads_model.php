@@ -17,11 +17,22 @@ class Leads_model extends CI_Model{
        parent::__construct();
    }
    
-   public function getAllDestination() {
-       $this->load->module_model('Destinations_model' , 'Destinations');
-       $this->Destinations_model->getDestinations();       
-   }
-
+      public function getServices(){
+          $query = $this->db->get_where('services', array('status' => 1));
+          return $query->result();
+    }
+    
+    
+      public function getEnqServices($service_id){
+          $query = $this->db->get_where('enquiry_service_type', array('status' => 1 , 'service_id' => $service_id));
+          return $query->result();
+    }
+    
+    public function insert($table , $arr) {
+        $this->db->insert($table , $arr);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
   
         
     
