@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: aip
 -- ------------------------------------------------------
--- Server version	5.7.17-0ubuntu0.16.10.1
+-- Server version	5.7.17-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -81,13 +81,13 @@ CREATE TABLE `counsellor_job` (
   `counsellor_job_user_id` int(11) NOT NULL,
   `enquiry_id` int(11) NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
+  `date` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `service_type_id_idx` (`enquiry_id`),
   KEY `fk_counsellor_job_1_idx` (`counsellor_job_user_id`),
   CONSTRAINT `fk_counsellor_job_1` FOREIGN KEY (`counsellor_job_user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_counsellor_job_2` FOREIGN KEY (`enquiry_id`) REFERENCES `enquiry` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,6 +96,7 @@ CREATE TABLE `counsellor_job` (
 
 LOCK TABLES `counsellor_job` WRITE;
 /*!40000 ALTER TABLE `counsellor_job` DISABLE KEYS */;
+INSERT INTO `counsellor_job` VALUES (1,55,2,1,'2017-04-26 11:47:13'),(2,49,3,1,'2017-04-26 12:06:35'),(3,55,4,1,'2017-04-26 13:15:08'),(4,51,5,1,'2017-04-26 13:23:29'),(5,2,6,1,'2017-04-26 13:26:33'),(6,49,7,1,'2017-04-26 13:34:50'),(7,49,8,1,'2017-04-26 13:41:34'),(8,49,9,1,'2017-04-26 13:47:39');
 /*!40000 ALTER TABLE `counsellor_job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +219,7 @@ CREATE TABLE `education` (
   `start_date` year(4) DEFAULT NULL,
   `end_date` year(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +228,7 @@ CREATE TABLE `education` (
 
 LOCK TABLES `education` WRITE;
 /*!40000 ALTER TABLE `education` DISABLE KEYS */;
-INSERT INTO `education` VALUES (6,'Master Degree','Kathmandu University','Kathmandu University',2017,2017),(7,'Master Degree','Kathmandu University','Kathmandu University',2017,2017),(8,'Master Degree','Kathmandu University','Kathmandu University',2017,2017),(9,'Master Degree','Kathmandu University','Kathmandu University',2017,2017),(10,'Master Degree','Kathmandu University','Kathmandu University',2017,2017);
+INSERT INTO `education` VALUES (12,NULL,'pu','pu',2009,2013),(13,NULL,'cu','cu',2013,2015),(14,NULL,'tu','tu',2008,2010),(15,NULL,'pu','pu',2017,2018),(16,NULL,'tu','tu',2009,2010),(17,NULL,'pu','pu',2006,2008),(18,NULL,'pu','pu',2009,2010),(19,NULL,'pu','pu',2017,2017),(20,NULL,'pu','pu',2017,2018),(21,NULL,'pu','pu',2015,2018),(22,NULL,'tu','tu',2011,2013),(23,NULL,'pu','pu',2013,2015),(24,NULL,'cu','cu',2015,2017);
 /*!40000 ALTER TABLE `education` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,7 +282,7 @@ CREATE TABLE `enquiry` (
   CONSTRAINT `enquiry_service_type_id` FOREIGN KEY (`enquiry_service_type_id`) REFERENCES `enquiry_service_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `enquiry_student_id` FOREIGN KEY (`enquiry_student_id`) REFERENCES `students` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_enquiry_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -290,7 +291,7 @@ CREATE TABLE `enquiry` (
 
 LOCK TABLES `enquiry` WRITE;
 /*!40000 ALTER TABLE `enquiry` DISABLE KEYS */;
-INSERT INTO `enquiry` VALUES (1,1,1,'2015-12-12',1);
+INSERT INTO `enquiry` VALUES (2,2,1,'2017-04-26',NULL),(3,4,1,'2017-04-26',NULL),(4,5,1,'2017-04-26',NULL),(5,6,1,'2017-04-26',NULL),(6,7,1,'2017-04-26',NULL),(7,8,1,'2017-04-26',NULL),(8,9,1,'2017-04-26',NULL),(9,11,1,'2017-04-26',NULL);
 /*!40000 ALTER TABLE `enquiry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,7 +320,7 @@ CREATE TABLE `enquiry_service_type` (
 
 LOCK TABLES `enquiry_service_type` WRITE;
 /*!40000 ALTER TABLE `enquiry_service_type` DISABLE KEYS */;
-INSERT INTO `enquiry_service_type` VALUES (1,'Information',0,1,1),(2,'About Training',0,1,1),(3,'About Study',0,1,1),(4,'About Examination',0,1,1);
+INSERT INTO `enquiry_service_type` VALUES (1,'Information',0,1,1),(2,'About Enrollment',0,1,1),(3,'About Examination',0,1,1),(4,'About Study',0,1,1);
 /*!40000 ALTER TABLE `enquiry_service_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -758,7 +759,7 @@ CREATE TABLE `services` (
 
 LOCK TABLES `services` WRITE;
 /*!40000 ALTER TABLE `services` DISABLE KEYS */;
-INSERT INTO `services` VALUES (1,'enquiry','Enquiry','1'),(2,'training','Training','1'),(3,'study abroad','Study Abroad','1'),(4,'examination','Examination','1');
+INSERT INTO `services` VALUES (1,'enquiry','Enquiry','1'),(2,'enrollment','Enrollment','1'),(3,'study abroad','Study Abroad','1'),(4,'examination','Examination','1');
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -799,8 +800,8 @@ DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `discount_id` int(11) DEFAULT NULL,
-  `first_name` varchar(150) DEFAULT NULL,
-  `last_name` varchar(150) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `image` varchar(150) DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `nationality` varchar(150) DEFAULT NULL,
@@ -823,7 +824,7 @@ CREATE TABLE `students` (
   `employment` varchar(150) DEFAULT NULL,
   `dob_document` varchar(150) DEFAULT NULL,
   `police_report` varchar(15) DEFAULT NULL,
-  `remarks` varchar(45) DEFAULT NULL,
+  `remarks` text,
   `status` varchar(150) DEFAULT NULL,
   `income_documents` varchar(150) DEFAULT NULL,
   `ca_report` varchar(150) DEFAULT NULL,
@@ -840,21 +841,23 @@ CREATE TABLE `students` (
   `current_address` varchar(255) DEFAULT NULL,
   `permanent_address` varchar(255) DEFAULT NULL,
   `referred_by` varchar(255) DEFAULT NULL,
-  `preffered_destination` varchar(45) DEFAULT NULL,
+  `reason` text,
+  `preffered_destination` varchar(255) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_on` datetime DEFAULT NULL,
   `fathers_name` varchar(255) DEFAULT NULL,
   `mothers_name` varchar(255) DEFAULT NULL,
   `guardians_name` varchar(255) DEFAULT NULL,
-  `education_id` int(11) NOT NULL,
+  `education_id` varchar(255) NOT NULL,
   `martial_status` enum('m','u') DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `discount_id_idx` (`discount_id`),
   KEY `education_id_idx` (`education_id`),
-  CONSTRAINT `education_id` FOREIGN KEY (`education_id`) REFERENCES `education` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='Students Information';
+  CONSTRAINT `discount_id` FOREIGN KEY (`discount_id`) REFERENCES `discount` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='Students Information';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -863,7 +866,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,NULL,'','',NULL,'2017-12-04','Nepali',NULL,NULL,NULL,'52221145221','hakukale@msn.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','Basantapur , Kathmandu','Basantapur , Kathmandu','Online',NULL,NULL,NULL,'2017-04-26 01:07:39','Kale Don','Kali Don','Kali Don',6,NULL,'5523633','150'),(2,NULL,'','',NULL,'2017-12-04','Nepali',NULL,NULL,NULL,'52221145221','hakukale@msn.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','Basantapur , Kathmandu','Basantapur , Kathmandu','Online',NULL,NULL,NULL,'2017-04-26 01:10:00','Kale Don','Kali Don','Kali Don',7,NULL,'5523633','150'),(3,NULL,'','',NULL,'1970-01-01','Nepali',NULL,NULL,NULL,'52221145221','hakukale@msn.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','Basantapur , Kathmandu','Basantapur , Kathmandu','Online',NULL,NULL,NULL,'2017-04-26 01:12:32','Kale Don','Kali Don','Kali Don',8,NULL,'5523633','150'),(4,NULL,'','',NULL,'1970-01-01','Nepali',NULL,NULL,NULL,'52221145221','hakukale@msn.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','Basantapur , Kathmandu','Basantapur , Kathmandu','Online',NULL,NULL,NULL,'2017-04-26 01:16:06','Kale Don','Kali Don','Kali Don',9,NULL,'5523633','0'),(5,NULL,'','',NULL,'1970-01-01','Nepali',NULL,NULL,NULL,'52221145221','hakukale@msn.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','Basantapur , Kathmandu','Basantapur , Kathmandu','Online',NULL,NULL,NULL,'2017-04-26 01:27:56','Kale Don','Kali Don','Kali Don',10,NULL,'5523633','0');
+INSERT INTO `students` VALUES (1,NULL,'','',NULL,'1970-01-01','Nepali',NULL,NULL,NULL,'9856325552','manis6062@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,NULL,NULL,'2017-04-26 11:43:38','Suku Basnet','Suki Basnet','Suki Basnet','3',NULL,'55889585','150'),(2,NULL,'','',NULL,'1970-01-01','Nepali',NULL,NULL,NULL,'9856325552','manis6062@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,NULL,NULL,'2017-04-26 11:47:13','Suku Basnet','Suki Basnet','Suki Basnet','4',NULL,'55889585','150'),(3,NULL,'','',NULL,'2017-11-04','Nepali',NULL,NULL,NULL,'9856325552','juko@pavilionx2.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,NULL,NULL,'2017-04-26 11:53:10','Ram Chalise','Sita Chalise','Sita Chalise','5',NULL,'55889585','150'),(4,NULL,'dwyane','johnson','dwyane','1970-01-01','American',NULL,NULL,NULL,'9856325552','juko@pavilionx2.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,1,NULL,'2017-04-26 12:06:35','brock lesnar','','','6',NULL,'778855522','209'),(5,NULL,'dwyane','johnson','dwyane','1970-01-01','Nepali',NULL,NULL,NULL,'9856325552','juko@pavilionx2.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,1,NULL,'2017-04-26 13:15:08','brock lesnar','Sita Chalise','Sita Chalise','12,13,14',NULL,'55889585','18'),(6,NULL,'ramesh','maharjan','ramesh','1970-01-01','American',NULL,NULL,NULL,'9856325552','juko@pavilionx2.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,1,NULL,'2017-04-26 13:23:29','Hari Krishna','','','15,16',NULL,'778855522','50'),(7,NULL,'ramesh','johnson','ramesh','1970-01-01','Nepali',NULL,NULL,NULL,'9856325552','juko@pavilionx2.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,1,NULL,'2017-04-26 13:26:33','brock lesnar','','','17,18',NULL,'55889585','196'),(8,NULL,'dwyane','johnson','dwyane','1970-01-01','Nepali',NULL,NULL,NULL,'9856325552','juko@pavilionx2.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,1,NULL,'2017-04-26 13:34:50','brock lesnar','','','19',NULL,'55889585','196'),(9,NULL,'dwyane','johnson','dwyane','1970-01-01','Nepali',NULL,NULL,NULL,'9856325552','juko@pavilionx2.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,1,NULL,'2017-04-26 13:41:34','brock lesnar','','','20',NULL,'55889585','3'),(10,NULL,'dwyane','johnson','dwyane','2016-12-07','Nepali',NULL,NULL,NULL,'9856325552','juko@pavilionx2.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,1,NULL,'2017-04-26 13:44:07','brock lesnar','Sita Chalise','Sita Chalise','21',NULL,'55889585','32'),(11,NULL,'Janardan ','Sharma','Janardan ','2016-12-20','Nepali',NULL,NULL,NULL,'98605325325','juko@pavilionx2.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mrs.','basantapur, ktm','basantapur, ktm','Online',NULL,NULL,1,NULL,'2017-04-26 13:47:39','Shyam Krishna','','','22,23,24',NULL,'55632255','90');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1151,7 +1154,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'administrator','59zE6QwGByDHk','Admin','istrator','admin@admin.com','Admin',NULL,'8798797','545645646','koteshwor',1,'127.0.0.1',NULL,NULL,NULL,NULL,'jbU1VZXXlRiniTmgj7xa4O',1493092133,'ADMIN',NULL,1),(2,'trainer','$2y$08$6YA8jRdEN2akIdhXPi2hsOSkzgth9T1CGsVFSF9cYZ2PitUlVV71q','Manish','Awale','trainer@trainer.com',NULL,NULL,'5646456465','54456464564','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491982112,1),(3,'counseller','$2y$08$3UP9HfgEJovsReTLWg7pIOrp5uIEIdujAbZH2xV.fEShmWxfy1iH6','Manish2','Awale2','counseller@trainer.com',NULL,NULL,'admin@admin.com','987654321','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491984031,1),(4,'train','$2y$08$Ul//m0WbasNepurm1XZIBu0TdRoFqROTgVriznKadPewmgk.3YaQy','Manish','Awale','train@trainer.com',NULL,NULL,'5646456465','54456464564','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491984318,1),(48,'administator','$2y$08$GhgSSo2vMjKAFmit.Mkb6.2d9UmvDIcl3LtbEx51mfoo0DBIGcJgG','jackaaaa','Johnson','administator@administator.com',NULL,NULL,'9805362563','98562312552','huwaii',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492322329,1),(49,'janavi','$2y$08$hyNtWlmDxd9rm8hjzzmRJucDEEeLxMol8Pdt5SNvrmjikQ5EMX3hW','Janavi','shrestha','janavi@janavi.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492329833,1),(50,'admsdfs','$2y$08$4zJzIU0eShbEsEdmjwqLvuXQy0ylTX5iARbxGEEdb7ek.x7YAmiqq','user1','user1','admsdfsdfsdfin@admin.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330462,1),(51,'staffsdfsdf','$2y$08$iPW/j8Zh/eamTeFWPlKm5OnOWNuVV0eIlxBfBYSeGOvTo.2X8mjGW','Jackie','Shroff','staffsdfsdfs@staff.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330506,1),(52,'stafdsfsdfsdff','$2y$08$10Xy/L3C3yGzQ7E/qlV8zuxoD8i1W3uc233G8rFGA3nDwLaZl1Gw.','hamro','nepal','stafdsfsdfsdff@staff.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330687,1),(53,'manu','$2y$08$AITT.PGJfcpJFfw7h.iQme.pOuVTBqeLOr7dhAIc15kERuIQchG9u','Manchester','United','manu@admin.com',NULL,NULL,'5646456465','435345345','new jersey',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,1492407320,NULL,1492330731,1),(54,'hitman','$2y$08$.QNwZYJEL5IZiKo1DAHxwOiBY3wKdb58lJodH.AFeO671lL3TZLQC','Hitman','Walesd','hitman@hitman.com',NULL,NULL,'05236523','9856324559','brisbane-street-34',1,'127.0.0.1',NULL,NULL,NULL,NULL,'v/9RICxUsehftnhTDN0cce',1492455471,NULL,1492419394,1),(55,'jimi','$2y$08$dclMZGLB9h00bdF2k8gU0.5R7MDF1AYDaRukQBifZyIyN49VMyIee','Jimi','Hendrix','jimi@jimi.com',NULL,NULL,'98563253','5236222325','Westhood-89 street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492452332,1),(56,'alan','$2y$08$f5E0XyQVjG4DwCNG3/sRIO6LRBpTjEH5XsbPdRu9QGLkQjnjV.YPG','Alan Rana','Magar','aiptestuser@5music.top',NULL,NULL,'98655554','52485252574','nj-bris street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,1492597395,NULL,1492597251,1),(57,'darshan','$2y$08$sZMi.iqySrbH/OiN/6jmF.ii2d5b2b7I8L.yihxcK3hlKtviNkFG.','Darshan','Khadka','testpro@10host.top',NULL,NULL,'98655554','52485252574','nj-bris street',0,'127.0.0.1',NULL,'62496b24bf4d3d0a7b64afb47c9f3327f246e0d4','f.O0cQPp1dFS3qblj0mJGe2186d4d89396cfa70d',1492601653,NULL,NULL,NULL,1492599564,1),(58,'shawn','$2y$08$uDCDubrQW7.2Q8J/DF/8ieRVSQsgNzZgdcUQjPGCEwQ3Nm7JnAc9C','Shawn','Michael','aipedu@cloud99.top',NULL,NULL,'98655554','52485252574','nj-bris street',1,'127.0.0.1',NULL,NULL,'km4ta3hXepWy-9w91.0KNea0a02bd78c2ef4f9e4',1492665003,NULL,1492760881,NULL,1492662249,1),(59,'perception','$2y$08$41sKZYOQnJIlrNxbIeKQR.2tTNNryQierKeT3Emtu/uFQTwrP4q2u','Perception','Quales','perception0123@gmail.com',NULL,NULL,'98655554','52485252574','nj-bris street',1,'127.0.0.1',NULL,NULL,'FS.YElZb1ILPm3dm5tzYj.ac9cf55bf3879dd97f',1492667661,NULL,1492675105,NULL,1492665638,1),(60,'simplesdfsdfsd','$2y$08$nOEe9F3IlArjgtQR/g4ItukVOQiSmiExeVB22vyO16mJ746am1q.O','simple','planned','aipedutest@vpsorg.top',NULL,NULL,'98655554','52485252574','nj-bris street',1,'127.0.0.1',NULL,NULL,NULL,NULL,'.GsLXDk2ufcgjq0SWHU9ae',1493010763,NULL,1492676264,1);
+INSERT INTO `users` VALUES (1,'administrator','59zE6QwGByDHk','Admin','istrator','admin@admin.com','Admin',NULL,'8798797','545645646','koteshwor',1,'127.0.0.1',NULL,NULL,NULL,NULL,'jbU1VZXXlRiniTmgj7xa4O',1493185596,'ADMIN',NULL,1),(2,'trainer','$2y$08$6YA8jRdEN2akIdhXPi2hsOSkzgth9T1CGsVFSF9cYZ2PitUlVV71q','Manish','Awale','trainer@trainer.com',NULL,NULL,'5646456465','54456464564','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491982112,1),(3,'counseller','$2y$08$3UP9HfgEJovsReTLWg7pIOrp5uIEIdujAbZH2xV.fEShmWxfy1iH6','Manish2','Awale2','counseller@trainer.com',NULL,NULL,'admin@admin.com','987654321','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491984031,1),(4,'train','$2y$08$Ul//m0WbasNepurm1XZIBu0TdRoFqROTgVriznKadPewmgk.3YaQy','Manish','Awale','train@trainer.com',NULL,NULL,'5646456465','54456464564','bagmati',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1491984318,1),(48,'administator','$2y$08$GhgSSo2vMjKAFmit.Mkb6.2d9UmvDIcl3LtbEx51mfoo0DBIGcJgG','jackaaaa','Johnson','administator@administator.com',NULL,NULL,'9805362563','98562312552','huwaii',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492322329,1),(49,'janavi','$2y$08$hyNtWlmDxd9rm8hjzzmRJucDEEeLxMol8Pdt5SNvrmjikQ5EMX3hW','Janavi','shrestha','janavi@janavi.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492329833,1),(50,'admsdfs','$2y$08$4zJzIU0eShbEsEdmjwqLvuXQy0ylTX5iARbxGEEdb7ek.x7YAmiqq','user1','user1','admsdfsdfsdfin@admin.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330462,1),(51,'staffsdfsdf','$2y$08$iPW/j8Zh/eamTeFWPlKm5OnOWNuVV0eIlxBfBYSeGOvTo.2X8mjGW','Jackie','Shroff','staffsdfsdfs@staff.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330506,1),(52,'stafdsfsdfsdff','$2y$08$10Xy/L3C3yGzQ7E/qlV8zuxoD8i1W3uc233G8rFGA3nDwLaZl1Gw.','hamro','nepal','stafdsfsdfsdff@staff.com',NULL,NULL,'5646456465','54456464564','nj-909 , west street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492330687,1),(53,'manu','$2y$08$AITT.PGJfcpJFfw7h.iQme.pOuVTBqeLOr7dhAIc15kERuIQchG9u','Manchester','United','manu@admin.com',NULL,NULL,'5646456465','435345345','new jersey',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,1492407320,NULL,1492330731,1),(54,'hitman','$2y$08$.QNwZYJEL5IZiKo1DAHxwOiBY3wKdb58lJodH.AFeO671lL3TZLQC','Hitman','Walesd','hitman@hitman.com',NULL,NULL,'05236523','9856324559','brisbane-street-34',1,'127.0.0.1',NULL,NULL,NULL,NULL,'v/9RICxUsehftnhTDN0cce',1492455471,NULL,1492419394,1),(55,'jimi','$2y$08$dclMZGLB9h00bdF2k8gU0.5R7MDF1AYDaRukQBifZyIyN49VMyIee','Jimi','Hendrix','jimi@jimi.com',NULL,NULL,'98563253','5236222325','Westhood-89 street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1492452332,1),(56,'alan','$2y$08$f5E0XyQVjG4DwCNG3/sRIO6LRBpTjEH5XsbPdRu9QGLkQjnjV.YPG','Alan Rana','Magar','aiptestuser@5music.top',NULL,NULL,'98655554','52485252574','nj-bris street',1,'127.0.0.1',NULL,NULL,NULL,NULL,NULL,1492597395,NULL,1492597251,1),(57,'darshan','$2y$08$sZMi.iqySrbH/OiN/6jmF.ii2d5b2b7I8L.yihxcK3hlKtviNkFG.','Darshan','Khadka','testpro@10host.top',NULL,NULL,'98655554','52485252574','nj-bris street',0,'127.0.0.1',NULL,'62496b24bf4d3d0a7b64afb47c9f3327f246e0d4','f.O0cQPp1dFS3qblj0mJGe2186d4d89396cfa70d',1492601653,NULL,NULL,NULL,1492599564,1),(58,'shawn','$2y$08$uDCDubrQW7.2Q8J/DF/8ieRVSQsgNzZgdcUQjPGCEwQ3Nm7JnAc9C','Shawn','Michael','aipedu@cloud99.top',NULL,NULL,'98655554','52485252574','nj-bris street',1,'127.0.0.1',NULL,NULL,'km4ta3hXepWy-9w91.0KNea0a02bd78c2ef4f9e4',1492665003,NULL,1492760881,NULL,1492662249,1),(59,'perception','$2y$08$41sKZYOQnJIlrNxbIeKQR.2tTNNryQierKeT3Emtu/uFQTwrP4q2u','Perception','Quales','perception0123@gmail.com',NULL,NULL,'98655554','52485252574','nj-bris street',1,'127.0.0.1',NULL,NULL,'FS.YElZb1ILPm3dm5tzYj.ac9cf55bf3879dd97f',1492667661,NULL,1492675105,NULL,1492665638,1),(60,'simplesdfsdfsd','$2y$08$nOEe9F3IlArjgtQR/g4ItukVOQiSmiExeVB22vyO16mJ746am1q.O','simple','planned','aipedutest@vpsorg.top',NULL,NULL,'98655554','52485252574','nj-bris street',1,'127.0.0.1',NULL,NULL,NULL,NULL,'.GsLXDk2ufcgjq0SWHU9ae',1493010763,NULL,1492676264,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1260,4 +1263,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-26  1:29:42
+-- Dump completed on 2017-04-26 14:37:29

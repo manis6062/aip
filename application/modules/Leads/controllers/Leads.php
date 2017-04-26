@@ -35,24 +35,45 @@ class Leads extends MY_Controller {
           }
           $data['get_courses'] = $course_name;
           $data['services'] = $this->Leads_model->getServices();
+          $data['education_year'] = $this->getEducationYear();
+          
+          
           $now = date('Y-m-d H:i:s');
           if($_POST){
+              
+             
               $this->user_permission->has_permission('create_lead');
               $data['title'] = "Add Leads";
-        
               
-              $education = array('degree' => $this->input->post('degree'),
-                'university' => $this->input->post('university'),
-                'affiliate_university' => $this->input->post('affiliate_university'),
-                'start_date' => $this->input->post('start_date'),
-                'end_date' => $this->input->post('end_date'));
-            $education_id = $this->Leads_model->insert('education' , $education);
-              
+                $degree = count($this->input->post('degree'));//counting number of row's
+                $university= $this->input->post('university');
+                $affiliate_university = $this->input->post('affiliate_university');
+                $start_date = $this->input->post('start_date');
+                $end_date = $this->input->post('end_date');
+                
+                for($i = 0; $i < $degree ; $i++){
+                    $education = array('degree' => $degree[$i],
+                'university' => $university[$i],
+                'affiliate_university' => $affiliate_university[$i],
+                'start_date' => $start_date[$i],
+                'end_date' => $end_date[$i]);
+          $education_id[$i] = $this->Leads_model->insert('education' , $education);
+                }
+                
+               if(is_array($education_id)){
+                   $education_id = implode(',', $education_id);
+               }
+               
+               
+               
+            $dob = $this->input->post('dob');
+            $converted_date = date("Y-m-d",strtotime($dob));
             $students = array(
                  'salutation' => $this->input->post('salutation'),
-                'first_name' => $this->input->post('first_name'),
-                'last_name' => $this->input->post('last_name'),
-                'dob' => date("Y-m-d",strtotime(str_replace('/','-',$this->input->post('dob')))),
+                'first_name' => $this->input->post('fname'),
+                'last_name' => $this->input->post('lname'),
+                'image' => $this->input->post('fname'),
+                'dob' => $converted_date,
                 'email' => $this->input->post('email'),
                 'phone' => $this->input->post('phone'),
                 'mobile' => $this->input->post('mobile'),
@@ -66,7 +87,7 @@ class Leads extends MY_Controller {
                 'referred_by' => $this->input->post('referred_by'),
                 'remarks' => $this->input->post('remarks'),
                 
-                'created_by' => $this->session->userdata('id'),
+                'created_by' => $this->session->userdata('user_id'),
                 'created_on' => $now,
                 'education_id' => $education_id,
             );            
@@ -75,8 +96,8 @@ class Leads extends MY_Controller {
              
              // Student Enquiry Service
             $enquiry_service = array(
-                'enquiry_student_id' => $this->input->post('assigned_to'),
-                'enquiry_service_type_id' => $student_id,
+                'enquiry_student_id' => $student_id,
+                'enquiry_service_type_id' => $this->input->post('enquiry_service'),
                 'date' => $now,
             );
             $enquiry_service_id =  $this->Leads_model->insert('enquiry' , $enquiry_service);

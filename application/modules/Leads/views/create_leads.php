@@ -29,8 +29,6 @@
                                     </select>
                                 </div>
                                 </div>
-                      
-                      
                                 <div id="enquiry_option" style="display:none;">
                                     <div class="control-group">
                                     <label class="control-label">Enquiry Of * </label>
@@ -83,19 +81,19 @@
                     <div class="control-group">
                         <label class="control-label">First Name * </label>
                         <div class="controls">
-                        <?php echo form_input(array('id' => 'first_name', 'placeholder' => 'Enter First Name.', 'name' => 'first_name')); ?>
+                        <?php echo form_input(array('id' => 'first_name', 'placeholder' => 'Enter First Name.', 'name' => 'fname')); ?>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">Last Name * </label>
                         <div class="controls">
-                        <?php echo form_input(array('id' => 'last_name', 'placeholder' => 'Enter Last Name.', 'name' => 'last_name')); ?>
+                        <?php echo form_input(array('id' => 'last_name', 'placeholder' => 'Enter Last Name.', 'name' => 'lname')); ?>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">Date of Birth * </label>
                         <div class="controls">
-                            <input class="span9 datepicker dob" name="dob" id = 'dob' data-date="01-02-2013" data-date-format="dd-mm-yyyy" type="text">
+                            <input class="span9 datepicker dob" name="dob" placeholder = "Enter date of birth" id = "dob" data-date="01-02-2013" data-date-format="dd-mm-yyyy" type="text">
                         </div>
                     </div>
                     <div class="control-group">
@@ -110,7 +108,7 @@
                     <div class="control-group">
                         <label class="control-label">Landline</label>
                         <div class="controls">
-              <?php echo form_input(array('id' => 'phone', 'class' => 'contact', 'placeholder' => 'Enter Residental No.', 'name' => 'phone')); ?>
+              <?php echo form_input(array('id' => 'phone', 'class' => 'contact phone', 'placeholder' => 'Enter Residental No.', 'name' => 'phone')); ?>
 
                         </div>
                     </div>
@@ -118,7 +116,7 @@
                     <div class="control-group">
                         <label class="control-label">Mobile</label>
                         <div class="controls">
-                    <?php echo form_input(array('id' => 'mobile', 'class' => 'contact', 'placeholder' => 'Enter Cell No.', 'name' => 'mobile')); ?>
+                    <?php echo form_input(array('id' => 'mobile', 'class' => 'contact mobile', 'placeholder' => 'Enter Cell No.', 'name' => 'mobile')); ?>
                         </div>
                     </div>
 
@@ -214,7 +212,7 @@
                     <div class="control-group">
                         <label class="control-label">Degree* </label>
                         <div class="controls">
-                    <?php echo form_input(array('id' => 'degree', 'placeholder' => 'Enter Degree Name.', 'name' => 'degree')); ?>
+                    <?php echo form_input(array('id' => 'degree', 'placeholder' => 'Enter Degree Name.', 'name' => 'degree[]')); ?>
 
                         </div>
                     </div>
@@ -222,7 +220,7 @@
                        <div class="control-group">
                         <label class="control-label">University* </label>
                         <div class="controls">
-                    <?php echo form_input(array('id' => 'university', 'placeholder' => 'Enter University Name.', 'name' => 'university')); ?>
+                    <?php echo form_input(array('id' => 'university', 'placeholder' => 'Enter University Name.', 'name' => 'university[]')); ?>
 
                         </div>
                     </div>
@@ -232,7 +230,7 @@
                        <div class="control-group">
                         <label class="control-label">Affiliate University* </label>
                         <div class="controls">
-                    <?php echo form_input(array('id' => 'affiliate_university', 'placeholder' => 'Enter Affiliate University Name.', 'name' => 'affiliate_university')); ?>
+                    <?php echo form_input(array('id' => 'affiliate_university', 'placeholder' => 'Enter Affiliate University Name.', 'name' => 'affiliate_university[]')); ?>
 
                         </div>
                     </div>
@@ -240,7 +238,14 @@
                        <div class="control-group">
                         <label class="control-label">Start Date </label>
                         <div class="controls">
-                    <?php echo form_input(array('id' => 'start_date','class' => 'start_date', 'placeholder' => 'Enter End Date.', 'name' => 'start_date')); ?>
+                            <select name="start_date[]">
+                                <?php
+                                 foreach ($education_year as $value) : ?>
+                                <option <?php if($value == date("Y"))
+                                    {echo "selected=selected" ;} ?>><?php echo $value ; ?></option> 
+                              <?php endforeach;  ?>
+                            </select>
+                            
 
                         </div>
                     </div>
@@ -249,7 +254,13 @@
                        <div class="control-group">
                         <label class="control-label">End Date </label>
                         <div class="controls">
-                    <?php echo form_input(array('id' => 'end_date','class' => 'end_date',  'placeholder' => 'Enter Start Date.', 'name' => 'end_date')); ?>
+                           <select name="end_date[]">
+                                <?php
+                                 foreach ($education_year as $value) : ?>
+                                <option <?php if($value == date("Y"))
+                                    {echo "selected=selected" ;} ?>><?php echo $value ; ?></option> 
+                              <?php endforeach;  ?>
+                            </select>
                         </div>
                         
                        
@@ -387,9 +398,13 @@
 </div>
 
 <script type="text/javascript">
+ $(document).ready(function($){
+$('.phone').mask('99-99-9999');
+ $(".mobile").mask("(999)-999-9999");    
+});   
     
-    
-    
+ $('.dob').datepicker();
+   
 $('#user_group').change(function(){
     var id = $(this).children(":selected").attr("id");
     var option = [];
@@ -456,9 +471,8 @@ $('#services').change(function(){
 });
 
 
-$('.dob').datepicker();
 //only year
-$('.start_date ,.end_date').datepicker({ dateFormat: 'yy' });
+// $('.start_date ,.end_date').datepicker({ dateFormat: 'yy' });
 
 
 
@@ -521,7 +535,7 @@ $('#clone').click(function(event){
       last_name: "Please enter your lastname.",
       dob: "Please enter date of birth.",
       email: "Please enter a valid email address.",
-    current_address: "Please enter current address.",
+      current_address: "Please enter current address.",
       permanent_address: "Please enter a permanent address.",
        fathers_name: "Please enter at least one relation.(Fathers Name / Mothers Name / Guardians Name)",
        mothers_name: "Please enter at least one relation.(Fathers Name / Mothers Name / Guardians Name)",

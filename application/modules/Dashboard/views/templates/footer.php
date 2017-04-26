@@ -7,7 +7,6 @@
 </div>
 
 <!--end-Footer-part-->
-<script src="<?php echo PUBLIC_SITE_URL ; ?>js/masked.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/excanvas.min.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/jquery.ui.custom.js"></script> 
 
@@ -30,6 +29,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.js"></script> 
 <script src="<?php echo PUBLIC_SITE_URL ; ?>js/matrix.tables.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> 
+
 
 
 <script type="text/javascript">
