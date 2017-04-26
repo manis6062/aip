@@ -50,7 +50,7 @@
                                             <a href="<?php 
                                   echo 'auth/edit_user/' . $user->id; 
                                             ?>"   <i class="icon-edit"></i></a>
-                                        </span>  
+                                        </span>  </td>
                                 </tr>
 
                             <?php endforeach; ?>

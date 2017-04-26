@@ -9,7 +9,7 @@
 
                 </div>
                 <div class="widget-content nopadding">
-                    <table class="table table-bordered data-table">
+                    <table class="table table-bordered data-table " id="students">
                         <thead>
                             <tr class="gradeC">
                                 <td>S.N.</td>
@@ -23,7 +23,6 @@
                                 <td>Mobile</td>
                                 <td>P.Address</td>
                                 <td>C.Address</td>
-                                <td>Mobile</td>
                                 <td>Reason</td>
                                 <td>Action</td>
                             </tr>
@@ -31,39 +30,47 @@
                         <tbody>
                             <?php
                             $count = 1;
-                           // foreach ($users as $key => $user):
+                            foreach ($getAllStudents as $key => $student):
                                 ?>
 
                                 <tr class="gradeU">
                                     <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
-                                    <td><?php echo $count++; ?></td>
+                                    <td><?php echo $student->salutation; ?></td>
+                                    <td><?php echo $student->first_name . ' ' . $student->last_name ; ?></td>
+                                     <td><?php echo $student->email ; ?></td>
+                                    <td><?php echo $student->dob ; ?></td>
+                                    <td><?php echo $student->country ; ?></td>
+                                    <td><?php echo $student->education_id ; ?></td>
+                                     <td><?php echo $student->phone ; ?></td>
+                                     <td><?php echo $student->mobile ; ?></td>
+                                   <td><?php echo $student->permanent_address ; ?></td>
+                                    <td><?php echo $student->current_address ; ?></td>
+                                    <td><?php echo $student->reason ; ?></td>
+                      <td><a href="#" id="status" data-source="[{value: 0, text: 'Inactive'}, {value: 1, text: 'Active'}]" data-value="<?php echo $student->status; ?>" class = "branch_status" data-pk="<?php echo $student->id ; ?>"><?php echo ($student->status == 1) ? 'Active' : 'Inactive' ; ?></a></td>
 
-                                   
                                 </tr>
 
-                            <?php // endforeach; ?>
+                            <?php  endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
 
+<script>
+$(document).ready(function() {
+    $('#students').DataTable( {
+        "scrollX": true
+    } );
+} );
+</script>
 
-<?php if($this->user_permission->has_permission('edit_user' , 'access') != FALSE || $this->ion_auth->is_admin()) : ?>
+
+
+<?php // if($this->user_permission->has_permission('edit_user' , 'access') != FALSE || $this->ion_auth->is_admin()) : ?>
 <script type= text/javascript>
 
     function deactivate_user(id, name) {
@@ -153,4 +160,4 @@
 
     });</script>
 
-<?php endif; ?>
+<?php // endif; ?>

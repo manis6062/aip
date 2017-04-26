@@ -92,14 +92,14 @@ $create_user_permission = $this->user_permission->has_permission('create_user' ,
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-user-md"></i> <span>Students</span></a>
       <ul>
-        <li><a href="<?php echo base_url() . 'Students/students/create_student' ?>">Manage Students</a></li>
+        <li><a href="<?php echo base_url() . 'Students/students/index' ?>">Manage Students</a></li>
        <li><a href="<?php echo base_url() . 'Students/students/create_student' ?>">Add Students</a></li>
       </ul>
     </li>
     
     <li class="submenu"> <a href="<?php echo base_url() . 'Users/auth' ?>"><i class="icon icon-info-sign"></i> <span>Enquiry</span></a>
       <ul>
-        <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Information</a></li>
+        <li><a href="<?php echo base_url() . 'Enquiry/enquiry/information' ?>">Information</a></li>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">About Study</a></li>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Enrollment</a></li>
         <li><a href="<?php echo base_url() . 'Users/auth/create_user' ?>">Exam Preparation</a></li>

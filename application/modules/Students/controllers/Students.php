@@ -10,24 +10,13 @@ class Students extends MY_Controller {
         
             parent::__construct();
       
-//        $this->load->module_model('Branch_model' , 'Branch');
-//        $data['branches'] = $this->Branch_model->getAllBranch();
-//        
-//        
-//        var_dump($data['branches']);
-
-        
+        $this->load->model('Students_model');
     }
 
     public function index() {
-        
-        
-//        $data['view_access'] = $this->user_permission->has_permission('view_branch' , 'access');
-//        $data['create_access'] = $this->user_permission->has_permission('create_branch' , 'access');
-//        $data['edit_access'] = $this->user_permission->has_permission('edit_branch' , 'access');
-//        $data['branches'] = $this->branch_model->getAllBranch();
-//        $data['countries'] = $this->branch_model->getCountries();
-        $this->load->template('index');
+
+        $data['getAllStudents'] = $this->Students_model->getAllStudents();
+        $this->load->template('index' , $data);
         
     }
     

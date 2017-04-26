@@ -12,5 +12,15 @@
  * @author rh
  */
 class Enquiry extends MY_Controller {
-    //put your code here
+    public function __construct() {
+        parent::__construct();
+    }
+    
+    
+    public function information() {
+        $this->load->template('information/index');
+        
+        
+    }
+    
 }

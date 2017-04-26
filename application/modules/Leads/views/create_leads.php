@@ -187,7 +187,7 @@
                      <div class="control-group">
                         <label class="control-label">Remarks * </label>
                         <div class="controls">
-                            <?php echo form_textarea(array('id' => 'remarks', 'placeholder' => 'Enter remarks here.', 'name' => 'remarks')); ?>
+                            <?php echo form_textarea(array('id' => 'remarks', 'placeholder' => 'Enter remarks here.', 'name' => 'student_remarks')); ?>
 
                         </div>
                     </div> 

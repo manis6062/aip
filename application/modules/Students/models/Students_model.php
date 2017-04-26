@@ -12,7 +12,14 @@
  * @author rh
  */
 class Students_model extends CI_Model{
-   // public $_table = 'branch';
+   public $_table = 'students';
+   
+   
+   public function getAllStudents() {
+      $query = $this->db->get_where($this->_table, array('status' => 1));
+      return $query->result();
+
+   }
 
   
         

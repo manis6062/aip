@@ -85,8 +85,7 @@ class Leads extends MY_Controller {
                 'guardians_name' => $this->input->post('mothers_name'),
                 'nationality' => $this->input->post('nationality'),
                 'referred_by' => $this->input->post('referred_by'),
-                'remarks' => $this->input->post('remarks'),
-                
+                'remarks' => $this->input->post('student_remarks'),
                 'created_by' => $this->session->userdata('user_id'),
                 'created_on' => $now,
                 'education_id' => $education_id,
